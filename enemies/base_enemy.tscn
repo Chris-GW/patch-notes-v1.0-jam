@@ -31,7 +31,7 @@ font_names = PackedStringArray("Cambria")
 font = SubResource("SystemFont_bfj6p")
 font_size = 32
 
-[node name="BaseEnemy" type="CharacterBody2D"]
+[node name="BaseEnemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
@@ -43,7 +43,6 @@ max_health = 20.0
 path_desired_distance = 80.0
 target_desired_distance = 80.0
 path_max_distance = 2000.0
-debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="."]
 wait_time = 0.25

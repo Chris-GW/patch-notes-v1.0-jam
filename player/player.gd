@@ -8,7 +8,6 @@ const GLITCHED_SWORD_ATTACK = preload("res://player/glitched_sword_attack.tscn")
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
-@onready var camera_2d: Camera2D = $Camera2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sword: Sprite2D = $Sword

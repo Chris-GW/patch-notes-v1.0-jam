@@ -121,9 +121,6 @@ parameters/run/blend_position = Vector2(-0.0126147, -0.00232017)
 wait_time = 0.6
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -96)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -64)
 scale = Vector2(0.4, 0.4)

@@ -1,43 +1,101 @@
-[gd_scene load_steps=6 format=3 uid="uid://bagc6mf0in81g"]
+[gd_scene load_steps=10 format=3 uid="uid://bagc6mf0in81g"]
 
 [ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c5authmobep1u" path="res://assets/sprites/Prototype_Grid_Gray_04-512x512.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="4_1bvp3"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mycd"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_272bh"]
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
-vertices = PackedVector2Array(4885.9, 4533.85, -3270.04, 4422.13, -3301.95, -2598.05, 4822.08, -2645.94)
+vertices = PackedVector2Array(3830, 3830, -3830, 3830, -3830, -3830, 3830, -3830)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-3312, -2608, 4832, -2656, 4896, 4544, -3280, 4432)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3840, -3840, 3872, 3808, -3856, 3856), PackedVector2Array(-3968, -3968, 3968, -3968, 3968, 3984, -3968, 3968)])
 cell_size = 64.0
+baking_rect = Rect2(-3840, -3840, 7680, 7680)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_offset = Vector2(336, 208)
 repeat_size = Vector2(512, 512)
 repeat_times = 8
 
-[node name="PrototypeGridGray04-512x512" type="Sprite2D" parent="Parallax2D"]
+[node name="GridGray04-512x512" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(256, 256)
 texture = ExtResource("3_h2yge")
 
-[node name="YSortRoot" type="Node2D" parent="."]
-y_sort_enabled = true
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="YSortRoot"]
+[node name="TopCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(96, -3792)
+shape = SubResource("WorldBoundaryShape2D_1bvp3")
+
+[node name="RightCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(3808, -80)
+shape = SubResource("WorldBoundaryShape2D_lquwl")
+
+[node name="LeftCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(-3808, -80)
+shape = SubResource("WorldBoundaryShape2D_7mycd")
+
+[node name="DownCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
+position = Vector2(80, 3808)
+shape = SubResource("WorldBoundaryShape2D_272bh")
+
+[node name="WorldBoundariesReferenceRect" type="ReferenceRect" parent="WorldBoundaries"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(7680, 7680)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3840.0
+offset_top = -3840.0
+offset_right = 3840.0
+offset_bottom = 3840.0
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 48.0
+editor_only = false
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="WorldBoundaries"]
 navigation_polygon = SubResource("NavigationPolygon_1bvp3")
 
-[node name="BaseEnemy" parent="YSortRoot/NavigationRegion2D" instance=ExtResource("4_1bvp3")]
-position = Vector2(-2170.16, 2479.41)
+[node name="YSortRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
 position = Vector2(320, 368)
+
+[node name="PlayerCamera2D" type="Camera2D" parent="YSortRoot/Player"]
+unique_name_in_owner = true
+position = Vector2(0, -96)
 
 [node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
 position = Vector2(-805.363, -540.46)
 
 [node name="BaseEnemy2" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
 position = Vector2(1451.84, -428.994)
+
+[node name="BaseEnemy3" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
+position = Vector2(-2170.16, 2479.41)
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
