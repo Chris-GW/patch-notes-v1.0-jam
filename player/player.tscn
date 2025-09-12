@@ -102,6 +102,7 @@ motion_mode = 1
 script = ExtResource("1_oul6g")
 move_speed = 400.0
 move_smoothing = 20.0
+max_health = 20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

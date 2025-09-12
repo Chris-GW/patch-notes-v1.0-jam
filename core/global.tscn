@@ -6,5 +6,5 @@
 
 [node name="MainMenuAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_cjuri")
-volume_db = -12.0
 autoplay = true
+bus = &"Music"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5authmobep1u"
-path="res://.godot/imported/Prototype_Grid_Gray_04-512x512.png-90229288fd6df2f66d956b440685fe5f.ctex"
+uid="uid://duehoholrdxrj"
+path="res://.godot/imported/grid_gray-512x512.png-211969c898786abee7484ef84007ab10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Prototype_Grid_Gray_04-512x512.png"
-dest_files=["res://.godot/imported/Prototype_Grid_Gray_04-512x512.png-90229288fd6df2f66d956b440685fe5f.ctex"]
+source_file="res://assets/sprites/grid_gray-512x512.png"
+dest_files=["res://.godot/imported/grid_gray-512x512.png-211969c898786abee7484ef84007ab10.ctex"]
 
 [params]
 

@@ -8,11 +8,16 @@ const BASE_ENEMY = preload("res://enemies/base_enemy.tscn")
 @onready var world_boundaries: ReferenceRect = %WorldBoundariesReferenceRect
 @onready var y_sort_root: Node2D = %YSortRoot
 
+@onready var health_bar: ProgressBar = %HealthBar
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(5):
+	for i in range(7):
 		_on_enemy_spawn_timer_timeout()
+	health_bar.max_value = player.max_health
+	health_bar.value = player.max_health
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,3 +54,17 @@ func get_camera_world_rect(camera: Camera2D) -> Rect2:
 	var half_world_size: Vector2 = (viewport_size * 0.5) * camera.zoom
 	var center: Vector2 = camera.global_position
 	return Rect2(center - half_world_size, half_world_size * 2.0)
+
+
+func _on_player_damage_taken() -> void:
+	health_bar.value = player.health
+
+
+func _on_player_died() -> void:
+	get_tree().paused = true
+	%DiedPanelContainer.visible = true
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://main.tscn")

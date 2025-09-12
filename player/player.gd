@@ -1,10 +1,16 @@
 class_name Player
 extends CharacterBody2D
 
+signal damage_taken
+signal died
+
 const GLITCHED_SWORD_ATTACK = preload("res://player/glitched_sword_attack.tscn")
 
 @export var move_speed: float
 @export var move_smoothing: float
+@export var max_health: float
+
+var health := max_health
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
@@ -14,7 +20,7 @@ const GLITCHED_SWORD_ATTACK = preload("res://player/glitched_sword_attack.tscn")
 
 
 func _ready() -> void:
-	pass
+	health = max_health
 
 
 func _physics_process(delta: float) -> void:
@@ -52,3 +58,10 @@ func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 		sword_attack.attack_animation = anim_name
 		sword_attack.delay_sec = 1.25
 		get_tree().root.add_child(sword_attack)
+
+
+func take_damage(damage: float) -> void:
+	health = clampf(health - damage, 0.0, max_health)
+	damage_taken.emit()
+	if health <= 0.0:
+		died.emit()
