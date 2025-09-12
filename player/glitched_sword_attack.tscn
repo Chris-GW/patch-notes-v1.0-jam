@@ -42,6 +42,7 @@ height = 46.6878
 
 [node name="GlitchedSwordAttack" type="Node2D"]
 script = ExtResource("1_scrye")
+damage_amount = 10.0
 attack_animation = "attack_left"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -66,6 +67,8 @@ offset = Vector2(14, -19)
 [node name="HitArea2D" type="Area2D" parent="Sword"]
 unique_name_in_owner = true
 visible = false
+collision_layer = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/HitArea2D"]
 position = Vector2(15.4815, -15.4458)
@@ -74,3 +77,4 @@ shape = SubResource("CapsuleShape2D_ir3hj")
 debug_color = Color(0.994736, 0, 0.217211, 0.42)
 
 [connection signal="timeout" from="DelayTimer" to="." method="on_delay_timeout"]
+[connection signal="area_entered" from="Sword/HitArea2D" to="." method="_on_hit_area_2d_area_entered"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://3i44qkdeaoow"]
+
+[ext_resource type="Script" uid="uid://cnb7p64i2l5m" path="res://enemies/base_enemy.gd" id="1_bfj6p"]
+[ext_resource type="Texture2D" uid="uid://baitq8022rscu" path="res://assets/icon.svg" id="1_j7qyq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfj6p"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfj6p"]
+size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfj6p"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ht1"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_bfj6p"]
+font_names = PackedStringArray("Cambria")
+
+[sub_resource type="LabelSettings" id="LabelSettings_b5ht1"]
+font = SubResource("SystemFont_bfj6p")
+font_size = 32
+
+[node name="BaseEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_bfj6p")
+move_speed = 150.0
+max_health = 20.0
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+path_desired_distance = 80.0
+target_desired_distance = 80.0
+path_max_distance = 2000.0
+debug_enabled = true
+
+[node name="NavigationUpdateTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.27, 0.27, 1)
+position = Vector2(0, -64)
+texture = ExtResource("1_j7qyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("CircleShape2D_bfj6p")
+
+[node name="HurtArea2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_bfj6p")
+debug_color = Color(0.767781, 0.446767, 7.70092e-07, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+offset_left = -80.0
+offset_top = -160.0
+offset_right = 80.0
+offset_bottom = -136.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bfj6p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b5ht1")
+value = 22.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HealthBar"]
+offset_left = 33.0
+offset_top = -9.0
+offset_right = 127.0
+offset_bottom = 30.0
+text = "Enemy"
+label_settings = SubResource("LabelSettings_b5ht1")
+
+[connection signal="timeout" from="NavigationUpdateTimer" to="." method="_on_navigation_update_timer_timeout"]

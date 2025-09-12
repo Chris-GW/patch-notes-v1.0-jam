@@ -1,8 +1,11 @@
 class_name GlitchedSwordAttack
 extends Node2D
 
+@export var damage_amount := 1.0
 @export var attack_animation: String
 @export var delay_sec := 1.0
+
+var hit_enemies: Dictionary[RID, bool] = {}
 
 @onready var delay_timer: Timer = $DelayTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -26,3 +29,15 @@ func on_delay_timeout() -> void:
 	await animation_player.animation_finished
 	get_parent().remove_child(self)
 	queue_free()
+
+
+
+func _on_hit_area_2d_area_entered(area: Area2D) -> void:
+	if can_hurt_area(area):
+		area.get_parent().take_damage(damage_amount)
+		hit_enemies.set(area.get_rid(), true)
+
+
+func can_hurt_area(area: Area2D) -> bool:
+	return (area.get_parent().has_method("take_damage") 
+			and not hit_enemies.has(area.get_rid()))

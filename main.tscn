@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bagc6mf0in81g"]
+[gd_scene load_steps=6 format=3 uid="uid://bagc6mf0in81g"]
 
 [ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c5authmobep1u" path="res://assets/sprites/Prototype_Grid_Gray_04-512x512.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="4_1bvp3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
+vertices = PackedVector2Array(4885.9, 4533.85, -3270.04, 4422.13, -3301.95, -2598.05, 4822.08, -2645.94)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-3312, -2608, 4832, -2656, 4896, 4544, -3280, 4432)])
+cell_size = 64.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -16,6 +23,21 @@ repeat_times = 8
 position = Vector2(256, 256)
 texture = ExtResource("3_h2yge")
 
-[node name="Player" parent="." instance=ExtResource("2_0xm2m")]
+[node name="YSortRoot" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="YSortRoot"]
+navigation_polygon = SubResource("NavigationPolygon_1bvp3")
+
+[node name="BaseEnemy" parent="YSortRoot/NavigationRegion2D" instance=ExtResource("4_1bvp3")]
+position = Vector2(-2170.16, 2479.41)
+
+[node name="Player" parent="YSortRoot" instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
 position = Vector2(320, 368)
+
+[node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
+position = Vector2(-805.363, -540.46)
+
+[node name="BaseEnemy2" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
+position = Vector2(1451.84, -428.994)

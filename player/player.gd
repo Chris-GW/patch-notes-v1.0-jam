@@ -51,5 +51,5 @@ func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 		var sword_attack: GlitchedSwordAttack = GLITCHED_SWORD_ATTACK.instantiate()
 		sword_attack.global_position = self.global_position
 		sword_attack.attack_animation = anim_name
-		sword_attack.delay_sec = 1.5
+		sword_attack.delay_sec = 1.25
 		get_tree().root.add_child(sword_attack)
