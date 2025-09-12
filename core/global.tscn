@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://caypvdlxuc685"]
+
+[ext_resource type="AudioStream" uid="uid://brv32ww10ob52" path="res://assets/music/main_menu_sepjam.mp3" id="1_cjuri"]
+
+[node name="Global" type="Node2D"]
+
+[node name="MainMenuAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_cjuri")
+volume_db = -12.0
+autoplay = true
