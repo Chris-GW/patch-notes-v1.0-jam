@@ -1,21 +1,22 @@
-[gd_scene load_steps=24 format=3 uid="uid://tgcspwxfjt8l"]
+[gd_scene load_steps=25 format=3 uid="uid://tgcspwxfjt8l"]
 
 [ext_resource type="Script" uid="uid://osj4h2kfpcy5" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="AnimationLibrary" uid="uid://cdhyv27u2o6yc" path="res://player/player_attack_animations.tres" id="2_yw30f"]
+[ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="3_g1dw6"]
+[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="3_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cxlkqssyauk7v" path="res://assets/sprites/player/beardlookingslugg.jpg" id="3_yw30f"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qjkh3"]
-animation = &"attack_up"
+animation = &"weapon/attack_up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g6k8r"]
-animation = &"attack_down"
+animation = &"weapon/attack_down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_boad6"]
-animation = &"attack_left"
+animation = &"weapon/attack_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rgyib"]
-animation = &"attack_right"
+animation = &"weapon/attack_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hg6s5"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_qjkh3")
@@ -80,7 +81,7 @@ advance_condition = &"is_attacking"
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qjkh3"]
 states/Start/position = Vector2(176, 73)
 states/attack/node = SubResource("AnimationNodeBlendSpace2D_hg6s5")
-states/attack/position = Vector2(587, 214)
+states/attack/position = Vector2(655, 162)
 states/idle/node = SubResource("AnimationNodeAnimation_yw30f")
 states/idle/position = Vector2(363, 155)
 states/run/node = SubResource("AnimationNodeBlendSpace2D_8t03j")
@@ -99,7 +100,8 @@ move_smoothing = 20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": ExtResource("2_yw30f")
+&"": ExtResource("2_qjkh3"),
+&"weapon": ExtResource("3_g6k8r")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -135,3 +137,5 @@ offset = Vector2(14, -19)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_g1dw6")
+
+[connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]

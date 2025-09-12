@@ -1,8 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://lx04whis2xmk"]
+[gd_scene load_steps=7 format=3 uid="uid://lx04whis2xmk"]
 
 [ext_resource type="Script" uid="uid://b13351jeo8cj6" path="res://player/glitched_sword_attack.gd" id="1_scrye"]
-[ext_resource type="AnimationLibrary" uid="uid://cdhyv27u2o6yc" path="res://player/player_attack_animations.tres" id="2_843o8"]
+[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="2_843o8"]
 [ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="2_ir3hj"]
+
+[sub_resource type="Animation" id="Animation_843o8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.959931]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y3yij"]
+_data = {
+&"RESET": SubResource("Animation_843o8")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir3hj"]
 radius = 6.51984
@@ -14,17 +46,19 @@ attack_animation = "attack_left"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"player_attack_animations": ExtResource("2_843o8")
+&"": SubResource("AnimationLibrary_y3yij"),
+&"weapon": ExtResource("2_843o8")
 }
+autoplay = "player_sword_animations/RESET"
 
 [node name="DelayTimer" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Sword" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
 texture_filter = 1
-position = Vector2(55, -20)
-rotation = 2.95312
+position = Vector2(-5, 15)
+rotation = 0.959931
 scale = Vector2(2, 2)
 texture = ExtResource("2_ir3hj")
 offset = Vector2(14, -19)
@@ -37,3 +71,5 @@ position = Vector2(15.4815, -15.4458)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_ir3hj")
 debug_color = Color(0.994736, 0, 0.217211, 0.42)
+
+[connection signal="timeout" from="DelayTimer" to="." method="on_delay_timeout"]

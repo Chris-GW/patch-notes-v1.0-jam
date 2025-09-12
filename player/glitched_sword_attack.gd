@@ -11,16 +11,14 @@ extends Node2D
 
 
 func _ready() -> void:
+	self.visible = false
 	hit_area_2d.monitoring = false
 	hit_area_2d.monitorable = false
 	delay_timer.start(delay_sec)
 
 
-func _process(delta: float) -> void:
-	pass
-
-
 func on_delay_timeout() -> void:
+	self.visible = true
 	hit_area_2d.monitoring = true
 	hit_area_2d.monitorable = true
 	animation_player.play(attack_animation)
