@@ -27,7 +27,10 @@ window/size/viewport_height=1080
 [file_customization]
 
 folder_colors={
-"res://assets/": "yellow"
+"res://assets/": "yellow",
+"res://enemies/": "red",
+"res://player/": "blue",
+"res://ui/": "green"
 }
 
 [global_group]
