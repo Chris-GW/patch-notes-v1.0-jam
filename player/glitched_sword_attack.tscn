@@ -55,7 +55,7 @@ autoplay = "player_sword_animations/RESET"
 one_shot = true
 
 [node name="Sword" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.509804)
 texture_filter = 1
 position = Vector2(-5, 15)
 rotation = 0.959931
@@ -65,6 +65,7 @@ offset = Vector2(14, -19)
 
 [node name="HitArea2D" type="Area2D" parent="Sword"]
 unique_name_in_owner = true
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/HitArea2D"]
 position = Vector2(15.4815, -15.4458)

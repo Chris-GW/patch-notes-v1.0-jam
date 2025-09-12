@@ -34,15 +34,16 @@ func _update_movement_velocity(delta: float) -> void:
 
 func _update_animation_parameters() -> void:
 	if Input.is_action_pressed("attack") and attack_cooldown_timer.is_stopped():
-		var run_blend_position = animation_tree.get("parameters/run/blend_position")
-		animation_tree.set("parameters/attack/blend_position", run_blend_position)
+		var mouse_direction := global_position.direction_to(get_global_mouse_position())
+		print(mouse_direction)
+		animation_tree.set("parameters/attack/blend_position", mouse_direction)
 		animation_tree.set("parameters/conditions/is_attacking", true)
 		attack_cooldown_timer.start()
 	else:
 		animation_tree.set("parameters/conditions/is_attacking", false)
 	
 	if velocity.length_squared() > 100.0:
-		animation_tree.set("parameters/run/blend_position", velocity)
+		animation_tree.set("parameters/run/blend_position", velocity.normalized())
 
 
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:

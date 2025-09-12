@@ -11,14 +11,15 @@ extends Node2D
 
 
 func _ready() -> void:
-	self.visible = false
 	hit_area_2d.monitoring = false
 	hit_area_2d.monitorable = false
 	delay_timer.start(delay_sec)
+	animation_player.play(attack_animation)
+	animation_player.stop()
 
 
 func on_delay_timeout() -> void:
-	self.visible = true
+	sword.self_modulate = Color("#FF000082")
 	hit_area_2d.monitoring = true
 	hit_area_2d.monitorable = true
 	animation_player.play(attack_animation)
