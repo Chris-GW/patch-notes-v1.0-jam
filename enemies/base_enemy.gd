@@ -15,7 +15,7 @@ var movement_delta: float
 var health: float
 
 var knockback := Vector2.ZERO
-var player_ghost: PlayerGhost = null
+var target: Node2D = null
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -46,12 +46,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_navigation_update_timer_timeout() -> void:
-	if is_instance_valid(player_ghost):
-		navigation_agent.target_position = player_ghost.global_position
+	if is_instance_valid(target) and target.is_node_ready():
+		navigation_agent.target_position = target.global_position
 		return
 	var player: Player = get_tree().get_first_node_in_group("player")
-	if global_position.distance_to(player.global_position) < 900.0:
-		navigation_agent.target_position = player.global_position
+	navigation_agent.target_position = player.global_position
 
 
 func take_damage(damage: float) -> void:

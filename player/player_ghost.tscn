@@ -92,7 +92,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x5yj"]
-radius = 1072.08
+radius = 768.006
 
 [node name="PlayerGhost" type="StaticBody2D"]
 z_index = -1

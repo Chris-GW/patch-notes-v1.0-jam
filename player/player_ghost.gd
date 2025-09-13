@@ -37,13 +37,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func distract_enemy(enemy: BaseEnemy) -> void:
-	if is_instance_valid(enemy.player_ghost) and enemy.player_ghost.is_node_ready():
+	if is_instance_valid(enemy.target) and enemy.target.is_node_ready():
 		var my_distance := global_position.distance_squared_to(enemy.global_position)
-		var other_distance := enemy.global_position.distance_squared_to(enemy.player_ghost.global_position)
+		var other_distance := enemy.global_position.distance_squared_to(enemy.target.global_position)
 		if my_distance < other_distance:
-			enemy.player_ghost = self
+			enemy.target = self
 	else:
-		enemy.player_ghost = self
+		enemy.target = self
 
 
 func _on_stay_timer_timeout():

@@ -66,7 +66,8 @@ autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -5
-repeat_size = Vector2(2048, 1280)
+scroll_offset = Vector2(-2265, -1451)
+repeat_size = Vector2(4096, 2560)
 
 [node name="GridGray512x512" type="Sprite2D" parent="Parallax2D"]
 texture_filter = 1
@@ -74,7 +75,7 @@ texture_repeat = 2
 position = Vector2(1024, 640)
 texture = ExtResource("2_46036")
 region_enabled = true
-region_rect = Rect2(0, 0, 2048, 1280)
+region_rect = Rect2(0, 0, 4096, 2560)
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 
@@ -121,11 +122,12 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" instance=ExtResource("3_maq6b")]
 unique_name_in_owner = true
-position = Vector2(960, 636)
+position = Vector2(1920, 1176)
 
 [node name="PlayerCamera2D" type="Camera2D" parent="YSortRoot/Player"]
 unique_name_in_owner = true
 position = Vector2(0, -96)
+zoom = Vector2(0.5, 0.5)
 
 [node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_0rg8l")]
 position = Vector2(1818, 1397)

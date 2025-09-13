@@ -70,4 +70,4 @@ func _on_player_died() -> void:
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file(self.scene_file_path)
