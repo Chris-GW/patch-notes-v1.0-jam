@@ -61,6 +61,7 @@ wait_time = 4.0
 autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -5
 repeat_size = Vector2(2048, 1280)
 
 [node name="GridGray512x512" type="Sprite2D" parent="Parallax2D"]
@@ -72,7 +73,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2048, 1280)
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="TopCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
 position = Vector2(96, -3792)
@@ -108,6 +108,7 @@ border_width = 48.0
 editor_only = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="WorldBoundaries"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_1bvp3")
 
 [node name="YSortRoot" type="Node2D" parent="."]
@@ -123,7 +124,7 @@ unique_name_in_owner = true
 position = Vector2(0, -96)
 
 [node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
-position = Vector2(-805.363, -540.46)
+position = Vector2(1818, 1397)
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 

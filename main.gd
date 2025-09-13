@@ -19,11 +19,6 @@ func _ready() -> void:
 	health_bar.value = player.max_health
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawn_enemy()
 

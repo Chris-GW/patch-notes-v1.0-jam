@@ -24,7 +24,7 @@ func _ready() -> void:
 	health_bar.value = max_health
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
 	else:

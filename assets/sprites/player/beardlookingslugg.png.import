@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxlkqssyauk7v"
-path="res://.godot/imported/beardlookingslugg.jpg-03b079975835fab20cca6b9b6b81cc99.ctex"
+uid="uid://c3smdm0lm6f1"
+path="res://.godot/imported/beardlookingslugg.png-a9df73803fcc86d5f6e12a9277d991bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/beardlookingslugg.jpg"
-dest_files=["res://.godot/imported/beardlookingslugg.jpg-03b079975835fab20cca6b9b6b81cc99.ctex"]
+source_file="res://assets/sprites/player/beardlookingslugg.png"
+dest_files=["res://.godot/imported/beardlookingslugg.png-a9df73803fcc86d5f6e12a9277d991bf.ctex"]
 
 [params]
 
