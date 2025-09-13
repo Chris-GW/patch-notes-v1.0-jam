@@ -132,7 +132,7 @@ zoom = Vector2(0.5, 0.5)
 [node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_0rg8l")]
 
 [node name="MedkitPickup" parent="YSortRoot" instance=ExtResource("5_6w4ab")]
-position = Vector2(1772.62, 855.061)
+position = Vector2(1110, 77)
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 
