@@ -130,7 +130,6 @@ position = Vector2(0, -96)
 zoom = Vector2(0.5, 0.5)
 
 [node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_0rg8l")]
-position = Vector2(1818, 1397)
 
 [node name="MedkitPickup" parent="YSortRoot" instance=ExtResource("5_6w4ab")]
 position = Vector2(1772.62, 855.061)
