@@ -11,6 +11,10 @@ const BASE_ENEMY = preload("res://enemies/base_enemy.tscn")
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var dash_charges_label: Label = %DashChargesLabel
 
+@onready var ground_tile_map_layer: TileMapLayer = %GroundTileMapLayer
+@onready var floor_tile_map_layer: TileMapLayer = %FloorTileMapLayer
+@onready var decoration_tile_map_layer: TileMapLayer = %DecorationTileMapLayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

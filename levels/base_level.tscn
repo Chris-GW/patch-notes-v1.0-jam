@@ -19,7 +19,7 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_272bh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_46036"]
-vertices = PackedVector2Array(981.953, 974.219, -1109.24, 1021.75, -966.688, -958.031, 974.039, -965.953)
+vertices = PackedVector2Array(981.953, 973.906, -981.906, 958.078, -966.078, -958.039, 974.039, -965.953)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-976, -968, 984, -976, 992, 984, -992, 968)])
 
@@ -63,6 +63,7 @@ position = Vector2(320, 192)
 texture = ExtResource("2_46036")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 384)
+metadata/_edit_lock_ = true
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 metadata/_edit_lock_ = true
@@ -109,6 +110,15 @@ metadata/_edit_lock_ = true
 [node name="YSortRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
+
+[node name="GroundTileMapLayer" type="TileMapLayer" parent="YSortRoot"]
+unique_name_in_owner = true
+
+[node name="FloorTileMapLayer" type="TileMapLayer" parent="YSortRoot"]
+unique_name_in_owner = true
+
+[node name="DecorationTileMapLayer" type="TileMapLayer" parent="YSortRoot"]
+unique_name_in_owner = true
 
 [node name="Player" parent="YSortRoot" instance=ExtResource("3_maq6b")]
 unique_name_in_owner = true
