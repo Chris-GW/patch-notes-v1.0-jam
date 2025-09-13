@@ -6,6 +6,7 @@ extends Node2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sword: Sprite2D = $Sword
+@onready var distraction_area: Area2D = $DistractionArea2D
 
 
 func _ready() -> void:
@@ -27,6 +28,22 @@ func sync_animation_tree(player: Player) -> void:
 	print(current_state, " - ", playback2.get_current_node())
 	print(current_time, " - ", playback2.get_current_play_position())
 	print("------")
+
+
+func _physics_process(_delta: float) -> void:
+	for body: Node2D in distraction_area.get_overlapping_bodies():
+		if body is BaseEnemy:
+			distract_enemy(body)
+
+
+func distract_enemy(enemy: BaseEnemy) -> void:
+	if is_instance_valid(enemy.player_ghost) and enemy.player_ghost.is_node_ready():
+		var my_distance := global_position.distance_squared_to(enemy.global_position)
+		var other_distance := enemy.global_position.distance_squared_to(enemy.player_ghost.global_position)
+		if my_distance < other_distance:
+			enemy.player_ghost = self
+	else:
+		enemy.player_ghost = self
 
 
 func _on_stay_timer_timeout():

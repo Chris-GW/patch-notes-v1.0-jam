@@ -114,6 +114,7 @@ func take_damage(damage: float) -> void:
 	hurt_area_2d.set_monitorable.call_deferred(false)
 	damage_taken.emit()
 	if health <= 0.0:
+		$DeathAudioPlayer.play()
 		died.emit()
 		return
 	

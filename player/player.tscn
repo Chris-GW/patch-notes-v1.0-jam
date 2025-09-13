@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://tgcspwxfjt8l"]
+[gd_scene load_steps=28 format=3 uid="uid://tgcspwxfjt8l"]
 
 [ext_resource type="Script" uid="uid://osj4h2kfpcy5" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="3_g1dw6"]
 [ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="3_g6k8r"]
+[ext_resource type="AudioStream" uid="uid://cpwi7qu7pgxwg" path="res://assets/sfx/player_dies.mp3" id="4_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://c3smdm0lm6f1" path="res://assets/sprites/player/beardlookingslugg.png" id="4_qjkh3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xbrus"]
@@ -88,6 +89,13 @@ states/run/node = SubResource("AnimationNodeBlendSpace2D_8t03j")
 states/run/position = Vector2(516, 70)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qjkh3"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8t03j"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_yw30f"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_g6k8r"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_boad6")]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_boad6"]
+playback_mode = 2
+random_pitch = 1.15
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("4_g6k8r")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_g1dw6"]
 radius = 32.0
 
@@ -140,6 +148,15 @@ one_shot = true
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="DeathAudioPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_boad6")
+bus = &"SFX"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(0, -32)
+current = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -64)
