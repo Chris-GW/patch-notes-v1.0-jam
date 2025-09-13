@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bagc6mf0in81g"]
+[gd_scene load_steps=15 format=3 uid="uid://bagc6mf0in81g"]
 
 [ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://levels/base_level.gd" id="1_p5284"]
-[ext_resource type="Texture2D" uid="uid://duehoholrdxrj" path="res://assets/sprites/grid_gray-512x512.png" id="2_46036"]
+[ext_resource type="Texture2D" uid="uid://d3a1f21o3ethf" path="res://assets/sprites/grid_gray_256x256.png" id="2_46036"]
 [ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="3_maq6b"]
 [ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="4_0rg8l"]
 [ext_resource type="PackedScene" uid="uid://yl1jf0qagbb1" path="res://core/pickups/medkit_pickup.tscn" id="5_6w4ab"]
+[ext_resource type="FontFile" uid="uid://cep3foox6k0yn" path="res://assets/fonts/fusion-pixel-12px-proportional-sc-latin-400-normal.woff2" id="6_46036"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
 normal = Vector2(0, 1)
@@ -17,45 +18,31 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_272bh"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
-vertices = PackedVector2Array(3830, 3830, -3830, 3830, -3830, -3830, 3830, -3830)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_46036"]
+vertices = PackedVector2Array(981.953, 974.219, -1109.24, 1021.75, -966.688, -958.031, 974.039, -965.953)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3840, -3840, 3872, 3808, -3856, 3856), PackedVector2Array(-3968, -3968, 3968, -3968, 3968, 3984, -3968, 3968)])
-cell_size = 64.0
-baking_rect = Rect2(-3840, -3840, 7680, 7680)
+outlines = Array[PackedVector2Array]([PackedVector2Array(-976, -968, 984, -976, 992, 984, -992, 968)])
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
 draw_center = false
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0, 1, 0, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_bfj6p"]
-font_names = PackedStringArray("Cambria")
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
-font = SubResource("SystemFont_bfj6p")
-font_size = 32
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_1bvp3"]
-font_names = PackedStringArray("Cambria")
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
-font = SubResource("SystemFont_1bvp3")
-font_size = 90
+font = ExtResource("6_46036")
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_p5284")
@@ -66,55 +53,58 @@ autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -5
-scroll_offset = Vector2(-2265, -1451)
-repeat_size = Vector2(4096, 2560)
+repeat_size = Vector2(640, 384)
+metadata/_edit_lock_ = true
 
-[node name="GridGray512x512" type="Sprite2D" parent="Parallax2D"]
+[node name="GridGrayBackground" type="Sprite2D" parent="Parallax2D"]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(1024, 640)
+position = Vector2(320, 192)
 texture = ExtResource("2_46036")
 region_enabled = true
-region_rect = Rect2(0, 0, 4096, 2560)
+region_rect = Rect2(0, 0, 640, 384)
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="TopCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(96, -3792)
+position = Vector2(96, -960)
 shape = SubResource("WorldBoundaryShape2D_1bvp3")
 
 [node name="RightCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(3808, -80)
+position = Vector2(960, -80)
 shape = SubResource("WorldBoundaryShape2D_lquwl")
 
 [node name="LeftCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(-3808, -80)
+position = Vector2(-960, -80)
 shape = SubResource("WorldBoundaryShape2D_7mycd")
 
 [node name="DownCollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
-position = Vector2(80, 3808)
+position = Vector2(80, 960)
 shape = SubResource("WorldBoundaryShape2D_272bh")
 
 [node name="WorldBoundariesReferenceRect" type="ReferenceRect" parent="WorldBoundaries"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(7680, 7680)
+custom_minimum_size = Vector2(1920, 1920)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -3840.0
-offset_top = -3840.0
-offset_right = 3840.0
-offset_bottom = 3840.0
+offset_left = -960.0
+offset_top = -960.0
+offset_right = 960.0
+offset_bottom = 960.0
 grow_horizontal = 2
 grow_vertical = 2
-border_width = 48.0
+border_width = 8.0
 editor_only = false
+metadata/_edit_lock_ = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="WorldBoundaries"]
 visible = false
-navigation_polygon = SubResource("NavigationPolygon_1bvp3")
+navigation_polygon = SubResource("NavigationPolygon_46036")
+metadata/_edit_lock_ = true
 
 [node name="YSortRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -122,29 +112,28 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" instance=ExtResource("3_maq6b")]
 unique_name_in_owner = true
-position = Vector2(1920, 1176)
+position = Vector2(320, 276)
 
 [node name="PlayerCamera2D" type="Camera2D" parent="YSortRoot/Player"]
 unique_name_in_owner = true
 position = Vector2(0, -96)
-zoom = Vector2(0.5, 0.5)
 
 [node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_0rg8l")]
 
 [node name="MedkitPickup" parent="YSortRoot" instance=ExtResource("5_6w4ab")]
-position = Vector2(1110, 77)
+position = Vector2(592, 56)
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HudLayer"]
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 340.0
-offset_bottom = 113.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 152.0
+offset_bottom = 54.0
 
 [node name="HealthBar" type="ProgressBar" parent="HudLayer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 30)
+custom_minimum_size = Vector2(128, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -155,29 +144,25 @@ show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="HudLayer/VBoxContainer/HealthBar"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -49.5
-offset_top = -19.5
-offset_right = 49.5
-offset_bottom = 19.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
-text = "Health:"
-label_settings = SubResource("LabelSettings_7mycd")
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_46036")
+theme_override_font_sizes/font_size = 12
+text = "Health"
 horizontal_alignment = 1
 
 [node name="DashChargesLabel" type="Label" parent="HudLayer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_46036")
+theme_override_font_sizes/font_size = 12
 text = "Dash charges: 2 / 2"
-label_settings = SubResource("LabelSettings_7mycd")
 
 [node name="DiedPanelContainer" type="PanelContainer" parent="HudLayer"]
 unique_name_in_owner = true
@@ -188,23 +173,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -295.5
-offset_right = 188.0
-offset_bottom = -86.5
+offset_left = -112.0
+offset_top = -148.0
+offset_right = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HudLayer/DiedPanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/DiedPanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="HudLayer/DiedPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -14,6 +14,7 @@ const BASE_ENEMY = preload("res://enemies/base_enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	%DiedPanelContainer.visible = false
 	for i in range(7):
 		_on_enemy_spawn_timer_timeout()
 	health_bar.max_value = player.max_health
@@ -31,14 +32,14 @@ func _on_enemy_spawn_timer_timeout() -> void:
 func spawn_enemy() -> BaseEnemy:
 	var new_enemy: BaseEnemy = BASE_ENEMY.instantiate()
 	new_enemy.global_position = random_position_outside_camera()
-	new_enemy.move_speed = randfn(150.0, 30.0)
+	new_enemy.move_speed = randfn(new_enemy.move_speed, new_enemy.move_speed / 6.0)
 	y_sort_root.add_child(new_enemy)
 	return new_enemy
 
 
 func random_position_outside_camera() -> Vector2:
-	var world_rect := world_boundaries.get_rect().grow(-128.0)
-	var camera_world_rect := get_camera_world_rect(player_camera).grow(128.0)
+	var world_rect := world_boundaries.get_rect().grow(-64.0)
+	var camera_world_rect := get_camera_world_rect(player_camera).grow(64.0)
 	
 	while true:
 		var x := randf_range(world_rect.position.x, world_rect.end.x)

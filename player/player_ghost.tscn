@@ -3,8 +3,8 @@
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="1_x7ata"]
 [ext_resource type="Script" uid="uid://dnr8c765bhhan" path="res://player/player_ghost.gd" id="1_xbrus"]
 [ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="2_xbrus"]
-[ext_resource type="Texture2D" uid="uid://c3smdm0lm6f1" path="res://assets/sprites/player/beardlookingslugg.png" id="3_1x5yj"]
 [ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="4_3qg10"]
+[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://assets/sprites/player/player_sprites.png" id="4_xbrus"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xbrus"]
 animation = &"weapon/attack_up"
@@ -89,10 +89,10 @@ states/run/position = Vector2(516, 70)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qjkh3"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8t03j"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_yw30f"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_g6k8r"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_boad6")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbrus"]
-radius = 32.0
+radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x5yj"]
-radius = 768.006
+radius = 256.0
 
 [node name="PlayerGhost" type="StaticBody2D"]
 z_index = -1
@@ -122,23 +122,22 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.158472, 0.158472, 0.158472, 1)
-position = Vector2(0, -64)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_1x5yj")
-region_enabled = true
+texture_filter = 1
+position = Vector2(0, -36)
+texture = ExtResource("4_xbrus")
+hframes = 4
+vframes = 2
 region_rect = Rect2(485, 19, 421, 588)
 
 [node name="Sword" type="Sprite2D" parent="."]
 self_modulate = Color(0.158472, 0.158472, 0.158472, 1)
 texture_filter = 1
-position = Vector2(55, -20)
-rotation = 2.95312
-scale = Vector2(2, 2)
+position = Vector2(16, -8)
 texture = ExtResource("4_3qg10")
 offset = Vector2(14, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_xbrus")
 
 [node name="DistractionArea2D" type="Area2D" parent="."]
@@ -146,6 +145,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DistractionArea2D"]
+visible = false
 shape = SubResource("CircleShape2D_1x5yj")
 
 [connection signal="timeout" from="StayTimer" to="." method="_on_stay_timer_timeout"]

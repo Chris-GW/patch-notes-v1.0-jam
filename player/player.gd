@@ -72,7 +72,7 @@ func _update_animation_parameters() -> void:
 		animation_tree.set("parameters/conditions/is_attacking", false)
 	animation_tree.set("parameters/conditions/is_dashing", not dashing_timer.is_stopped())
 	
-	if velocity.length_squared() > 100.0:
+	if velocity.length_squared() > 50.0:
 		animation_tree.set("parameters/run/blend_position", velocity.normalized())
 
 

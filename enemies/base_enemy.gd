@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if knockback.length_squared() > 40.0:
+	if knockback.length_squared() > 20.0:
 		velocity = knockback
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 	elif navigation_agent.is_navigation_finished():
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		var next_point := navigation_agent.get_next_path_position()
 		var direction := global_position.direction_to(next_point)
 		velocity = direction * move_speed
-	if move_and_slide() and knockback.length_squared() > 40.0:
+	if move_and_slide() and knockback.length_squared() > 20.0:
 		var last_collision := get_last_slide_collision()
 		knockback = last_collision.get_normal() * knockback.length() + last_collision.get_remainder()
 
@@ -67,7 +67,7 @@ func die() -> void:
 		medkit.global_position = global_position
 		get_parent().add_child.call_deferred(medkit)
 		var direction := Vector2.from_angle(randf_range(0.0, TAU))
-		medkit.apply_central_impulse(direction * 1000.0)
+		medkit.apply_central_impulse(direction * 500.0)
 	died.emit()
 	queue_free()
 

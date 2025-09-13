@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3smdm0lm6f1"
-path="res://.godot/imported/beardlookingslugg.png-a9df73803fcc86d5f6e12a9277d991bf.ctex"
+uid="uid://6jpgy83h4irn"
+path="res://.godot/imported/grid_gray-128x128.png-43545b5c05cdc1c61d87a6aa085360b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/beardlookingslugg.png"
-dest_files=["res://.godot/imported/beardlookingslugg.png-a9df73803fcc86d5f6e12a9277d991bf.ctex"]
+source_file="res://assets/sprites/grid_gray-128x128.png"
+dest_files=["res://.godot/imported/grid_gray-128x128.png-43545b5c05cdc1c61d87a6aa085360b5.ctex"]
 
 [params]
 

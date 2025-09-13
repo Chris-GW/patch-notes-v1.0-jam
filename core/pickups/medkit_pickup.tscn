@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://1w6jcpw27b01" path="res://core/pickups/medkit_pickup.gd" id="1_swd2d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swd2d"]
-radius = 62.0
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swd2d"]
-size = Vector2(76, 76)
+size = Vector2(32, 32)
 
 [node name="MedkitPickup" type="RigidBody2D"]
 disable_mode = 1
@@ -24,7 +24,6 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(3, 3)
 texture = ExtResource("1_hgfib")
 
 [node name="PickupArea2D" type="Area2D" parent="."]

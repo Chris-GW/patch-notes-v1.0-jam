@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cmkpbc2juow57"]
+
+[ext_resource type="FontFile" uid="uid://c5qw4j6h2tlna" path="res://assets/fonts/fusion-pixel-10px-proportional-sc-latin-400-normal.woff2" id="1_if05y"]
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_if05y")
+HBoxContainer/constants/separation = 8
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_if05y")
+MarginContainer/constants/margin_bottom = 12
+MarginContainer/constants/margin_left = 12
+MarginContainer/constants/margin_right = 12
+MarginContainer/constants/margin_top = 12
+VBoxContainer/constants/separation = 8

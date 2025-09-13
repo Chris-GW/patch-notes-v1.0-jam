@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-5, 15)]
+"values": [Vector2(16, -8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -28,7 +28,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.959931]
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3yij"]
@@ -43,7 +43,7 @@ height = 46.6878
 [node name="GlitchedSwordAttack" type="Node2D"]
 script = ExtResource("1_scrye")
 damage_amount = 10.0
-knockback_strenght = 800.0
+knockback_strenght = 300.0
 attack_animation = "attack_left"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -59,15 +59,12 @@ one_shot = true
 [node name="Sword" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.509804)
 texture_filter = 1
-position = Vector2(-5, 15)
-rotation = 0.959931
-scale = Vector2(2, 2)
+position = Vector2(16, -8)
 texture = ExtResource("2_ir3hj")
 offset = Vector2(14, -19)
 
 [node name="HitArea2D" type="Area2D" parent="Sword"]
 unique_name_in_owner = true
-visible = false
 collision_layer = 0
 collision_mask = 64
 
