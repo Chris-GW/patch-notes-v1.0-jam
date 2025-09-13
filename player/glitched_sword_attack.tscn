@@ -43,6 +43,7 @@ height = 46.6878
 [node name="GlitchedSwordAttack" type="Node2D"]
 script = ExtResource("1_scrye")
 damage_amount = 10.0
+knockback_strenght = 800.0
 attack_animation = "attack_left"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

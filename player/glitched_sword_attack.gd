@@ -1,7 +1,9 @@
 class_name GlitchedSwordAttack
 extends Node2D
 
+
 @export var damage_amount := 1.0
+@export var knockback_strenght: float
 @export var attack_animation: String
 @export var delay_sec := 1.0
 
@@ -34,10 +36,13 @@ func on_delay_timeout() -> void:
 
 func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 	if can_hurt_area(area):
-		area.get_parent().take_damage(damage_amount)
+		var enemy: BaseEnemy = area.get_parent()
+		enemy.take_damage(damage_amount)
+		enemy.apply_knockback(global_position, knockback_strenght)
 		hit_enemies.set(area.get_rid(), true)
 
 
 func can_hurt_area(area: Area2D) -> bool:
-	return (area.get_parent().has_method("take_damage") 
+	var parent := area.get_parent()
+	return (parent.is_in_group("enemies") 
 			and not hit_enemies.has(area.get_rid()))

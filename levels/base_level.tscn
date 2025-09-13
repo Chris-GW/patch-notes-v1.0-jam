@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://bagc6mf0in81g"]
 
-[ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://duehoholrdxrj" path="res://assets/sprites/grid_gray-512x512.png" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://yl1jf0qagbb1" path="res://core/pickups/medkit_pickup.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://levels/base_level.gd" id="1_p5284"]
+[ext_resource type="Texture2D" uid="uid://duehoholrdxrj" path="res://assets/sprites/grid_gray-512x512.png" id="2_46036"]
+[ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="3_maq6b"]
+[ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="4_0rg8l"]
+[ext_resource type="PackedScene" uid="uid://yl1jf0qagbb1" path="res://core/pickups/medkit_pickup.tscn" id="5_6w4ab"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
 normal = Vector2(0, 1)
@@ -51,13 +51,14 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_1bvp3"]
 font_names = PackedStringArray("Cambria")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
 font = SubResource("SystemFont_1bvp3")
 font_size = 90
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_0xm2m")
+[node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_p5284")
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 4.0
@@ -71,7 +72,7 @@ repeat_size = Vector2(2048, 1280)
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(1024, 640)
-texture = ExtResource("2_1bvp3")
+texture = ExtResource("2_46036")
 region_enabled = true
 region_rect = Rect2(0, 0, 2048, 1280)
 
@@ -118,18 +119,19 @@ navigation_polygon = SubResource("NavigationPolygon_1bvp3")
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="Player" parent="YSortRoot" instance=ExtResource("2_0xm2m")]
+[node name="Player" parent="YSortRoot" instance=ExtResource("3_maq6b")]
 unique_name_in_owner = true
 position = Vector2(960, 636)
 
 [node name="PlayerCamera2D" type="Camera2D" parent="YSortRoot/Player"]
 unique_name_in_owner = true
 position = Vector2(0, -96)
+zoom = Vector2(0.5, 0.5)
 
-[node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_1bvp3")]
+[node name="BaseEnemy" parent="YSortRoot" instance=ExtResource("4_0rg8l")]
 position = Vector2(1818, 1397)
 
-[node name="MedkitPickup" parent="YSortRoot" instance=ExtResource("5_lquwl")]
+[node name="MedkitPickup" parent="YSortRoot" instance=ExtResource("5_6w4ab")]
 position = Vector2(1772.62, 855.061)
 
 [node name="HudLayer" type="CanvasLayer" parent="."]

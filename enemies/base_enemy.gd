@@ -9,9 +9,12 @@ const MEDKIT_PICKUP: PackedScene = preload("res://core/pickups/medkit_pickup.tsc
 @export var move_speed: float
 @export var max_health: float
 @export var medkit_spawn_chance: float
+@export var knockback_decay: float ## how fast knockback fades
 
 var movement_delta: float
 var health: float
+
+var knockback := Vector2.ZERO
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -26,14 +29,19 @@ func _ready() -> void:
 	health_bar.value = max_health
 
 
-func _physics_process(_delta: float) -> void:
-	if navigation_agent.is_navigation_finished():
+func _physics_process(delta: float) -> void:
+	if knockback.length_squared() > 40.0:
+		velocity = knockback
+		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
+	elif navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
 	else:
 		var next_point := navigation_agent.get_next_path_position()
 		var direction := global_position.direction_to(next_point)
 		velocity = direction * move_speed
-	move_and_slide()
+	if move_and_slide() and knockback.length_squared() > 40.0:
+		var last_collision := get_last_slide_collision()
+		knockback = last_collision.get_normal() * knockback.length() + last_collision.get_remainder()
 
 
 func _on_navigation_update_timer_timeout() -> void:
@@ -68,3 +76,8 @@ func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 
 func hurt_player(player: Player) -> void:
 	player.take_damage(10.0)
+
+
+func apply_knockback(source_pos: Vector2, strength: float = 300.0):
+	var dir := source_pos.direction_to(global_position)
+	knockback = dir * strength
