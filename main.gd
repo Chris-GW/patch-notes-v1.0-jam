@@ -20,7 +20,7 @@ func _ready() -> void:
 	health_bar.value = player.max_health
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
 
 
@@ -57,6 +57,9 @@ func get_camera_world_rect(camera: Camera2D) -> Rect2:
 
 
 func _on_player_damage_taken() -> void:
+	health_bar.value = player.health
+
+func _on_player_heal_taken() -> void:
 	health_bar.value = player.health
 
 

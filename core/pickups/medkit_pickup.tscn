@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://yl1jf0qagbb1"]
+
+[ext_resource type="Texture2D" uid="uid://wtfkaha4sgv1" path="res://assets/sprites/pickups/medkit_sprite.png" id="1_hgfib"]
+[ext_resource type="Script" uid="uid://1w6jcpw27b01" path="res://core/pickups/medkit_pickup.gd" id="1_swd2d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swd2d"]
+radius = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swd2d"]
+size = Vector2(76, 76)
+
+[node name="MedkitPickup" type="RigidBody2D"]
+disable_mode = 1
+collision_layer = 2048
+gravity_scale = 0.0
+linear_damp = 4.0
+angular_damp = 4.0
+script = ExtResource("1_swd2d")
+heal_amount = 10.0
+
+[node name="FreezeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_hgfib")
+
+[node name="PickupArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
+shape = SubResource("CircleShape2D_swd2d")
+debug_color = Color(0.192888, 0.51399, 1, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_swd2d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="PickupArea2D" to="." method="_on_pickup_area_2d_body_entered"]

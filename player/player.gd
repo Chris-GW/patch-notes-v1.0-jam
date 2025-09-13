@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal damage_taken
+signal heal_taken
 signal died
 
 const GLITCHED_SWORD_ATTACK: PackedScene = preload("res://player/glitched_sword_attack.tscn")
@@ -126,6 +127,15 @@ func take_damage(damage: float) -> void:
 	tween.kill()
 	sprite_2d.modulate.a = 1.0
 	hurt_area_2d.set_monitorable.call_deferred(true)
+
+
+func take_heal(heal_amount: float) -> void:
+	health = clampf(health + heal_amount, 0.0, max_health)
+	heal_taken.emit()
+
+
+func is_full_health() -> bool:
+	return health >= max_health
 
 
 func _update_dash_refresh_timer() -> void:

@@ -4,9 +4,11 @@ extends CharacterBody2D
 signal damage_taken
 signal died
 
+const MEDKIT_PICKUP: PackedScene = preload("res://core/pickups/medkit_pickup.tscn")
 
 @export var move_speed: float
 @export var max_health: float
+@export var medkit_spawn_chance: float
 
 var movement_delta: float
 var health: float
@@ -48,6 +50,12 @@ func take_damage(damage: float) -> void:
 
 
 func die() -> void:
+	if randf() < medkit_spawn_chance:
+		var medkit: MedkitPickup = MEDKIT_PICKUP.instantiate()
+		medkit.global_position = global_position
+		get_parent().add_child(medkit)
+		var direction := Vector2.from_angle(randf_range(0.0, TAU))
+		medkit.apply_central_impulse(direction * 1000.0)
 	died.emit()
 	queue_free()
 
