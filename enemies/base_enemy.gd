@@ -53,7 +53,7 @@ func die() -> void:
 	if randf() < medkit_spawn_chance:
 		var medkit: MedkitPickup = MEDKIT_PICKUP.instantiate()
 		medkit.global_position = global_position
-		get_parent().add_child(medkit)
+		get_parent().add_child.call_deferred(medkit)
 		var direction := Vector2.from_angle(randf_range(0.0, TAU))
 		medkit.apply_central_impulse(direction * 1000.0)
 	died.emit()
