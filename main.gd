@@ -9,6 +9,7 @@ const BASE_ENEMY = preload("res://enemies/base_enemy.tscn")
 @onready var y_sort_root: Node2D = %YSortRoot
 
 @onready var health_bar: ProgressBar = %HealthBar
+@onready var dash_charges_label: Label = %DashChargesLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,10 @@ func _ready() -> void:
 		_on_enemy_spawn_timer_timeout()
 	health_bar.max_value = player.max_health
 	health_bar.value = player.max_health
+
+
+func _process(delta: float) -> void:
+	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
 
 
 func _on_enemy_spawn_timer_timeout() -> void:

@@ -60,6 +60,3 @@ func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 
 func hurt_player(player: Player) -> void:
 	player.take_damage(10.0)
-	hit_area_2d.set_monitoring.call_deferred(false)
-	await get_tree().create_timer(2.0).timeout
-	hit_area_2d.set_monitoring(true)

@@ -29,6 +29,7 @@ bg_color = Color(0.6, 0, 0, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_bfj6p"]
 font_names = PackedStringArray("Cambria")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_b5ht1"]
 font = SubResource("SystemFont_bfj6p")
@@ -95,6 +96,7 @@ value = 22.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="HealthBar"]
+layout_mode = 0
 offset_left = 33.0
 offset_top = -9.0
 offset_right = 127.0

@@ -102,8 +102,10 @@ motion_mode = 1
 script = ExtResource("1_oul6g")
 move_speed = 400.0
 move_smoothing = 20.0
+dash_speed = 1000.0
+max_dash_charges = 2
 max_health = 20.0
-ghost_spawn_chance = 0.3
+ghost_spawn_chance = 0.25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -117,7 +119,7 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_attacking = false
 parameters/attack/blend_position = Vector2(-0.0607798, 0.799308)
-parameters/run/blend_position = Vector2(-0.0126147, -0.00232017)
+parameters/run/blend_position = Vector2(0.207267, 0.679558)
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -127,6 +129,17 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="DashingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashRefreshTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -64)
@@ -150,6 +163,7 @@ shape = SubResource("CircleShape2D_g1dw6")
 [node name="HurtArea2D" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
 position = Vector2(0, -64)
@@ -157,3 +171,5 @@ shape = SubResource("CapsuleShape2D_qjkh3")
 debug_color = Color(0.729615, 0.473607, 9.62615e-07, 0.42)
 
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
+[connection signal="timeout" from="DashingTimer" to="." method="_on_dashing_timer_timeout"]
+[connection signal="timeout" from="DashRefreshTimer" to="." method="_on_dash_refresh_timer_timeout"]
