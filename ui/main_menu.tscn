@@ -1,16 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwcicc6bnfw6l"]
+[gd_scene load_steps=3 format=3 uid="uid://cwcicc6bnfw6l"]
 
 [ext_resource type="Script" uid="uid://c1184pplacsab" path="res://ui/main_menu.gd" id="1_0dkrt"]
 [ext_resource type="Texture2D" uid="uid://6t7iwnqmkl4s" path="res://assets/patch_notes/Patch Notes Logo.png" id="1_t7e0r"]
-[ext_resource type="AudioStream" uid="uid://cqim68svuef25" path="res://assets/music/Loopable/mainMenu.wav" id="3_8uxxo"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_0dkrt")
-
-[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_8uxxo")
-autoplay = true
-bus = &"Music"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 16.0
@@ -56,7 +50,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
-[connection signal="finished" from="MenuMusicPlayer" to="." method="_on_menu_music_player_finished"]
 [connection signal="pressed" from="VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

@@ -1,9 +1,13 @@
 extends CanvasLayer
 
 @onready var output_device_option_button = %OutputDeviceOptionButton
+@onready var window_mode_option_button: OptionButton = %WindowModeOptionButton
+@onready var scale_mode_option_button: OptionButton = %ScaleModeOptionButton
+@onready var v_sync_mode_option_button: OptionButton = %"V-SyncModeOptionButton"
 
 
 func _ready():
+	Global.play_menu_music()
 	_setup_output_device_options()
 
 

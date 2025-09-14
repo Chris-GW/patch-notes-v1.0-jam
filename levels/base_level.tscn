@@ -50,15 +50,18 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_p5284")
 
 [node name="NutralMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_n8wy4")
 autoplay = true
 bus = &"Music"
 
 [node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("3_6w4ab")
 bus = &"Music"
 
 [node name="LevelEndAudioPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("4_0rg8l")
 bus = &"Music"
 

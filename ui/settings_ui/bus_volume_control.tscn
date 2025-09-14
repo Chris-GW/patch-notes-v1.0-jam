@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://82456qiy1un1"]
+[gd_scene load_steps=6 format=3 uid="uid://82456qiy1un1"]
 
 [ext_resource type="Script" uid="uid://d0ikbxjo8ulgi" path="res://ui/settings_ui/bus_volume_control.gd" id="1_dh457"]
 [ext_resource type="Texture2D" uid="uid://b7w68ki3ymq43" path="res://ui/UI_sprite_sheet.png" id="2_drhxk"]
+[ext_resource type="AudioStream" uid="uid://ck6gu5yvhpf5d" path="res://assets/music/Loopable/Level_1.wav" id="2_q1ghg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2csd"]
 atlas = ExtResource("2_drhxk")
@@ -16,6 +17,10 @@ offset_right = 194.0
 offset_bottom = 28.0
 theme_override_constants/separation = 8
 script = ExtResource("1_dh457")
+test_audio = ExtResource("2_q1ghg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q1ghg")
 
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
@@ -40,7 +45,5 @@ theme_override_constants/h_separation = 4
 theme_override_icons/checked = SubResource("AtlasTexture_n2csd")
 theme_override_icons/unchecked = SubResource("AtlasTexture_4m6xd")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
-[connection signal="value_changed" from="VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="focus_exited" from="VolumeSlider" to="." method="_on_volume_slider_focus_exited"]
 [connection signal="toggled" from="MutedCheckButton" to="." method="_on_muted_check_button_toggled"]

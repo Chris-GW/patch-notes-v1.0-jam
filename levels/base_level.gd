@@ -23,6 +23,7 @@ var in_battle := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.stop_menu_music()
 	%DiedPanelContainer.visible = false
 	%LevelCompletedPanelContainer.visible = false
 	%GamePausedUI.visible = false

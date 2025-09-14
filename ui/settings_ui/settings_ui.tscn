@@ -23,9 +23,10 @@ offset_right = 260.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Graphics" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -48,6 +49,7 @@ theme_override_font_sizes/font_size = 0
 text = "Window mode:"
 
 [node name="WindowModeOptionButton" type="OptionButton" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
@@ -67,6 +69,7 @@ theme_override_font_sizes/font_size = 0
 text = "Scale mode:"
 
 [node name="ScaleModeOptionButton" type="OptionButton" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
@@ -82,6 +85,7 @@ theme_override_font_sizes/font_size = 0
 text = "V-Sync mode:"
 
 [node name="V-SyncModeOptionButton" type="OptionButton" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
@@ -109,7 +113,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8

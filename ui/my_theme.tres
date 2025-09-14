@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://cmkpbc2juow57"]
 
 [ext_resource type="FontFile" uid="uid://c5qw4j6h2tlna" path="res://assets/fonts/fusion-pixel-10px-proportional-sc-latin-400-normal.woff2" id="1_if05y"]
-[ext_resource type="FontFile" uid="uid://cuymitc1da8lu" path="res://assets/fonts/fusion-pixel-10px-proportional-sc-latin-400-normal.ttf" id="2_tmjyf"]
+[ext_resource type="FontFile" uid="uid://cep3foox6k0yn" path="res://assets/fonts/fusion-pixel-12px-proportional-sc-latin-400-normal.woff2" id="2_tmjyf"]
 
 [resource]
 Button/font_sizes/font_size = 20
@@ -15,9 +15,13 @@ MarginContainer/constants/margin_left = 12
 MarginContainer/constants/margin_right = 12
 MarginContainer/constants/margin_top = 12
 OptionButton/font_sizes/font_size = 20
-OptionButton/fonts/font = ExtResource("2_tmjyf")
+OptionButton/fonts/font = ExtResource("1_if05y")
+PopupMenu/font_sizes/font_size = 20
+PopupMenu/font_sizes/title_font_size = 24
+PopupMenu/fonts/font = ExtResource("1_if05y")
+PopupMenu/fonts/title_font = ExtResource("2_tmjyf")
 TabContainer/constants/outline_size = 4
 TabContainer/constants/side_margin = 8
 TabContainer/font_sizes/font_size = 20
-TabContainer/fonts/font = ExtResource("2_tmjyf")
+TabContainer/fonts/font = ExtResource("1_if05y")
 VBoxContainer/constants/separation = 8
