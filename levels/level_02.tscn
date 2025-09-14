@@ -1,5 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl0toa531bsqm"]
+[gd_scene load_steps=3 format=3 uid="uid://cl0toa531bsqm"]
 
 [ext_resource type="PackedScene" uid="uid://bagc6mf0in81g" path="res://levels/base_level.tscn" id="1_nnn84"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nnn84"]
+resource_local_to_scene = true
+vertices = PackedVector2Array(1359.54, 993.008, -1186.32, 896.07, -928.742, -486.68, 1264.44, -679.906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-949, -509, 1287, -706, 1385, 1018, -1215, 919)])
+source_geometry_mode = 2
+source_geometry_group_name = &"navigation"
+cell_size = 8.0
+agent_radius = 24.0
+
 [node name="Level02" instance=ExtResource("1_nnn84")]
+
+[node name="NavigationRegion2D" parent="." index="3"]
+navigation_polygon = SubResource("NavigationPolygon_nnn84")

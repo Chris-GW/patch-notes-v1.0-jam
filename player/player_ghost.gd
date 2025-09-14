@@ -16,6 +16,7 @@ func _ready() -> void:
 
 
 func sync_animation_tree(player: Player) -> void:
+	get_parent().move_child(self, 0)
 	var playback1: AnimationNodeStateMachinePlayback = player.animation_tree["parameters/playback"]
 	var playback2: AnimationNodeStateMachinePlayback = self.animation_tree["parameters/playback"]
 	

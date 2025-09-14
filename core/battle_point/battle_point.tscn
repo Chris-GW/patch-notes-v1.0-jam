@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtr8utxdn7ut7"]
+
+[ext_resource type="Script" uid="uid://qd6pl6bi2l0" path="res://core/battle_point/battle_point.gd" id="1_wftub"]
+
+[node name="BattlePoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_wftub")
+
+[node name="WaveSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-96, -112, 256, -96, 128, 144, -80, 32)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="WaveSpawnTimer" to="." method="_on_wave_spawn_timer_timeout"]

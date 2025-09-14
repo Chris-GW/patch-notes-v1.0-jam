@@ -152,9 +152,9 @@ func _spawn_dash_afterimages() -> void:
 	var after_image_sprite: Sprite2D = sprite_2d.duplicate()
 	after_image_sprite.self_modulate = Color.BLACK
 	after_image_sprite.self_modulate.a = 0.5
-	after_image_sprite.z_index = -2
 	after_image_sprite.global_position = sprite_2d.global_position
 	get_parent().add_child(after_image_sprite)
+	get_parent().move_child(after_image_sprite, 0)
 	await get_tree().create_timer(0.1).timeout
 	after_image_sprite.queue_free()
 
