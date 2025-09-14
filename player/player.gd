@@ -21,6 +21,8 @@ var health := max_health
 var dash_charges := max_dash_charges
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var state_machine := animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var ghost_timer: Timer = $GhostTimer
 @onready var dashing_timer: Timer = $DashingTimer
@@ -118,6 +120,7 @@ func take_damage(damage: int) -> void:
 		died.emit()
 		return
 	
+	state_machine.travel("hurt")
 	var blink_interval := 0.1
 	invincibility_timer.start()
 	var tween := create_tween()
