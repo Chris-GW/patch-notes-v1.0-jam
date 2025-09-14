@@ -6,11 +6,7 @@
 
 [node name="ChaserBasicDuck" instance=ExtResource("1_fn1dj")]
 script = ExtResource("2_oehvq")
-attack_damage = 0
-move_speed = 0.0
-max_health = 0
-medkit_spawn_chance = 0.0
-knockback_decay = 0.0
+medkit_spawn_chance = 0.05
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {

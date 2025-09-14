@@ -79,18 +79,18 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="YSortRoot" instance=ExtResource("3_maq6b")]
 unique_name_in_owner = true
-position = Vector2(320, 276)
+position = Vector2(320, 184)
 
 [node name="PlayerCamera2D" type="Camera2D" parent="YSortRoot/Player"]
 unique_name_in_owner = true
-position = Vector2(0, -96)
+position = Vector2(0, -4)
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HudLayer"]
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 16.0
-offset_right = 152.0
+offset_right = 144.0
 offset_bottom = 54.0
 
 [node name="HealthBar" type="ProgressBar" parent="HudLayer/VBoxContainer"]
@@ -129,15 +129,15 @@ text = "Dash charges: 2 / 2"
 [node name="DiedPanelContainer" type="PanelContainer" parent="HudLayer"]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -112.0
-offset_top = -148.0
-offset_right = 104.0
+offset_left = -304.0
+offset_top = -84.0
+offset_right = -88.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 

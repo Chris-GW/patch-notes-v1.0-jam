@@ -3,20 +3,20 @@
 [ext_resource type="Script" uid="uid://cnb7p64i2l5m" path="res://enemies/base_enemy.gd" id="1_bfj6p"]
 [ext_resource type="Texture2D" uid="uid://bo0w1c1a3lvv8" path="res://enemies/assets/spr_basic_duck-sheet-sheet.png" id="2_b5ht1"]
 
-[sub_resource type="Animation" id="Animation_bfj6p"]
-resource_name = "walk"
-
 [sub_resource type="Animation" id="Animation_b5ht1"]
 resource_name = "attack"
 
 [sub_resource type="Animation" id="Animation_xens1"]
 resource_name = "death"
 
+[sub_resource type="Animation" id="Animation_jtyv1"]
+resource_name = "idle"
+
 [sub_resource type="Animation" id="Animation_35jd6"]
 resource_name = "knockback"
 
-[sub_resource type="Animation" id="Animation_jtyv1"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_bfj6p"]
+resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_35jd6"]
 _data = {
