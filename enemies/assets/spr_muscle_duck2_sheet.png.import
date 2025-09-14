@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bddqxu83nkxol"
-path="res://.godot/imported/spr_muscle_duck_attack1-sheet.png-2a3e74a18b00a07e01ad5acee2d89d24.ctex"
+uid="uid://dpqdgtvccjulx"
+path="res://.godot/imported/spr_muscle_duck2_sheet.png-c2af8b3eb7a206b5e886e7e0db348c97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/assets/spr_muscle_duck_attack1-sheet.png"
-dest_files=["res://.godot/imported/spr_muscle_duck_attack1-sheet.png-2a3e74a18b00a07e01ad5acee2d89d24.ctex"]
+source_file="res://enemies/assets/spr_muscle_duck2_sheet.png"
+dest_files=["res://.godot/imported/spr_muscle_duck2_sheet.png-c2af8b3eb7a206b5e886e7e0db348c97.ctex"]
 
 [params]
 

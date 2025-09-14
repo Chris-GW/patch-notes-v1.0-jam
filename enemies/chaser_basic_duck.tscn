@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4lwqkao3c5ai"]
+
+[ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="1_fn1dj"]
+[ext_resource type="Script" uid="uid://bl0rwx432ehln" path="res://enemies/chaser_basic_duck.gd" id="2_oehvq"]
+[ext_resource type="AnimationLibrary" uid="uid://doymkt87bd024" path="res://enemies/basic_enemy_animations.tres" id="3_oehvq"]
+
+[node name="ChaserBasicDuck" instance=ExtResource("1_fn1dj")]
+script = ExtResource("2_oehvq")
+attack_damage = 0
+move_speed = 0.0
+max_health = 0
+medkit_spawn_chance = 0.0
+knockback_decay = 0.0
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": ExtResource("3_oehvq")
+}
+autoplay = "walk"

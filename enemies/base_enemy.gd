@@ -90,7 +90,6 @@ func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 
 
 func hurt_player(player: Player) -> void:
-	var state_machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 	state_machine.travel("attack")
 	player.take_damage(attack_damage)
 

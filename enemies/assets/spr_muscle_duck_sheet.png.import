@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxj17n7xsgrnl"
-path="res://.godot/imported/spr_fat_duck_idle1-sheet.png-0c4cfbb1c6d905f71da36464407d498e.ctex"
+uid="uid://b0pdwbk0qku58"
+path="res://.godot/imported/spr_muscle_duck_sheet.png-a2f8b9200bf35b7bb10932f99e73cecd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/assets/spr_fat_duck_idle1-sheet.png"
-dest_files=["res://.godot/imported/spr_fat_duck_idle1-sheet.png-0c4cfbb1c6d905f71da36464407d498e.ctex"]
+source_file="res://enemies/assets/spr_muscle_duck_sheet.png"
+dest_files=["res://.godot/imported/spr_muscle_duck_sheet.png-a2f8b9200bf35b7bb10932f99e73cecd.ctex"]
 
 [params]
 

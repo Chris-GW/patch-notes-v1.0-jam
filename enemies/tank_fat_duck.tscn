@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bovf02vnvesjs"]
+
+[ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="1_yd0k7"]
+[ext_resource type="Script" uid="uid://dlnc2p7pcdq6i" path="res://enemies/tank_fat_duck.gd" id="2_aq38n"]
+[ext_resource type="Texture2D" uid="uid://bn2xj4yn1p4px" path="res://enemies/assets/spr_fat_duck_sheet.png" id="3_1ily3"]
+[ext_resource type="AnimationLibrary" uid="uid://doymkt87bd024" path="res://enemies/basic_enemy_animations.tres" id="3_vae1c"]
+
+[node name="TankFatDuck" instance=ExtResource("1_yd0k7")]
+script = ExtResource("2_aq38n")
+attack_damage = 10
+move_speed = 45.0
+max_health = 30
+knockback_decay = 900.0
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": ExtResource("3_vae1c")
+}
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("3_1ily3")
