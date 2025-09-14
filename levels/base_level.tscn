@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bagc6mf0in81g"]
+[gd_scene load_steps=13 format=3 uid="uid://bagc6mf0in81g"]
 
 [ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://levels/base_level.gd" id="1_p5284"]
-[ext_resource type="Texture2D" uid="uid://d3a1f21o3ethf" path="res://assets/sprites/grid_gray_256x256.png" id="2_46036"]
 [ext_resource type="AudioStream" uid="uid://brrdoa6oywe3c" path="res://assets/music/Loopable/loopable_neutral_sound.wav" id="2_maq6b"]
 [ext_resource type="TileSet" uid="uid://cylx3kwee715b" path="res://assets/tileset/my_tileset.tres" id="3_0rg8l"]
 [ext_resource type="AudioStream" uid="uid://ck6gu5yvhpf5d" path="res://assets/music/Loopable/Level_1.wav" id="3_6w4ab"]
@@ -62,31 +61,18 @@ bus = &"Music"
 stream = ExtResource("4_0rg8l")
 bus = &"Music"
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
-visible = false
-z_index = -5
-repeat_size = Vector2(640, 384)
-metadata/_edit_lock_ = true
-
-[node name="GridGrayBackground" type="Sprite2D" parent="Parallax2D"]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(320, 192)
-texture = ExtResource("2_46036")
-region_enabled = true
-region_rect = Rect2(0, 0, 640, 384)
-metadata/_edit_lock_ = true
-
 [node name="YSortRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="GroundTileMapLayer" type="TileMapLayer" parent="YSortRoot" groups=["navigation"]]
 unique_name_in_owner = true
+z_index = -2
 tile_set = ExtResource("3_0rg8l")
 
 [node name="FloorTileMapLayer" type="TileMapLayer" parent="YSortRoot" groups=["navigation"]]
 unique_name_in_owner = true
+z_index = -1
 tile_set = ExtResource("3_0rg8l")
 
 [node name="DecorationTileMapLayer" type="TileMapLayer" parent="YSortRoot" groups=["navigation"]]

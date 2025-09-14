@@ -7,7 +7,6 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_wftub")
-enemy_wave = 1
 
 [node name="WaveSpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
