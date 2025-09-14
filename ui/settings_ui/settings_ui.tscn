@@ -1,0 +1,200 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyfxl70wctxjf"]
+
+[ext_resource type="Script" uid="uid://dls7ar1441d85" path="res://ui/settings_ui/settings_ui.gd" id="1_hmly7"]
+[ext_resource type="PackedScene" uid="uid://82456qiy1un1" path="res://ui/settings_ui/bus_volume_control.tscn" id="2_1ub5d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frl8s"]
+region = Rect2(272, 16, 16, 16)
+
+[node name="SettingsUi" type="CanvasLayer"]
+script = ExtResource("1_hmly7")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(0, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -150.0
+offset_right = 260.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Graphics" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics"]
+layout_mode = 2
+
+[node name="GraphicsGridContainer" type="GridContainer" parent="TabContainer/Graphics/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="WindowModeLabel" type="Label" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+text = "Window mode:"
+
+[node name="WindowModeOptionButton" type="OptionButton" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 4
+popup/item_0/text = "Full-Screen"
+popup/item_0/id = 0
+popup/item_1/text = "Window Mode"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless Window"
+popup/item_2/id = 2
+popup/item_3/text = "Borderless Full-Screen"
+popup/item_3/id = 3
+
+[node name="ScaleModeLabel" type="Label" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+text = "Scale mode:"
+
+[node name="ScaleModeOptionButton" type="OptionButton" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "Pixel-Perfect"
+popup/item_0/id = 0
+popup/item_1/text = "fit window size"
+popup/item_1/id = 1
+
+[node name="V-SyncModeLabel" type="Label" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+text = "V-Sync mode:"
+
+[node name="V-SyncModeOptionButton" type="OptionButton" parent="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 4
+popup/item_0/text = "Enabled"
+popup/item_0/id = 0
+popup/item_1/text = "Disabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Mailbox"
+popup/item_3/id = 3
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Graphics/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="TabContainer/Graphics/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Back"
+icon = SubResource("AtlasTexture_frl8s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 1
+
+[node name="AudioContainer" type="VBoxContainer" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="MasterVolumeControl" parent="TabContainer/Audio/AudioContainer" instance=ExtResource("2_1ub5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicVolumeControl" parent="TabContainer/Audio/AudioContainer" instance=ExtResource("2_1ub5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus = 1
+
+[node name="SfxVolumeControl" parent="TabContainer/Audio/AudioContainer" instance=ExtResource("2_1ub5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus = 2
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Audio/AudioContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio/AudioContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="TabContainer/Audio/AudioContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Output Device:"
+
+[node name="OutputDeviceOptionButton" type="OptionButton" parent="TabContainer/Audio/AudioContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text_overrun_behavior = 3
+selected = 0
+item_count = 1
+popup/item_0/text = "Default"
+popup/item_0/id = 0
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Audio/AudioContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="TabContainer/Audio/AudioContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Back"
+icon = SubResource("AtlasTexture_frl8s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SettingsLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -180.0
+offset_right = 256.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+horizontal_alignment = 2
+
+[connection signal="item_selected" from="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer/WindowModeOptionButton" to="." method="_on_window_mode_option_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer/ScaleModeOptionButton" to="." method="_on_scale_mode_option_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/Graphics/VBoxContainer/GraphicsGridContainer/V-SyncModeOptionButton" to="." method="_on_v_sync_mode_option_button_item_selected"]
+[connection signal="pressed" from="TabContainer/Graphics/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="item_selected" from="TabContainer/Audio/AudioContainer/HBoxContainer/OutputDeviceOptionButton" to="." method="_on_output_device_option_button_item_selected"]
+[connection signal="pressed" from="TabContainer/Audio/AudioContainer/BackButton" to="." method="_on_back_button_pressed"]

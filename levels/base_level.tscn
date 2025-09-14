@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bagc6mf0in81g"]
+[gd_scene load_steps=14 format=3 uid="uid://bagc6mf0in81g"]
 
 [ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://levels/base_level.gd" id="1_p5284"]
 [ext_resource type="AudioStream" uid="uid://brrdoa6oywe3c" path="res://assets/music/Loopable/loopable_neutral_sound.wav" id="2_maq6b"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="3_maq6b"]
 [ext_resource type="AudioStream" uid="uid://c2sd056pbnqco" path="res://assets/music/singleShot/level_end.wav" id="4_0rg8l"]
 [ext_resource type="FontFile" uid="uid://cep3foox6k0yn" path="res://assets/fonts/fusion-pixel-12px-proportional-sc-latin-400-normal.woff2" id="6_46036"]
+[ext_resource type="PackedScene" uid="uid://cqctqm0k1qlsr" path="res://ui/game_paused_ui/game_paused_ui.tscn" id="8_0rg8l"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n8wy4"]
 playback_mode = 2
@@ -205,6 +206,10 @@ label_settings = SubResource("LabelSettings_lquwl")
 [node name="NextLevelButton" type="Button" parent="HudLayer/LevelCompletedPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Next Level"
+
+[node name="GamePausedUI" parent="." instance=ExtResource("8_0rg8l")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="finished" from="NutralMusicPlayer" to="." method="_on_nutral_music_player_finished"]
 [connection signal="finished" from="BattleMusicPlayer" to="." method="_on_battle_music_player_finished"]

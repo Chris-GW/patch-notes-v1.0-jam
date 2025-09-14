@@ -25,6 +25,7 @@ var in_battle := false
 func _ready() -> void:
 	%DiedPanelContainer.visible = false
 	%LevelCompletedPanelContainer.visible = false
+	%GamePausedUI.visible = false
 	health_bar.max_value = player.max_health
 	health_bar.value = player.max_health
 	
