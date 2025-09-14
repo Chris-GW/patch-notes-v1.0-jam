@@ -41,14 +41,13 @@ motion_mode = 1
 script = ExtResource("1_bfj6p")
 move_speed = 75.0
 max_health = 20.0
-medkit_spawn_chance = 0.3
+medkit_spawn_chance = 0.23
 knockback_decay = 500.0
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 80.0
 target_desired_distance = 80.0
 path_max_distance = 2000.0
-debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="."]
 wait_time = 0.3

@@ -61,15 +61,13 @@ y_sort_enabled = true
 
 [node name="GroundTileMapLayer" type="TileMapLayer" parent="YSortRoot" groups=["navigation"]]
 unique_name_in_owner = true
-y_sort_enabled = true
 tile_set = ExtResource("3_0rg8l")
 
 [node name="FloorTileMapLayer" type="TileMapLayer" parent="YSortRoot" groups=["navigation"]]
 unique_name_in_owner = true
-y_sort_enabled = true
 tile_set = ExtResource("3_0rg8l")
 
-[node name="DecorationTileMapLayer" type="TileMapLayer" parent="YSortRoot"]
+[node name="DecorationTileMapLayer" type="TileMapLayer" parent="YSortRoot" groups=["navigation"]]
 unique_name_in_owner = true
 y_sort_enabled = true
 tile_set = ExtResource("3_0rg8l")

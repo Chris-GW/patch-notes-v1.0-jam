@@ -113,9 +113,10 @@ move_smoothing = 20.0
 dash_speed = 500.0
 max_dash_charges = 2
 max_health = 20.0
-ghost_spawn_chance = 0.25
+ghost_spawn_chance = 0.18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 &"": ExtResource("2_qjkh3"),
 &"weapon": ExtResource("3_g6k8r")
