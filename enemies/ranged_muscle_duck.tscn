@@ -6,11 +6,21 @@
 
 [node name="RangedMuscleDuck" instance=ExtResource("1_68rsw")]
 script = ExtResource("2_7r76s")
-attack_damage = 0
-move_speed = 0.0
-max_health = 0
-medkit_spawn_chance = 0.0
-knockback_decay = 0.0
+distance_range = Vector2(264, 360)
+move_speed = 100.0
+medkit_spawn_chance = 0.11
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="RepostionTimer" type="Timer" parent="." index="4"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="5"]
+rect = Rect2(-40, -73, 80, 80)
+
+[node name="Sprite2D" parent="." index="6"]
 texture = ExtResource("3_641ht")
+
+[connection signal="timeout" from="RepostionTimer" to="." method="_on_repostion_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -73,6 +73,7 @@ y_sort_enabled = true
 tile_set = ExtResource("3_0rg8l")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="YSortRoot"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_46036")
 metadata/_edit_lock_ = true
 
