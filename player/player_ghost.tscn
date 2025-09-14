@@ -106,6 +106,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+callback_mode_process = 2
 tree_root = SubResource("AnimationNodeStateMachine_bmh3t")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")

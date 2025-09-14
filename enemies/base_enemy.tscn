@@ -45,9 +45,9 @@ medkit_spawn_chance = 0.23
 knockback_decay = 500.0
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 80.0
-target_desired_distance = 80.0
-path_max_distance = 2000.0
+path_desired_distance = 16.0
+target_desired_distance = 8.0
+path_max_distance = 160.0
 
 [node name="NavigationUpdateTimer" type="Timer" parent="."]
 wait_time = 0.3
