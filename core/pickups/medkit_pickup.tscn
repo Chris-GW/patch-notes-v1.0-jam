@@ -16,7 +16,7 @@ gravity_scale = 0.0
 linear_damp = 4.0
 angular_damp = 4.0
 script = ExtResource("1_swd2d")
-heal_amount = 10.0
+heal_amount = 10
 
 [node name="FreezeTimer" type="Timer" parent="."]
 one_shot = true

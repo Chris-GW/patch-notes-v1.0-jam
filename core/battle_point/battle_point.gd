@@ -4,7 +4,7 @@ extends Node2D
 signal battle_started(battle_point: BattlePoint)
 signal battle_ended(battle_point: BattlePoint)
 
-const BASE_ENEMY: PackedScene = preload("res://enemies/base_enemy.tscn")
+const CHASER_ENEMY: PackedScene = preload("res://enemies/chaser_enemy.tscn")
 
 @export var enemy_wave := 3
 
@@ -28,7 +28,7 @@ func start_battle() -> void:
 
 func _on_wave_spawn_timer_timeout() -> void:
 	for spawn_point: Node2D in spawn_points.get_children():
-		var new_enemy: BaseEnemy = BASE_ENEMY.instantiate()
+		var new_enemy: BaseEnemy = CHASER_ENEMY.instantiate()
 		new_enemy.global_position = spawn_point.global_position
 		new_enemy.move_speed = randfn(new_enemy.move_speed, new_enemy.move_speed / 6.0)
 		get_parent().add_child(new_enemy)

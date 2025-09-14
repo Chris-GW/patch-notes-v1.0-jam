@@ -1,17 +1,118 @@
-[gd_scene load_steps=10 format=3 uid="uid://3i44qkdeaoow"]
+[gd_scene load_steps=32 format=3 uid="uid://3i44qkdeaoow"]
 
 [ext_resource type="Script" uid="uid://cnb7p64i2l5m" path="res://enemies/base_enemy.gd" id="1_bfj6p"]
-[ext_resource type="Texture2D" uid="uid://baitq8022rscu" path="res://assets/icon.svg" id="1_j7qyq"]
-[ext_resource type="FontFile" uid="uid://c5qw4j6h2tlna" path="res://assets/fonts/fusion-pixel-10px-proportional-sc-latin-400-normal.woff2" id="3_b5ht1"]
+[ext_resource type="Texture2D" uid="uid://bo0w1c1a3lvv8" path="res://enemies/assets/spr_basic_duck-sheet-sheet.png" id="2_b5ht1"]
+
+[sub_resource type="Animation" id="Animation_bfj6p"]
+resource_name = "walk"
+
+[sub_resource type="Animation" id="Animation_b5ht1"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_xens1"]
+resource_name = "death"
+
+[sub_resource type="Animation" id="Animation_35jd6"]
+resource_name = "knockback"
+
+[sub_resource type="Animation" id="Animation_jtyv1"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35jd6"]
+_data = {
+&"attack": SubResource("Animation_b5ht1"),
+&"death": SubResource("Animation_xens1"),
+&"idle": SubResource("Animation_jtyv1"),
+&"knockback": SubResource("Animation_35jd6"),
+&"walk": SubResource("Animation_bfj6p")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bfj6p"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b5ht1"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_35jd6"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jtyv1"]
+animation = &"knockback"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xens1"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jtyv1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a33f8"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2d0b"]
+advance_mode = 2
+advance_expression = "health <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fngk5"]
+advance_mode = 2
+advance_expression = "knockback.length_squared() > 20.0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ccr3n"]
+advance_mode = 2
+advance_expression = "velocity.length_squared() <= 20.0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_epbio"]
+advance_mode = 2
+advance_expression = "velocity.length_squared() > 20.0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7on22"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_katke"]
+advance_mode = 2
+advance_expression = "health <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bfj6p"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b5ht1"]
+advance_mode = 2
+advance_expression = "knockback.length_squared() > 20.0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xens1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_35jd6"]
+advance_mode = 2
+advance_expression = "knockback.length_squared() <= 20.0"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bfj6p"]
+states/End/position = Vector2(779, 164)
+states/Start/position = Vector2(173, 59)
+states/attack/node = SubResource("AnimationNodeAnimation_bfj6p")
+states/attack/position = Vector2(214, 215)
+states/death/node = SubResource("AnimationNodeAnimation_b5ht1")
+states/death/position = Vector2(640, 164)
+states/idle/node = SubResource("AnimationNodeAnimation_35jd6")
+states/idle/position = Vector2(361, 122)
+states/knockback/node = SubResource("AnimationNodeAnimation_jtyv1")
+states/knockback/position = Vector2(543, 68)
+states/walk/node = SubResource("AnimationNodeAnimation_xens1")
+states/walk/position = Vector2(361, 243)
+transitions = ["death", "End", SubResource("AnimationNodeStateMachineTransition_jtyv1"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_a33f8"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_j2d0b"), "walk", "knockback", SubResource("AnimationNodeStateMachineTransition_fngk5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ccr3n"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_epbio"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_7on22"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_katke"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_bfj6p"), "idle", "knockback", SubResource("AnimationNodeStateMachineTransition_b5ht1"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xens1"), "knockback", "idle", SubResource("AnimationNodeStateMachineTransition_35jd6")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bfj6p"]
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfj6p"]
-size = Vector2(48, 56)
+size = Vector2(64, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5ht1"]
-size = Vector2(48, 56)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5ht1"]
+radius = 24.0
+height = 48.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfj6p"]
 draw_center = false
@@ -28,21 +129,28 @@ expand_margin_bottom = 1.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ht1"]
 bg_color = Color(0.6, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_xens1"]
-font = ExtResource("3_b5ht1")
-font_size = 10
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
 [node name="BaseEnemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
+wall_min_slide_angle = 0.1309
 script = ExtResource("1_bfj6p")
+attack_damage = 5
 move_speed = 75.0
-max_health = 20.0
+max_health = 10
 medkit_spawn_chance = 0.23
 knockback_decay = 500.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_35jd6")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_bfj6p")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_attacking = false
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 16.0
@@ -54,10 +162,10 @@ wait_time = 0.3
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.27, 0.27, 1)
-position = Vector2(1.90735e-06, -28)
-scale = Vector2(0.375, 0.4375)
-texture = ExtResource("1_j7qyq")
+position = Vector2(0, -32)
+texture = ExtResource("2_b5ht1")
+hframes = 4
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
@@ -69,45 +177,34 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
-position = Vector2(0, -28)
+position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_bfj6p")
 debug_color = Color(0.767781, 0.446767, 7.70092e-07, 0.42)
 
 [node name="HitArea2D" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 32
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
-position = Vector2(0, -20)
-shape = SubResource("RectangleShape2D_b5ht1")
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_b5ht1")
 debug_color = Color(0.995431, 0, 0.206994, 0.42)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 12)
+custom_minimum_size = Vector2(48, 8)
 offset_left = -24.0
-offset_top = -72.0
+offset_top = -80.0
 offset_right = 24.0
-offset_bottom = -60.0
+offset_bottom = -72.0
 theme_override_styles/background = SubResource("StyleBoxFlat_bfj6p")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b5ht1")
 value = 22.0
 show_percentage = false
-
-[node name="Label" type="Label" parent="HealthBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Enemy"
-label_settings = SubResource("LabelSettings_xens1")
-horizontal_alignment = 1
+metadata/_edit_group_ = true
 
 [connection signal="timeout" from="NavigationUpdateTimer" to="." method="_on_navigation_update_timer_timeout"]
 [connection signal="area_entered" from="HitArea2D" to="." method="_on_hit_area_2d_area_entered"]

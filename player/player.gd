@@ -14,7 +14,7 @@ const PLAYER_GHOST: PackedScene = preload("res://player/player_ghost.tscn")
 @export var dash_speed: float
 @export var max_dash_charges: int
 
-@export var max_health: float
+@export var max_health: int
 @export var ghost_spawn_chance: float
 
 var health := max_health
@@ -107,13 +107,13 @@ func spawn_player_ghost() -> void:
 	ghost_timer.start()
 
 
-func take_damage(damage: float) -> void:
+func take_damage(damage: int) -> void:
 	if not invincibility_timer.is_stopped():
 		return
-	health = clampf(health - damage, 0.0, max_health)
+	health = clampi(health - damage, 0, max_health)
 	hurt_area_2d.set_monitorable.call_deferred(false)
 	damage_taken.emit()
-	if health <= 0.0:
+	if health <= 0:
 		$DeathAudioPlayer.play()
 		died.emit()
 		return
@@ -130,8 +130,8 @@ func take_damage(damage: float) -> void:
 	hurt_area_2d.set_monitorable.call_deferred(true)
 
 
-func take_heal(heal_amount: float) -> void:
-	health = clampf(health + heal_amount, 0.0, max_health)
+func take_heal(heal_amount: int) -> void:
+	health = clampi(health + heal_amount, 0, max_health)
 	heal_taken.emit()
 
 

@@ -2,7 +2,7 @@ class_name GlitchedSwordAttack
 extends Node2D
 
 
-@export var damage_amount := 1.0
+@export var damage_amount := 5
 @export var knockback_strenght: float
 @export var attack_animation: String
 @export var delay_sec := 1.0

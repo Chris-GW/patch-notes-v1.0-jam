@@ -1,7 +1,7 @@
 class_name MedkitPickup
 extends RigidBody2D
 
-@export var heal_amount: float
+@export var heal_amount: int
 
 @onready var freeze_timer: Timer = $FreezeTimer
 @onready var sprite_2d: Sprite2D = $Sprite2D

@@ -43,7 +43,7 @@ height = 46.6878
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_scrye")
-damage_amount = 10.0
+damage_amount = 5.0
 knockback_strenght = 300.0
 attack_animation = "attack_left"
 

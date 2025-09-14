@@ -6,20 +6,24 @@ signal died
 
 const MEDKIT_PICKUP: PackedScene = preload("res://core/pickups/medkit_pickup.tscn")
 
+@export var attack_damage: int
 @export var move_speed: float
-@export var max_health: float
+@export var max_health: int
 @export var medkit_spawn_chance: float
 @export var knockback_decay: float ## how fast knockback fades
 
 var movement_delta: float
-var health: float
+var health: int
 
 var knockback := Vector2.ZERO
 var target: Node2D = null
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var state_machine := animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = %HealthBar
+@onready var hurt_area_2d: Area2D = $HurtArea2D
 @onready var hit_area_2d: Area2D = %HitArea2D
 
 
@@ -35,6 +39,8 @@ func _physics_process(delta: float) -> void:
 		velocity = knockback
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 	elif navigation_agent.is_navigation_finished():
+		velocity = Vector2.ZERO
+	elif state_machine.get_current_node() == "attack":
 		velocity = Vector2.ZERO
 	else:
 		var next_point := navigation_agent.get_next_path_position()
@@ -53,11 +59,11 @@ func _on_navigation_update_timer_timeout() -> void:
 	navigation_agent.target_position = player.global_position
 
 
-func take_damage(damage: float) -> void:
-	health = clampf(health - damage, 0.0, max_health)
+func take_damage(damage: int) -> void:
+	health = clampi(health - damage, 0, max_health)
 	health_bar.value = health
 	damage_taken.emit()
-	if health <= 0.0:
+	if health <= 0:
 		die()
 
 
@@ -68,20 +74,29 @@ func die() -> void:
 		get_parent().add_child.call_deferred(medkit)
 		var direction := Vector2.from_angle(randf_range(0.0, TAU))
 		medkit.apply_central_impulse(direction * 500.0)
+	set_physics_process(false)
+	hit_area_2d.queue_free()
+	hurt_area_2d.queue_free()
+	$CollisionShape2D.queue_free()
 	died.emit()
-	queue_free()
 
 
 func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 	var parent := area.get_parent()
 	if parent is Player:
 		hurt_player(parent)
+	if parent is PlayerGhost:
+		state_machine.travel("attack")
 
 
 func hurt_player(player: Player) -> void:
-	player.take_damage(10.0)
+	var state_machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+	state_machine.travel("attack")
+	player.take_damage(attack_damage)
 
 
 func apply_knockback(source_pos: Vector2, strength: float = 300.0):
+	if health <= 0:
+		return
 	var dir := source_pos.direction_to(global_position)
 	knockback = dir * strength

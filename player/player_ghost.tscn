@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dcitdn88np37t"]
+[gd_scene load_steps=27 format=3 uid="uid://dcitdn88np37t"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="1_x7ata"]
 [ext_resource type="Script" uid="uid://dnr8c765bhhan" path="res://player/player_ghost.gd" id="1_xbrus"]
@@ -91,6 +91,10 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbrus"]
 radius = 12.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbrus"]
+radius = 16.0
+height = 40.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x5yj"]
 radius = 256.0
 
@@ -138,6 +142,16 @@ offset = Vector2(14, -19)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_xbrus")
+
+[node name="HurtArea2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_xbrus")
+debug_color = Color(0.729615, 0.473607, 9.62615e-07, 0.42)
 
 [node name="DistractionArea2D" type="Area2D" parent="."]
 collision_layer = 0
