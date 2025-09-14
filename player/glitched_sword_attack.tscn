@@ -63,7 +63,7 @@ texture_filter = 1
 position = Vector2(0, -36.9666)
 texture = ExtResource("3_y3yij")
 hframes = 4
-vframes = 3
+vframes = 8
 region_rect = Rect2(485, 19, 421, 588)
 
 [node name="Sword" type="Sprite2D" parent="."]

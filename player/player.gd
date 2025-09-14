@@ -12,6 +12,7 @@ const PLAYER_GHOST: PackedScene = preload("res://player/player_ghost.tscn")
 @export var move_smoothing: float
 
 @export var dash_speed: float
+@export var dash_steering: float
 @export var max_dash_charges: int
 
 @export var max_health: int
@@ -26,6 +27,7 @@ var dash_charges := max_dash_charges
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var ghost_timer: Timer = $GhostTimer
 @onready var dashing_timer: Timer = $DashingTimer
+@onready var roll_timer: Timer = $RollTimer
 @onready var dash_refresh_timer: Timer = $DashRefreshTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
@@ -55,9 +57,13 @@ func _update_movement_velocity(delta: float) -> void:
 		dashing_timer.start()
 		dash_charges -= 1
 		hurt_area_2d.monitorable = false
+	
 	if not dashing_timer.is_stopped():
 		if input_direction.is_zero_approx(): # stopping not allowed
 			input_direction = velocity.normalized()
+		# small steering influence
+		var steering_weight := 1.0 - exp(-dash_steering * delta)
+		input_direction = velocity.normalized().lerp(input_direction, steering_weight)
 		target_velocity = input_direction * dash_speed
 	
 	var velocity_weight := 1.0 - exp(-move_smoothing * delta)
@@ -74,8 +80,13 @@ func _update_animation_parameters() -> void:
 		animation_tree.set("parameters/conditions/is_attacking", false)
 	animation_tree.set("parameters/conditions/is_dashing", not dashing_timer.is_stopped())
 	
-	if velocity.length_squared() > 50.0:
-		animation_tree.set("parameters/run/blend_position", velocity.normalized())
+	var velocity_direction := velocity.normalized()
+	var side_blend := velocity_direction.dot(Vector2.RIGHT)
+	if not is_zero_approx(side_blend):
+		animation_tree.set("parameters/roll/blend_position", side_blend)
+		animation_tree.set("parameters/dash_run/blend_position", side_blend)
+	if velocity.length_squared() > 30.0:
+		animation_tree.set("parameters/run/blend_position", velocity_direction)
 
 
 func can_input_attack() -> bool:

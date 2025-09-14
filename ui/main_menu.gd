@@ -6,7 +6,7 @@ extends Control
 
 func _ready() -> void:
 	%QuitButton.visible = not OS.has_feature("web")
-	%ContinueGameButton.visible = Global.level_index > 0
+	%ContinueGameButton.disabled = Global.level_index <= 0
 
 
 func _on_continue_game_button_pressed() -> void:

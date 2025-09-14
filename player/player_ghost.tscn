@@ -1,92 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dcitdn88np37t"]
+[gd_scene load_steps=10 format=3 uid="uid://dcitdn88np37t"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="1_x7ata"]
 [ext_resource type="Script" uid="uid://dnr8c765bhhan" path="res://player/player_ghost.gd" id="1_xbrus"]
 [ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="2_xbrus"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/player_animation_tree.tres" id="4_1x5yj"]
 [ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="4_3qg10"]
 [ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://assets/sprites/player/player_sprites.png" id="4_xbrus"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xbrus"]
-animation = &"weapon/attack_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1x5yj"]
-animation = &"weapon/attack_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3qg10"]
-animation = &"weapon/attack_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qvcqj"]
-animation = &"weapon/attack_right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hg6s5"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_xbrus")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_1x5yj")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_3qg10")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_qvcqj")
-blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yw30f"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4rfig"]
-animation = &"move_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vaqwf"]
-animation = &"move_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ib3c"]
-animation = &"move_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c6vm4"]
-animation = &"move_right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_8t03j"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4rfig")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_vaqwf")
-blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_0ib3c")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_c6vm4")
-blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qjkh3"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t03j"]
-advance_mode = 2
-advance_condition = &"is_attacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ieo8"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw30f"]
-advance_mode = 2
-advance_expression = "velocity.length_squared() > 100.0"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g6k8r"]
-advance_mode = 2
-advance_expression = "velocity.length_squared() <= 100.0"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_boad6"]
-advance_mode = 2
-advance_condition = &"is_attacking"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bmh3t"]
-states/Start/position = Vector2(176, 73)
-states/attack/node = SubResource("AnimationNodeBlendSpace2D_hg6s5")
-states/attack/position = Vector2(655, 162)
-states/idle/node = SubResource("AnimationNodeAnimation_yw30f")
-states/idle/position = Vector2(363, 155)
-states/run/node = SubResource("AnimationNodeBlendSpace2D_8t03j")
-states/run/position = Vector2(516, 70)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qjkh3"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8t03j"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_2ieo8"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_yw30f"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_g6k8r"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_boad6")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbrus"]
 radius = 12.0
@@ -111,12 +30,15 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 callback_mode_process = 2
-tree_root = SubResource("AnimationNodeStateMachine_bmh3t")
+tree_root = ExtResource("4_1x5yj")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_attacking = false
+parameters/conditions/is_hurt = false
 parameters/attack/blend_position = Vector2(-0.0607798, 0.799308)
-parameters/run/blend_position = Vector2(0.207267, 0.679558)
+parameters/dash_run/blend_position = 0
+parameters/roll/blend_position = -0.118699
+parameters/run/blend_position = Vector2(0.739666, -0.836735)
 
 [node name="StayTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -129,10 +51,11 @@ texture_filter = 1
 position = Vector2(0, -36)
 texture = ExtResource("4_xbrus")
 hframes = 4
-vframes = 6
+vframes = 8
 region_rect = Rect2(485, 19, 421, 588)
 
 [node name="Sword" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(0.158472, 0.158472, 0.158472, 1)
 texture_filter = 1
 position = Vector2(16, -8)
