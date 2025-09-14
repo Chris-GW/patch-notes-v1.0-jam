@@ -1,13 +1,23 @@
 extends Control
 
 
-# Called when the node enters the scene tree for the first time.
+@onready var menu_music_player: AudioStreamPlayer = $MenuMusicPlayer
+
+
 func _ready() -> void:
 	%QuitButton.visible = not OS.has_feature("web")
+	%ContinueGameButton.visible = Global.level_index > 0
+
+
+func _on_continue_game_button_pressed() -> void:
+	var next_level_file: String = Global.levels[Global.level_index]
+	get_tree().change_scene_to_file(next_level_file)
 
 
 func _on_new_game_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://main.tscn")
+	Global.level_index = 0
+	var next_level_file: String = Global.levels[Global.level_index]
+	get_tree().change_scene_to_file(next_level_file)
 
 
 func _on_options_button_pressed() -> void:
@@ -20,3 +30,7 @@ func _on_credits_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_menu_music_player_finished() -> void:
+	menu_music_player.play()

@@ -1,12 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://caypvdlxuc685"]
+[gd_scene load_steps=2 format=3 uid="uid://caypvdlxuc685"]
 
 [ext_resource type="Script" uid="uid://bjebi2tuxin7f" path="res://core/global.gd" id="1_408d3"]
-[ext_resource type="AudioStream" uid="uid://brv32ww10ob52" path="res://assets/music/main_menu_sepjam.mp3" id="1_cjuri"]
 
 [node name="Global" type="Node2D"]
 script = ExtResource("1_408d3")
-
-[node name="MainMenuAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_cjuri")
-autoplay = true
-bus = &"Music"

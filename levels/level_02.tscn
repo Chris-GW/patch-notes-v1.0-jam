@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl0toa531bsqm"]
+[gd_scene load_steps=4 format=3 uid="uid://cl0toa531bsqm"]
 
 [ext_resource type="PackedScene" uid="uid://bagc6mf0in81g" path="res://levels/base_level.tscn" id="1_nnn84"]
+[ext_resource type="AudioStream" uid="uid://g1d6hm0titbu" path="res://assets/music/Loopable/Level_2.wav" id="2_g685p"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nnn84"]
 resource_local_to_scene = true
@@ -13,6 +14,9 @@ cell_size = 8.0
 agent_radius = 16.0
 
 [node name="Level02" instance=ExtResource("1_nnn84")]
+
+[node name="BattleMusicPlayer" parent="." index="1"]
+stream = ExtResource("2_g685p")
 
 [node name="NavigationRegion2D" parent="YSortRoot" index="3"]
 navigation_polygon = SubResource("NavigationPolygon_nnn84")

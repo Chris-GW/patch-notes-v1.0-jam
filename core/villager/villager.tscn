@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp45x57s2t3ur"]
+
+[ext_resource type="Texture2D" uid="uid://cv58oue5a6ube" path="res://core/villager/spr_sluggirlfriend_front-sheet.png" id="1_0ve8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ve8w"]
+atlas = ExtResource("1_0ve8w")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p7un"]
+atlas = ExtResource("1_0ve8w")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1h5m"]
+atlas = ExtResource("1_0ve8w")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chjyl"]
+atlas = ExtResource("1_0ve8w")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ejpd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ve8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p7un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1h5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chjyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1c0fm"]
+radius = 16.0
+
+[node name="Villager" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_3ejpd")
+autoplay = "default"
+frame_progress = 0.387169
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_1c0fm")
