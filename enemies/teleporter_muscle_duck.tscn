@@ -210,7 +210,7 @@ distance_range = Vector2(0, 128)
 teleport_chance = 0.7
 attack_damage = 6
 max_health = 20
-medkit_spawn_chance = 0.33
+medkit_spawn_chance = 0.27
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {

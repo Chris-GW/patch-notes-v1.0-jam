@@ -8,7 +8,6 @@
 attack_damage = 6
 move_speed = 120.0
 max_health = 20
-medkit_spawn_chance = 0.5
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
