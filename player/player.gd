@@ -41,6 +41,23 @@ func _ready() -> void:
 	dash_charges = max_dash_charges
 
 
+func _process(delta: float) -> void:
+	if not dashing_timer.is_stopped():
+		_spawn_dash_afterimages()
+
+
+func _spawn_dash_afterimages() -> void:
+	var after_image_sprite: Sprite2D = sprite_2d.duplicate()
+	after_image_sprite.self_modulate = Color.BLACK
+	after_image_sprite.self_modulate.a = 0.5
+	after_image_sprite.global_position = sprite_2d.global_position
+	get_parent().add_child(after_image_sprite)
+	get_parent().move_child(after_image_sprite, 0)
+	await get_tree().create_timer(3.0 /60.0).timeout
+	after_image_sprite.queue_free()
+
+
+
 func _physics_process(delta: float) -> void:
 	_update_movement_velocity(delta)
 	_update_animation_parameters()
@@ -161,19 +178,6 @@ func _update_dash_refresh_timer() -> void:
 		dash_refresh_timer.start()
 	elif dash_charges >= max_dash_charges:
 		dash_refresh_timer.stop()
-	if not dashing_timer.is_stopped():
-		_spawn_dash_afterimages()
-
-
-func _spawn_dash_afterimages() -> void:
-	var after_image_sprite: Sprite2D = sprite_2d.duplicate()
-	after_image_sprite.self_modulate = Color.BLACK
-	after_image_sprite.self_modulate.a = 0.5
-	after_image_sprite.global_position = sprite_2d.global_position
-	get_parent().add_child(after_image_sprite)
-	get_parent().move_child(after_image_sprite, 0)
-	await get_tree().create_timer(0.1).timeout
-	after_image_sprite.queue_free()
 
 
 func _on_dash_refresh_timer_timeout() -> void:
