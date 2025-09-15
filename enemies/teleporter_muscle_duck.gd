@@ -57,3 +57,8 @@ func find_teleport_position() -> Vector2:
 		if navigation_agent.is_target_reachable():
 			return teleport_position
 	return self.global_position
+
+
+func die() -> void:
+	teleport_mark_sprite_2d.queue_free()
+	super.die()
