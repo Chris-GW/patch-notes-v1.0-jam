@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://cl0toa531bsqm"]
+[gd_scene load_steps=7 format=4 uid="uid://cl0toa531bsqm"]
 
 [ext_resource type="PackedScene" uid="uid://bagc6mf0in81g" path="res://levels/base_level.tscn" id="1_nnn84"]
 [ext_resource type="AudioStream" uid="uid://g1d6hm0titbu" path="res://assets/music/Loopable/Level_2.wav" id="2_g685p"]
 [ext_resource type="PackedScene" uid="uid://dtr8utxdn7ut7" path="res://core/battle_point/battle_point.tscn" id="3_8yqd8"]
+[ext_resource type="Script" uid="uid://dkti3fyigg5o5" path="res://core/battle_point/battle_point_wave.gd" id="4_h518d"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nnn84"]
 resource_local_to_scene = true
@@ -13,6 +14,18 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navigation"
 cell_size = 8.0
 agent_radius = 16.0
+
+[sub_resource type="Resource" id="Resource_didps"]
+resource_local_to_scene = true
+script = ExtResource("4_h518d")
+delay_sec = 0.0
+next_wave_threshold = 0
+chaser_count = 5
+teleporter_count = 0
+ranged_count = 0
+tank_count = 0
+boss_count = 0
+metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
 [node name="Level02" instance=ExtResource("1_nnn84")]
 
@@ -30,24 +43,6 @@ visible = true
 navigation_polygon = SubResource("NavigationPolygon_nnn84")
 
 [node name="BattlePoint" parent="YSortRoot" index="5" instance=ExtResource("3_8yqd8")]
-enemy_wave = 1
-
-[node name="Marker2D" type="Marker2D" parent="YSortRoot/BattlePoint/SpawnPoints" index="0"]
-position = Vector2(-112, -53)
-
-[node name="CollisionPolygon2D" parent="YSortRoot/BattlePoint" index="3"]
-visible = false
-polygon = PackedVector2Array(-320, -272, 1104, -272, 1168, 656, -384, 656)
-
-[node name="Label" type="Label" parent="HudLayer" index="0"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.0
-offset_top = 16.0
-offset_right = 31.0
-offset_bottom = 39.0
-grow_horizontal = 2
-text = "Level 02"
+battle_waves = Array[ExtResource("4_h518d")]([SubResource("Resource_didps")])
 
 [editable path="YSortRoot/BattlePoint"]

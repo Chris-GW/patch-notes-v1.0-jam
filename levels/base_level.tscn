@@ -220,17 +220,27 @@ label_settings = SubResource("LabelSettings_lquwl")
 layout_mode = 2
 text = "Next Level"
 
-[node name="WaveLabel" type="Label" parent="HudLayer"]
-unique_name_in_owner = true
+[node name="VBoxContainer2" type="VBoxContainer" parent="HudLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -80.0
 offset_top = 16.0
 offset_right = -16.0
-offset_bottom = 34.0
+offset_bottom = 60.0
 grow_horizontal = 0
-text = "Wave 4"
+
+[node name="WaveLabel" type="Label" parent="HudLayer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Wave 4 / 4"
+label_settings = SubResource("LabelSettings_0rg8l")
+horizontal_alignment = 2
+
+[node name="EnemiesLeftLabel" type="Label" parent="HudLayer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enemies 99"
 label_settings = SubResource("LabelSettings_0rg8l")
 horizontal_alignment = 2
 

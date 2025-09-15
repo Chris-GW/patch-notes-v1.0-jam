@@ -1,16 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtr8utxdn7ut7"]
+[gd_scene load_steps=4 format=3 uid="uid://dtr8utxdn7ut7"]
 
 [ext_resource type="Script" uid="uid://qd6pl6bi2l0" path="res://core/battle_point/battle_point.gd" id="1_wftub"]
+[ext_resource type="Script" uid="uid://dkti3fyigg5o5" path="res://core/battle_point/battle_point_wave.gd" id="2_ib01s"]
+
+[sub_resource type="Resource" id="Resource_ib01s"]
+resource_local_to_scene = true
+script = ExtResource("2_ib01s")
+delay_sec = 0.0
+next_wave_threshold = 0
+chaser_count = 5
+teleporter_count = 0
+ranged_count = 0
+tank_count = 0
+boss_count = 0
+metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
 [node name="BattlePoint" type="Area2D" groups=["battle_points"]]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_wftub")
-enemy_wave = 2
+battle_waves = Array[ExtResource("2_ib01s")]([SubResource("Resource_ib01s")])
 
-[node name="WaveSpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="DelayedBattleWaveTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="WaveSpawnTimer" to="." method="_on_wave_spawn_timer_timeout"]
+[connection signal="timeout" from="DelayedBattleWaveTimer" to="." method="_on_delayed_battle_wave_timer_timeout"]

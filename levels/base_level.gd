@@ -13,6 +13,7 @@ var current_battle_point: BattlePoint
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var dash_charges_label: Label = %DashChargesLabel
 @onready var wave_label: Label = %WaveLabel
+@onready var enemies_left_label: Label = %EnemiesLeftLabel
 
 @onready var y_sort_root: Node2D = %YSortRoot
 @onready var ground_tile_map_layer: TileMapLayer = %GroundTileMapLayer
@@ -27,6 +28,7 @@ func _ready() -> void:
 	%LevelCompletedPanelContainer.visible = false
 	%GamePausedUI.visible = false
 	wave_label.visible = false
+	enemies_left_label.visible = false
 	health_bar.max_value = player.max_health
 	health_bar.value = player.max_health
 	
@@ -38,7 +40,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
 	if is_instance_valid(current_battle_point):
-		wave_label.text = "Wave %d" % current_battle_point.enemy_wave
+		wave_label.text = "Wave %d / %d" % [
+				current_battle_point.battle_wave_index + 1, 
+				current_battle_point.battle_waves.size()]
+		enemies_left_label.text = "Enemies %d" % current_battle_point.enemy_count
 
 
 func _on_battle_started(battle_point: BattlePoint) -> void:
@@ -53,7 +58,7 @@ func _on_battle_started(battle_point: BattlePoint) -> void:
 	tween.chain().tween_callback(nutral_music_player.stop)
 
 
-func _on_battle_ended(battle_point: BattlePoint) -> void:
+func _on_battle_ended(_battle_point: BattlePoint) -> void:
 	current_battle_point = null
 	nutral_music_player.play()
 	var tween := create_tween()

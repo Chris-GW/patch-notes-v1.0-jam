@@ -5,9 +5,9 @@
 
 [node name="SpawnPoint" type="StaticBody2D" groups=["navigation", "spawn_points"]]
 script = ExtResource("1_jrfwy")
+spawn_cooldown_range = Vector2(0.5, 2.5)
 
 [node name="SpawnCooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -48)
