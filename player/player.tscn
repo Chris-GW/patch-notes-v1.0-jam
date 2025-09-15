@@ -98,8 +98,8 @@ texture_filter = 1
 position = Vector2(24, -14)
 rotation = 0.785398
 sprite_frames = ExtResource("7_boad6")
-autoplay = "default"
-frame_progress = 0.0101691
+animation = &"attacking"
+autoplay = "attacking"
 offset = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
