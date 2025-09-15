@@ -197,18 +197,3 @@ position = Vector2(-237, 290)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSortRoot/RightBattlePoint" index="11"]
 visible = false
 polygon = PackedVector2Array(-281, -219, -387, 236, -181, 565, 244, 732, 636, 517, 900, 197, 912, -120, 799, -342, 580, -619, 159, -623, -194, -359)
-
-[node name="ReferenceRect" type="ReferenceRect" parent="HudLayer" index="4"]
-custom_minimum_size = Vector2(640, 360)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -176.0
-offset_right = 320.0
-offset_bottom = 184.0
-grow_horizontal = 2
-grow_vertical = 2
-border_width = 4.0

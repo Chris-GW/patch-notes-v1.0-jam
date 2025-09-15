@@ -68,6 +68,8 @@ func _on_battle_ended(_battle_point: BattlePoint) -> void:
 	tween.tween_property(nutral_music_player, "volume_db", 0.0, 1.0).from(-60.0)
 	tween.tween_property(battle_music_player, "volume_db", -60.0, 1.0).set_delay(0.5)
 	tween.chain().tween_callback(battle_music_player.stop)
+	wave_label.visible = false
+	enemies_left_label.visible = false
 	
 	if is_level_complete():
 		complete_level()

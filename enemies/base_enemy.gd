@@ -36,6 +36,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if state_machine.get_current_node() == "death":
+		return
 	if knockback.length_squared() > 20.0:
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 		velocity = knockback
@@ -75,7 +77,6 @@ func die() -> void:
 		get_parent().add_child.call_deferred(medkit)
 		var direction := Vector2.from_angle(randf_range(0.0, TAU))
 		medkit.apply_central_impulse(direction * 500.0)
-	set_physics_process(false)
 	hit_area_2d.queue_free()
 	hurt_area_2d.queue_free()
 	$CollisionShape2D.queue_free()
