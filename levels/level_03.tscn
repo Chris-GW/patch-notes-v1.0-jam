@@ -41,15 +41,15 @@ tank_count = 0
 boss_count = 0
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
-[sub_resource type="Resource" id="Resource_3ew82"]
+[sub_resource type="Resource" id="Resource_b2w0k"]
 resource_local_to_scene = true
 script = ExtResource("4_ngl01")
 delay_sec = 0.0
 next_wave_threshold = 0
-chaser_count = 5
-teleporter_count = 11
-ranged_count = 4
-tank_count = 0
+chaser_count = 30
+teleporter_count = 5
+ranged_count = 0
+tank_count = 2
 boss_count = 0
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
@@ -142,7 +142,7 @@ position = Vector2(-432, 1024)
 position = Vector2(-800, 480)
 
 [node name="BattlePoint2" parent="YSortRoot" index="6" instance=ExtResource("3_p0vsl")]
-battle_waves = Array[ExtResource("4_ngl01")]([SubResource("Resource_3ew82")])
+battle_waves = Array[ExtResource("4_ngl01")]([SubResource("Resource_b2w0k")])
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSortRoot/BattlePoint2" index="0"]
 visible = false
