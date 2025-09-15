@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dgrxdrnij84vt" path="res://levels/base_level.gd" id="1_p5284"]
 [ext_resource type="AudioStream" uid="uid://brrdoa6oywe3c" path="res://assets/music/Loopable/loopable_neutral_sound.wav" id="2_maq6b"]
 [ext_resource type="TileSet" uid="uid://cylx3kwee715b" path="res://assets/tileset/my_tileset.tres" id="3_0rg8l"]
-[ext_resource type="AudioStream" uid="uid://ck6gu5yvhpf5d" path="res://assets/music/Loopable/Level_1.wav" id="3_6w4ab"]
+[ext_resource type="AudioStream" uid="uid://b04sok2sg04ha" path="res://assets/music/Loopable/fight_for_all_levels.wav" id="3_6w4ab"]
 [ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="3_maq6b"]
 [ext_resource type="AudioStream" uid="uid://c2sd056pbnqco" path="res://assets/music/singleShot/level_end.wav" id="4_0rg8l"]
 [ext_resource type="FontFile" uid="uid://cep3foox6k0yn" path="res://assets/fonts/fusion-pixel-12px-proportional-sc-latin-400-normal.woff2" id="6_46036"]

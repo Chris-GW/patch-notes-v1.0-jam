@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6yd062mjgn7o"]
+[gd_scene load_steps=5 format=3 uid="uid://b6yd062mjgn7o"]
 
 [ext_resource type="Texture2D" uid="uid://bugdimtmo36cb" path="res://assets/sprites/spr_end_game.png" id="1_iljvv"]
 [ext_resource type="Script" uid="uid://d3rbji1hlrubp" path="res://ui/finish_screen.gd" id="1_k73ak"]
+[ext_resource type="AudioStream" uid="uid://4yprkd2lfrne" path="res://assets/music/Loopable/Ending.wav" id="2_8xa15"]
 [ext_resource type="PackedScene" uid="uid://cqctqm0k1qlsr" path="res://ui/game_paused_ui/game_paused_ui.tscn" id="3_q3niq"]
 
 [node name="FinishScreen" type="Control"]
@@ -12,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k73ak")
+
+[node name="EndingMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8xa15")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -40,4 +44,5 @@ text = "Main Menu"
 unique_name_in_owner = true
 visible = false
 
+[connection signal="finished" from="EndingMusicPlayer" to="." method="_on_ending_music_player_finished"]
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

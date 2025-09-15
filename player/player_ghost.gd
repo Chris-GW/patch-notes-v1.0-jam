@@ -5,7 +5,6 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var sword: Sprite2D = $Sword
 @onready var distraction_area: Area2D = $DistractionArea2D
 
 
