@@ -41,7 +41,7 @@ func _ready() -> void:
 	dash_charges = max_dash_charges
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not dashing_timer.is_stopped():
 		_spawn_dash_afterimages()
 
