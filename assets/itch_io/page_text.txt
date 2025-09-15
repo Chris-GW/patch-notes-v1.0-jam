@@ -1,0 +1,44 @@
+<blockquote>A tiny <strong>hack & slash</strong> &mdash; defend your village against waves of plundering ducks
+   <br>Patch Notes Jam v1.0 &mdash; Theme: "The Error Is the Feature"
+</blockquote>
+<h4>About</h4>
+<p>You play as <strong>Murphy, the mad swordsman</strong> &mdash; a fighter whose greatest weakness has become his only weapon.&nbsp;Murphy must embrace his cursed fighting style to protect his family and rescue villages from plundering ducks.</p>
+<ul>
+   <li>His sword swings look normal&hellip; but the damage lands seconds later.</li>
+   <li>His ghostly afterimages confuse enemies just as much as they confuse him.</li>
+   <li>His dash unleashes bursts of speed, but leaves him struggling to steer.</li>
+</ul>
+<h4>How to Play</h4>
+<ul>
+   <li><strong>Explore</strong> your homeland and rescue villages in desperate need.</li>
+   <li><strong>Fight</strong> relentless waves of invading ducks and master your unique fighting style.</li>
+   <li><strong>Survive</strong> long enough until the evil&nbsp;ducks are gone for good.</li>
+</ul>
+<h4>Contorls</h4>
+<table>
+   <tbody>
+      <tr>
+         <td><strong>Action Key</strong></td>
+         <td><strong>Action</strong></td>
+      </tr>
+      <tr>
+         <td>W, S, A, D</td>
+         <td>Movement</td>
+      </tr>
+      <tr>
+         <td>Left Mouse Button</td>
+         <td>Attack with Sword</td>
+      </tr>
+      <tr>
+         <td>Space</td>
+         <td>Dash</td>
+      </tr>
+   </tbody>
+</table>
+<h4>Credits</h4>
+<ul>
+   <li><strong><a href="https://chris-gw.itch.io">Chris</a></strong> - Main Programmer</li>
+   <li><strong><a href="https://wolfenklein212.itch.io/" target="_blank">Wolfenklein212</a></strong> - Game Designer</li>
+   <li><strong><a href="https://bardin56o.itch.io/" target="_blank">Bardin56o</a></strong> - Artist</li>
+   <li><strong><a href="https://haris-jahangir188.itch.io/" target="_blank">haris-jahangir188</a></strong> - Music Composer</li>
+</ul>

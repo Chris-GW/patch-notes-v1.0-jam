@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://bvn4scumlfcy8"]
+[gd_scene load_steps=8 format=4 uid="uid://bvn4scumlfcy8"]
 
 [ext_resource type="TileSet" uid="uid://cylx3kwee715b" path="res://assets/tileset/my_tileset.tres" id="1_jiyib"]
 [ext_resource type="PackedScene" uid="uid://dtr8utxdn7ut7" path="res://core/battle_point/battle_point.tscn" id="2_sx1qa"]
 [ext_resource type="PackedScene" uid="uid://yp8vxoo1ip6s" path="res://core/gate/gate.tscn" id="4_d28ev"]
+[ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="5_fxv1w"]
 [ext_resource type="PackedScene" uid="uid://cwjk4jihy3r6a" path="res://core/spawn_point/spawn_point.tscn" id="5_k558u"]
+[ext_resource type="PackedScene" uid="uid://d4lwqkao3c5ai" path="res://enemies/chaser_basic_duck.tscn" id="6_os75o"]
+[ext_resource type="PackedScene" uid="uid://bqomdxpw25hce" path="res://enemies/ranged_muscle_duck.tscn" id="7_quo5p"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -119,5 +122,18 @@ script = null
 position = Vector2(-237, 290)
 script = null
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="BackgroundCamera2D" type="Camera2D" parent="."]
 position = Vector2(1264, -736)
+
+[node name="EmbeddedCamera2D" type="Camera2D" parent="."]
+position = Vector2(992, -692)
+enabled = false
+
+[node name="Player" parent="." instance=ExtResource("5_fxv1w")]
+position = Vector2(950.467, -542.901)
+
+[node name="ChaserBasicDuck" parent="." instance=ExtResource("6_os75o")]
+position = Vector2(841.376, -669.76)
+
+[node name="RangedMuscleDuck" parent="." instance=ExtResource("7_quo5p")]
+position = Vector2(1072, -752)
