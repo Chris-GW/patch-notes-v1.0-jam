@@ -128,6 +128,7 @@ func take_damage(damage: int) -> void:
 	damage_taken.emit()
 	if health <= 0:
 		$DeathAudioPlayer.play()
+		sword.visible = false
 		died.emit()
 		return
 	

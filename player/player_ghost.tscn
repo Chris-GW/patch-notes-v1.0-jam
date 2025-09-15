@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcitdn88np37t"]
+[gd_scene load_steps=8 format=3 uid="uid://dcitdn88np37t"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/assets/player_animations.tres" id="1_x7ata"]
 [ext_resource type="Script" uid="uid://dnr8c765bhhan" path="res://player/player_ghost.gd" id="1_xbrus"]
-[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/assets/sword_animations.tres" id="2_xbrus"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/assets/player_animation_tree.tres" id="4_1x5yj"]
 [ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="4_xbrus"]
 
@@ -23,8 +22,7 @@ script = ExtResource("1_xbrus")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": ExtResource("1_x7ata"),
-&"weapon": ExtResource("2_xbrus")
+&"": ExtResource("1_x7ata")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
