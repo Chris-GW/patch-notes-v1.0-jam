@@ -30,14 +30,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_navigation_update_timer_timeout() -> void:
-	var my_target := player
+	var my_target: Node2D = player
 	if is_instance_valid(target) and target.is_node_ready():
 		my_target = target
 	navigation_agent.target_position = my_target.global_position + relative_target_position
 
 
 func _on_repostion_timer_timeout() -> void:
-	var my_target := player
+	var my_target: Node2D = player
 	if is_instance_valid(target) and target.is_node_ready():
 		my_target = target
 	var new_distance := randf_range(distance_range.x, distance_range.y)

@@ -25,6 +25,7 @@ var target: Node2D = null
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var hurt_area_2d: Area2D = $HurtArea2D
 @onready var hit_area_2d: Area2D = %HitArea2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 func _ready() -> void:

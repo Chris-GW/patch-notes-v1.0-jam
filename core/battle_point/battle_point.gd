@@ -6,18 +6,17 @@ signal battle_ended(battle_point: BattlePoint)
 
 var enemy_scenes: Array[PackedScene] = [
 	preload("res://enemies/chaser_basic_duck.tscn"),
-	#preload("res://enemies/ranged_muscle_duck.tscn"),
+	preload("res://enemies/ranged_muscle_duck.tscn"),
 	preload("res://enemies/teleporter_muscle_duck.tscn"),
 	preload("res://enemies/tank_fat_duck.tscn"),
 	#preload("res://enemies/boss.tscn"),
 ]
 
-@export var enemy_wave := 4
+@export var enemy_wave: int
 
 var enemy_count := 0
 
 @onready var wave_spawn_timer: Timer = $WaveSpawnTimer
-@onready var spawn_points: Node2D = $SpawnPoints
 
 
 func _ready() -> void:
@@ -36,19 +35,20 @@ func start_battle() -> void:
 
 
 func _on_wave_spawn_timer_timeout() -> void:
-	for spawn_point: Node2D in spawn_points.get_children():
-		spawn_enemy(spawn_point)
+	for spawn_point in get_children():
+		if spawn_point is SpawnPoint and spawn_point.can_spawn():
+			spawn_enemy(spawn_point)
 	
 	enemy_wave = maxi(enemy_wave - 1, 0)
 	if enemy_wave <= 0:
 		wave_spawn_timer.stop()
 
 
-func spawn_enemy(spawn_point: Node2D) -> void:
+func spawn_enemy(spawn_point: SpawnPoint) -> void:
 	var new_enemy: BaseEnemy = enemy_scenes.pick_random().instantiate()
-	new_enemy.global_position = spawn_point.global_position
 	new_enemy.move_speed = randfn(new_enemy.move_speed, new_enemy.move_speed / 6.0)
 	new_enemy.died.connect(_on_enemy_died)
+	spawn_point.spawn(new_enemy)
 	get_parent().add_child(new_enemy)
 	enemy_count += 1
 
@@ -56,6 +56,9 @@ func spawn_enemy(spawn_point: Node2D) -> void:
 func _on_enemy_died() -> void:
 	enemy_count -= 1
 	if is_completed():
+		for child in get_children():
+			if child is SpawnPoint:
+				child.spawn_villager()
 		battle_ended.emit(self)
 
 

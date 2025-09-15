@@ -1,9 +1,7 @@
 class_name BaseLevel
 extends Node2D
 
-const VILLAGER = preload("res://core/villager/villager.tscn")
-
-var in_battle := false
+var current_battle_point: BattlePoint
 
 @onready var nutral_music_player: AudioStreamPlayer = $NutralMusicPlayer
 @onready var battle_music_player: AudioStreamPlayer = $BattleMusicPlayer
@@ -14,6 +12,7 @@ var in_battle := false
 
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var dash_charges_label: Label = %DashChargesLabel
+@onready var wave_label: Label = %WaveLabel
 
 @onready var y_sort_root: Node2D = %YSortRoot
 @onready var ground_tile_map_layer: TileMapLayer = %GroundTileMapLayer
@@ -27,6 +26,7 @@ func _ready() -> void:
 	%DiedPanelContainer.visible = false
 	%LevelCompletedPanelContainer.visible = false
 	%GamePausedUI.visible = false
+	wave_label.visible = false
 	health_bar.max_value = player.max_health
 	health_bar.value = player.max_health
 	
@@ -37,10 +37,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
+	if is_instance_valid(current_battle_point):
+		wave_label.text = "Wave %d" % current_battle_point.enemy_wave
 
 
-func _on_battle_started(_battle_point: BattlePoint) -> void:
-	in_battle = true
+func _on_battle_started(battle_point: BattlePoint) -> void:
+	current_battle_point = battle_point
+	wave_label.visible = true
 	battle_music_player.play()
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -50,8 +53,8 @@ func _on_battle_started(_battle_point: BattlePoint) -> void:
 	tween.chain().tween_callback(nutral_music_player.stop)
 
 
-func _on_battle_ended(_battle_point: BattlePoint) -> void:
-	in_battle = false
+func _on_battle_ended(battle_point: BattlePoint) -> void:
+	current_battle_point = null
 	nutral_music_player.play()
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -72,11 +75,6 @@ func is_level_complete() -> bool:
 
 
 func complete_level() -> void:
-	for battle_point: BattlePoint in get_tree().get_nodes_in_group("battle_points"):
-		for spawn_point: Node2D in battle_point.spawn_points.get_children():
-			var villager: Node2D = VILLAGER.instantiate()
-			villager.global_position = spawn_point.global_position
-			y_sort_root.add_child.call_deferred(villager)
 	level_end_audio_player.play()
 	%LevelCompletedPanelContainer.visible = true
 

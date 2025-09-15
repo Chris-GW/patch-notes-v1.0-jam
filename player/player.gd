@@ -141,7 +141,8 @@ func take_damage(damage: int) -> void:
 	await invincibility_timer.timeout
 	tween.kill()
 	sprite_2d.modulate.a = 1.0
-	hurt_area_2d.set_monitorable.call_deferred(true)
+	if dashing_timer.is_stopped():
+		hurt_area_2d.set_monitorable.call_deferred(true)
 
 
 func take_heal(heal_amount: int) -> void:
@@ -178,4 +179,5 @@ func _on_dash_refresh_timer_timeout() -> void:
 
 
 func _on_dashing_timer_timeout() -> void:
-	hurt_area_2d.set_monitorable.call_deferred(true)
+	if invincibility_timer.is_stopped():
+		hurt_area_2d.set_monitorable.call_deferred(true)

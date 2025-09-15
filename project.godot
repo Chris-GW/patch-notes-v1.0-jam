@@ -26,6 +26,7 @@ window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://b2r5odgfrxd85"
 
 [editor]
 
@@ -51,6 +52,7 @@ player=""
 enemies=""
 navigation=""
 battle_points=""
+spawn_points=""
 
 [gui]
 

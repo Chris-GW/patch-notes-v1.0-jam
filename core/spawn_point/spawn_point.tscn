@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwjk4jihy3r6a"]
+
+[ext_resource type="Script" uid="uid://c7fc8a68gx6mb" path="res://core/spawn_point/spawn_point.gd" id="1_jrfwy"]
+[ext_resource type="Texture2D" uid="uid://8ps13ijx8s4q" path="res://assets/tileset/tileset_areas.png" id="1_krvah"]
+
+[node name="SpawnPoint" type="StaticBody2D" groups=["navigation", "spawn_points"]]
+script = ExtResource("1_jrfwy")
+
+[node name="SpawnCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+texture = ExtResource("1_krvah")
+region_enabled = true
+region_rect = Rect2(192, 0, 128, 96)
+
+[node name="SpawnMarker2D" type="Marker2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -48)
+polygon = PackedVector2Array(28, -18, 1, -25, -21, -18, -35, -3, -38, 18, -34, 40, -20, 48, 20, 48, 37, 39, 38, 22, 37, -2)

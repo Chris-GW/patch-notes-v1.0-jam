@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://yp8vxoo1ip6s"]
+
+[ext_resource type="Texture2D" uid="uid://8ps13ijx8s4q" path="res://assets/tileset/tileset_areas.png" id="1_b8l5j"]
+[ext_resource type="Script" uid="uid://dawruuqeb1xo8" path="res://core/gate/gate.gd" id="1_nojaq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nojaq"]
+size = Vector2(192, 16)
+
+[node name="Gate" type="AnimatableBody2D"]
+script = ExtResource("1_nojaq")
+
+[node name="LeftSprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -16)
+texture = ExtResource("1_b8l5j")
+region_enabled = true
+region_rect = Rect2(384, 96, 32, 32)
+
+[node name="RightSprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -16)
+texture = ExtResource("1_b8l5j")
+region_enabled = true
+region_rect = Rect2(416, 96, 32, 32)
+
+[node name="ClipMask" type="Control" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_top = -32.0
+offset_right = 32.0
+
+[node name="MoveHandle" type="Node2D" parent="ClipMask"]
+unique_name_in_owner = true
+clip_children = 1
+position = Vector2(16, 16)
+
+[node name="GateSprite01" type="Sprite2D" parent="ClipMask/MoveHandle"]
+texture_repeat = 2
+texture = ExtResource("1_b8l5j")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(288, 96, 64, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, -8)
+shape = SubResource("RectangleShape2D_nojaq")

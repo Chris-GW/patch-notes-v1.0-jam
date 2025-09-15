@@ -9,6 +9,7 @@ extends CanvasLayer
 func _ready():
 	Global.play_menu_music()
 	_setup_output_device_options()
+	$TabContainer.get_child(0).visible = true
 
 
 func _setup_output_device_options():
