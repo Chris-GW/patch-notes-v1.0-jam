@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qd6pl6bi2l0" path="res://core/battle_point/battle_point.gd" id="1_wftub"]
 [ext_resource type="Script" uid="uid://dkti3fyigg5o5" path="res://core/battle_point/battle_point_wave.gd" id="2_ib01s"]
 
-[sub_resource type="Resource" id="Resource_b2w0k"]
+[sub_resource type="Resource" id="Resource_ib01s"]
 resource_local_to_scene = true
 script = ExtResource("2_ib01s")
 delay_sec = 0.0
@@ -21,6 +21,6 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_wftub")
-battle_waves = Array[ExtResource("2_ib01s")]([SubResource("Resource_b2w0k")])
+battle_waves = Array[ExtResource("2_ib01s")]([SubResource("Resource_ib01s")])
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

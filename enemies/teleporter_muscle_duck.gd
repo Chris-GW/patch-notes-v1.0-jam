@@ -17,7 +17,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if teleporter_cooldown_timer.is_stopped() and randf() < teleport_chance * delta:
 		do_teleport()
-	elif teleport_mark_sprite_2d.visible:
+	elif is_instance_valid(teleport_mark_sprite_2d) and teleport_mark_sprite_2d.visible:
 		velocity = Vector2.ZERO
 	else:
 		super._physics_process(delta)

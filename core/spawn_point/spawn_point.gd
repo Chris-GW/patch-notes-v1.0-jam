@@ -21,10 +21,14 @@ func _ready() -> void:
 
 
 func spawn(enemy: BaseEnemy) -> void:
+	start_spawn_cooldown()
+	enemy.global_position = spawn_marker_2d.global_position
+
+
+func start_spawn_cooldown() -> void:
 	var cooldown := randf_range(spawn_cooldown_range.x, spawn_cooldown_range.y)
 	cooldown = maxf(cooldown, 0.5)
 	spawn_cooldown_timer.start(cooldown)
-	enemy.global_position = spawn_marker_2d.global_position
 
 
 func can_spawn() -> bool:

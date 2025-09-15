@@ -217,6 +217,7 @@ offset_right = 320.0
 offset_bottom = 184.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 border_width = 4.0
 
 [node name="Movement" type="Label" parent="TutorialCanvasLayer/ReferenceRect" index="0"]
@@ -277,6 +278,7 @@ offset_right = 320.0
 offset_bottom = 740.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 border_width = 4.0
 
 [node name="AttackLabel" type="Label" parent="TutorialCanvasLayer/ReferenceRect2" index="0"]
@@ -361,11 +363,11 @@ offset_right = 1376.0
 offset_bottom = 1124.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 border_width = 4.0
 
 [node name="BugWarningPanelContainer" type="PanelContainer" parent="HudLayer" index="0" node_paths=PackedStringArray("visible_notifier")]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -399,13 +401,12 @@ theme_override_font_sizes/mono_font_size = 12
 theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
-text = "⚠️ Your [wave amp=25.0 freq=4.0 connected=1]sword[/wave] is [shake rate=15.0 level=5 connected=1]bugged[/shake]!
+text = "Your [wave amp=25.0 freq=4.0 connected=1]sword[/wave] is [shake rate=15.0 level=5 connected=1]bugged[/shake]!
 The swing animation plays instantly, but the [color=red]hitbox[/color] only connects [color=yellow]1[/color] second later. Time your strikes carefully."
 scroll_active = false
 
 [node name="HelpBattlePanelContainer" type="PanelContainer" parent="HudLayer" index="1" node_paths=PackedStringArray("visible_notifier", "battle_point")]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

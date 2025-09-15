@@ -40,8 +40,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
 	if is_instance_valid(current_battle_point):
+		var curren_wave_index := clampi(current_battle_point.battle_wave_index + 1, 
+				0, current_battle_point.battle_waves.size())
 		wave_label.text = "Wave %d / %d" % [
-				current_battle_point.battle_wave_index + 1, 
+				curren_wave_index, 
 				current_battle_point.battle_waves.size()]
 		enemies_left_label.text = "Enemies %d" % current_battle_point.enemy_count
 
