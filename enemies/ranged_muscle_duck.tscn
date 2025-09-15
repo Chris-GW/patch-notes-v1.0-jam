@@ -5,11 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b0pdwbk0qku58" path="res://enemies/assets/spr_muscle_duck_sheet.png" id="3_641ht"]
 
 [node name="RangedMuscleDuck" instance=ExtResource("1_68rsw")]
-attack_damage = 0
-move_speed = 0.0
-max_health = 0
-medkit_spawn_chance = 0.0
-knockback_decay = 0.0
+move_speed = 120.0
+medkit_spawn_chance = 0.21
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {

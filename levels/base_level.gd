@@ -49,6 +49,7 @@ func _process(_delta: float) -> void:
 func _on_battle_started(battle_point: BattlePoint) -> void:
 	current_battle_point = battle_point
 	wave_label.visible = true
+	enemies_left_label.visible = true
 	battle_music_player.play()
 	var tween := create_tween()
 	tween.set_parallel(true)

@@ -8,8 +8,8 @@ signal battle_ended(battle_point: BattlePoint)
 # same order as in BattleWaveResource.packed_enemy_counts()
 var enemy_scenes: Array[PackedScene] = [
 	preload("res://enemies/chaser_basic_duck.tscn"),
-	preload("res://enemies/ranged_muscle_duck.tscn"),
 	preload("res://enemies/teleporter_muscle_duck.tscn"),
+	preload("res://enemies/ranged_muscle_duck.tscn"),
 	preload("res://enemies/tank_fat_duck.tscn"),
 	preload("res://enemies/boss.tscn"),
 ]
@@ -19,8 +19,6 @@ var enemy_scenes: Array[PackedScene] = [
 var enemy_count := 0
 var battle_wave_index := 0
 var queued_enemies: Array[BaseEnemy] = []
-
-@onready var delayed_battle_wave_timer: Timer = $DelayedBattleWaveTimer
 
 
 func _ready() -> void:
@@ -35,6 +33,7 @@ func _process(_delta: float) -> void:
 func work_enemy_queue() -> void:
 	var spawn_points := get_children().filter(func (child):
 		return child is SpawnPoint and child.can_spawn())
+	spawn_points.shuffle()
 	
 	for spawn_point: SpawnPoint in spawn_points:
 		if queued_enemies.is_empty():
@@ -56,23 +55,20 @@ func start_battle() -> void:
 	set_monitoring.call_deferred(false)
 	battle_started.emit(self)
 	var battle_wave := get_battle_wave(battle_wave_index)
-	await get_tree().create_timer(maxf(battle_wave.delay_sec, 0.5)).timeout
+	await get_tree().create_timer(1.0).timeout
 	queue_battle_wave(battle_wave)
-	start_next_delayed_wave_timer()
-
-
-func _on_delayed_battle_wave_timer_timeout() -> void:
-	if has_next_battle_wave():
-		battle_wave_index += 1
-		var next_battle_wave: BattleWaveResource = battle_waves[battle_wave_index]
-		queue_battle_wave(next_battle_wave)
-		start_next_delayed_wave_timer()
 
 
 func _on_enemy_died() -> void:
 	enemy_count -= 1
 	if has_next_battle_wave():
-		check_next_wave_threshold()
+		var next_battle_wave := get_battle_wave(battle_wave_index + 1)
+		if (enemy_count <= next_battle_wave.next_wave_threshold 
+				and queued_enemies.is_empty()):
+			battle_wave_index += 1
+			queue_battle_wave(next_battle_wave)
+	else:
+		battle_wave_index += 1
 	if is_completed():
 		end_battle()
 
@@ -82,17 +78,6 @@ func end_battle() -> void:
 	for child in get_children():
 		if child is SpawnPoint:
 			child.spawn_villager()
-
-
-func check_next_wave_threshold() -> bool:
-	var next_battle_wave := get_battle_wave(battle_wave_index + 1)
-	if (enemy_count <= next_battle_wave.next_wave_threshold 
-			and queued_enemies.is_empty()):
-		battle_wave_index += 1
-		queue_battle_wave(next_battle_wave)
-		start_next_delayed_wave_timer()
-		return true
-	return false
 
 
 func queue_battle_wave(battle_wave: BattleWaveResource) -> void:
@@ -110,24 +95,14 @@ func queue_battle_wave(battle_wave: BattleWaveResource) -> void:
 	queued_enemies.shuffle()
 
 
-func start_next_delayed_wave_timer() -> bool:
-	delayed_battle_wave_timer.stop()
-	if has_next_battle_wave():
-		var next_battle_wave = battle_waves[battle_wave_index + 1]
-		if next_battle_wave.delay_sec > 0.001:
-			delayed_battle_wave_timer.start(next_battle_wave.delay_sec)
-			return true
-	return false
-
-
 func has_next_battle_wave() -> bool:
 	return battle_wave_index + 1 < battle_waves.size()
 
 
 func is_completed() -> bool:
 	return (enemy_count <= 0 
-		and queued_enemies.is_empty()
-		and battle_wave_index >= battle_waves.size() - 1)
+			and queued_enemies.is_empty()
+			and battle_wave_index >= battle_waves.size())
 
 
 func get_battle_wave(index: int) -> BattleWaveResource:

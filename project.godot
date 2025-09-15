@@ -101,7 +101,7 @@ dash={
 
 [navigation]
 
-2d/default_cell_size=8.0
+2d/default_cell_size=4.0
 
 [rendering]
 
