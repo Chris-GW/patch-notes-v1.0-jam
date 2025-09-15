@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://desa6n87x0bi5"
-path="res://.godot/imported/spr_sword_buggy_animation1-sheet.png-639267a24b98ad7f800921150b3ff516.ctex"
+uid="uid://cwu5pnjidnl2e"
+path="res://.godot/imported/player_sprites.png-da50e4b9618df27e8f7d4ae9539460f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/assets/spr_sword_buggy_animation1-sheet.png"
-dest_files=["res://.godot/imported/spr_sword_buggy_animation1-sheet.png-639267a24b98ad7f800921150b3ff516.ctex"]
+source_file="res://player/assets/player_sprites.png"
+dest_files=["res://.godot/imported/player_sprites.png-da50e4b9618df27e8f7d4ae9539460f9.ctex"]
 
 [params]
 

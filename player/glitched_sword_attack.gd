@@ -11,7 +11,7 @@ var hit_enemies: Dictionary[RID, bool] = {}
 
 @onready var delay_timer: Timer = $DelayTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sword: Sprite2D = $Sword
+@onready var sword: AnimatedSprite2D = $Sword
 @onready var hit_area_2d: Area2D = %HitArea2D
 
 

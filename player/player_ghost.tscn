@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcitdn88np37t"]
+[gd_scene load_steps=9 format=3 uid="uid://dcitdn88np37t"]
 
-[ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="1_x7ata"]
+[ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/assets/player_animations.tres" id="1_x7ata"]
 [ext_resource type="Script" uid="uid://dnr8c765bhhan" path="res://player/player_ghost.gd" id="1_xbrus"]
-[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="2_xbrus"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/player_animation_tree.tres" id="4_1x5yj"]
-[ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="4_3qg10"]
-[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://assets/sprites/player/player_sprites.png" id="4_xbrus"]
+[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/assets/sword_animations.tres" id="2_xbrus"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/assets/player_animation_tree.tres" id="4_1x5yj"]
+[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="4_xbrus"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbrus"]
 radius = 12.0
@@ -46,21 +45,13 @@ one_shot = true
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.158472, 0.158472, 0.158472, 1)
+self_modulate = Color(0.235732, 0.235732, 0.235732, 1)
 texture_filter = 1
 position = Vector2(0, -36)
 texture = ExtResource("4_xbrus")
 hframes = 4
 vframes = 8
 region_rect = Rect2(485, 19, 421, 588)
-
-[node name="Sword" type="Sprite2D" parent="."]
-visible = false
-self_modulate = Color(0.158472, 0.158472, 0.158472, 1)
-texture_filter = 1
-position = Vector2(16, -8)
-texture = ExtResource("4_3qg10")
-offset = Vector2(14, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://tgcspwxfjt8l"]
 
 [ext_resource type="Script" uid="uid://osj4h2kfpcy5" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/player_animations.tres" id="2_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="3_g1dw6"]
-[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="3_g6k8r"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/player_animation_tree.tres" id="4_boad6"]
+[ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/assets/player_animations.tres" id="2_qjkh3"]
+[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/assets/sword_animations.tres" id="3_g6k8r"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/assets/player_animation_tree.tres" id="4_boad6"]
 [ext_resource type="AudioStream" uid="uid://cpwi7qu7pgxwg" path="res://assets/sfx/player_dies.mp3" id="4_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://assets/sprites/player/player_sprites.png" id="5_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="5_g6k8r"]
+[ext_resource type="SpriteFrames" uid="uid://vuja3ivahi8y" path="res://player/assets/sword_sprite_frames.tres" id="7_boad6"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_boad6"]
 playback_mode = 2
@@ -54,7 +54,7 @@ parameters/roll/blend_position = -0.235772
 parameters/run/blend_position = Vector2(0.207267, 0.679558)
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.5
 one_shot = true
 
 [node name="GhostTimer" type="Timer" parent="."]
@@ -93,11 +93,14 @@ hframes = 4
 vframes = 8
 region_rect = Rect2(485, 19, 421, 588)
 
-[node name="Sword" type="Sprite2D" parent="."]
+[node name="Sword" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(16, -8)
-texture = ExtResource("3_g1dw6")
-offset = Vector2(14, -19)
+position = Vector2(24, -14)
+rotation = 0.785398
+sprite_frames = ExtResource("7_boad6")
+autoplay = "default"
+frame_progress = 0.0101691
+offset = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)

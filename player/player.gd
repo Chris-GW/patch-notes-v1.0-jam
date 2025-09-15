@@ -32,7 +32,7 @@ var dash_charges := max_dash_charges
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var sword: Sprite2D = $Sword
+@onready var sword: AnimatedSprite2D = $Sword
 @onready var hurt_area_2d: Area2D = $HurtArea2D
 
 

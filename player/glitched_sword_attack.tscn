@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://lx04whis2xmk"]
 
 [ext_resource type="Script" uid="uid://b13351jeo8cj6" path="res://player/glitched_sword_attack.gd" id="1_scrye"]
-[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/sword_animations.tres" id="2_843o8"]
-[ext_resource type="Texture2D" uid="uid://di11ptpelfmop" path="res://assets/sprites/player/sword.png" id="2_ir3hj"]
-[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://assets/sprites/player/player_sprites.png" id="3_y3yij"]
+[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/assets/sword_animations.tres" id="2_843o8"]
+[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="3_y3yij"]
+[ext_resource type="SpriteFrames" uid="uid://vuja3ivahi8y" path="res://player/assets/sword_sprite_frames.tres" id="4_y3yij"]
 
 [sub_resource type="Animation" id="Animation_843o8"]
 length = 0.001
@@ -38,8 +38,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir3hj"]
-radius = 6.51984
-height = 46.6878
+radius = 15.0828
+height = 63.3767
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_scrye")
@@ -65,20 +65,24 @@ hframes = 4
 vframes = 8
 region_rect = Rect2(485, 19, 421, 588)
 
-[node name="Sword" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 0.509804)
+[node name="Sword" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.151276, 0.151276, 0.151276, 0.588235)
 texture_filter = 1
 position = Vector2(16, -8)
-texture = ExtResource("2_ir3hj")
-offset = Vector2(14, -19)
+sprite_frames = ExtResource("4_y3yij")
+animation = &"bugged"
+autoplay = "bugged"
+offset = Vector2(0, -24)
 
 [node name="HitArea2D" type="Area2D" parent="Sword"]
 unique_name_in_owner = true
+position = Vector2(-1.90735e-06, -21)
+rotation = -0.785397
 collision_layer = 0
 collision_mask = 64
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/HitArea2D"]
-position = Vector2(15.4815, -15.4458)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_ir3hj")
 debug_color = Color(0.994736, 0, 0.217211, 0.42)
