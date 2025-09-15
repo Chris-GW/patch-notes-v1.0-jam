@@ -139,7 +139,7 @@ attack_damage = 5
 move_speed = 75.0
 max_health = 10
 medkit_spawn_chance = 0.23
-knockback_decay = 500.0
+knockback_decay = 400.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

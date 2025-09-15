@@ -98,9 +98,6 @@ tile_map_data = PackedByteArray("AAAFAAMAAQAGAAAAAAADAAcAAQAGAAAAAAANAAgAAQAGAAA
 visible = true
 navigation_polygon = SubResource("NavigationPolygon_nnn84")
 
-[node name="Player" parent="YSortRoot" index="4"]
-position = Vector2(1080.37, -261.371)
-
 [node name="MedkitPickup3" parent="YSortRoot" index="5" instance=ExtResource("7_mihb8")]
 position = Vector2(860.76, 798.193)
 

@@ -84,9 +84,6 @@ length_in_tiles = 4
 visible = true
 navigation_polygon = SubResource("NavigationPolygon_2t17w")
 
-[node name="Player" parent="YSortRoot" index="4"]
-position = Vector2(1306.91, 999.091)
-
 [node name="ChaserBasicDuck" parent="YSortRoot" index="5" node_paths=PackedStringArray("marker_a", "marker_b", "gate") instance=ExtResource("3_q7ibo")]
 position = Vector2(96, 848)
 script = ExtResource("4_cg8v6")

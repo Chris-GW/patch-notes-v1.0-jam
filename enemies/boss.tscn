@@ -5,3 +5,4 @@
 
 [node name="Boss" instance=ExtResource("1_7hfrd")]
 script = ExtResource("2_a60ye")
+medkit_spawn_chance = 0.99

@@ -131,7 +131,8 @@ func take_damage(damage: int) -> void:
 		died.emit()
 		return
 	
-	state_machine.travel("hurt")
+	if state_machine.get_current_node() != "death":
+		state_machine.travel("hurt")
 	var blink_interval := 0.1
 	invincibility_timer.start()
 	var tween := create_tween()

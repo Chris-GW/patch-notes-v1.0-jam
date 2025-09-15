@@ -6,7 +6,7 @@
 
 [node name="RangedMuscleDuck" instance=ExtResource("1_68rsw")]
 move_speed = 120.0
-medkit_spawn_chance = 0.21
+medkit_spawn_chance = 0.5
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {

@@ -37,8 +37,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if knockback.length_squared() > 20.0:
-		velocity = knockback
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
+		velocity = knockback
 	elif navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
 	elif state_machine.get_current_node() == "attack":
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * move_speed
 	if move_and_slide() and knockback.length_squared() > 20.0:
 		var last_collision := get_last_slide_collision()
-		knockback = last_collision.get_normal() * knockback.length() + last_collision.get_remainder()
+		knockback = last_collision.get_normal() * knockback.length()
 
 
 func _on_navigation_update_timer_timeout() -> void:
@@ -86,12 +86,13 @@ func _on_hit_area_2d_area_entered(area: Area2D) -> void:
 	var parent := area.get_parent()
 	if parent is Player:
 		hurt_player(parent)
-	if parent is PlayerGhost:
+	if parent is PlayerGhost and state_machine.get_current_node() != "death":
 		state_machine.travel("attack")
 
 
 func hurt_player(player: Player) -> void:
-	state_machine.travel("attack")
+	if state_machine.get_current_node() != "death":
+		state_machine.travel("attack")
 	player.take_damage(attack_damage)
 
 

@@ -29,7 +29,8 @@ func _on_navigation_update_timer_timeout() -> void:
 
 func do_teleport() -> void:
 	teleporter_cooldown_timer.start()
-	state_machine.travel("attack")
+	if state_machine.get_current_node() != "death":
+		state_machine.travel("attack")
 	var teleport_position := find_teleport_position()
 	teleport_mark_sprite_2d.global_position = teleport_position + Vector2.UP * 8.0
 	teleport_mark_sprite_2d.visible = true
