@@ -31,6 +31,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 9)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3yij"]
 _data = {
@@ -41,7 +65,7 @@ _data = {
 radius = 15.0828
 height = 63.3767
 
-[node name="Player" type="Node2D"]
+[node name="GlitchedSwordAttack" type="Node2D"]
 script = ExtResource("1_scrye")
 knockback_strenght = 300.0
 attack_animation = "attack_left"
@@ -49,7 +73,7 @@ attack_animation = "attack_left"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_y3yij"),
-&"weapon": ExtResource("2_843o8")
+&"sword": ExtResource("2_843o8")
 }
 autoplay = "player_sword_animations/RESET"
 
@@ -85,7 +109,7 @@ position = Vector2(0, -32)
 texture = ExtResource("3_y3yij")
 hframes = 8
 vframes = 11
-frame = 80
+frame = 72
 region_rect = Rect2(485, 19, 421, 588)
 
 [connection signal="timeout" from="DelayTimer" to="." method="on_delay_timeout"]

@@ -124,8 +124,12 @@ func  can_input_dash() -> bool:
 
 
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
-	if anim_name.begins_with("weapon"):
-		spawn_glitched_sword_attack(anim_name)
+	if anim_name.begins_with("player/attack"):
+		var sword_animation := anim_name.replace("player/attack", "sword/attack")
+		spawn_glitched_sword_attack(sword_animation)
+	if anim_name.begins_with("player/roll"):
+		var sword_animation := anim_name.replace("player/roll", "sword/attack")
+		spawn_glitched_sword_attack(sword_animation)
 
 
 func spawn_glitched_sword_attack(anim_name: StringName) -> void:
@@ -138,7 +142,9 @@ func spawn_glitched_sword_attack(anim_name: StringName) -> void:
 
 func spawn_player_ghost() -> void:
 	var player_ghost: PlayerGhost = PLAYER_GHOST.instantiate()
+	player_ghost.global_position = global_position
 	get_parent().add_child(player_ghost)
+	player_ghost.sprite_2d.frame = self.sprite_2d.frame
 	ghost_timer.start()
 
 

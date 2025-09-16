@@ -156,7 +156,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(1, 9)]
+"values": [Vector2i(0, 8)]
 }
 
 [sub_resource type="Animation" id="Animation_6qps3"]
