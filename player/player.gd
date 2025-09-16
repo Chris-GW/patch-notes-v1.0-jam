@@ -27,7 +27,6 @@ var dash_charges := max_dash_charges
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var ghost_timer: Timer = $GhostTimer
 @onready var dashing_timer: Timer = $DashingTimer
-@onready var roll_timer: Timer = $RollTimer
 @onready var dash_refresh_timer: Timer = $DashRefreshTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
@@ -88,15 +87,6 @@ func _update_movement_velocity(delta: float) -> void:
 
 
 func _update_animation_parameters() -> void:
-	if can_input_attack():
-		var mouse_direction := global_position.direction_to(get_global_mouse_position())
-		animation_tree.set("parameters/attack/blend_position", mouse_direction)
-		animation_tree.set("parameters/conditions/is_attacking", true)
-		attack_cooldown_timer.start()
-	else:
-		animation_tree.set("parameters/conditions/is_attacking", false)
-	animation_tree.set("parameters/conditions/is_dashing", not dashing_timer.is_stopped())
-	
 	var velocity_direction := velocity.normalized()
 	var side_blend := velocity_direction.dot(Vector2.RIGHT)
 	if not is_zero_approx(side_blend):
@@ -104,11 +94,26 @@ func _update_animation_parameters() -> void:
 		animation_tree.set("parameters/dash_run/blend_position", side_blend)
 	if velocity.length_squared() > 30.0:
 		animation_tree.set("parameters/run/blend_position", velocity_direction)
+	
+	if can_input_attack() and Input.is_action_pressed("attack_2"):
+		animation_tree.set("parameters/roll_attack/blend_position", side_blend)
+		animation_tree.set("parameters/conditions/is_attacking", false)
+		animation_tree.set("parameters/conditions/is_attacking_2", true)
+		attack_cooldown_timer.start()
+	elif can_input_attack() and Input.is_action_pressed("attack"):
+		var mouse_direction := global_position.direction_to(get_global_mouse_position())
+		animation_tree.set("parameters/attack/blend_position", mouse_direction)
+		animation_tree.set("parameters/conditions/is_attacking", true)
+		animation_tree.set("parameters/conditions/is_attacking_2", false)
+		attack_cooldown_timer.start()
+	else:
+		animation_tree.set("parameters/conditions/is_attacking", false)
+		animation_tree.set("parameters/conditions/is_attacking_2", false)
+	animation_tree.set("parameters/conditions/is_dashing", not dashing_timer.is_stopped())
 
 
 func can_input_attack() -> bool:
-	return (Input.is_action_pressed("attack") 
-			and attack_cooldown_timer.is_stopped() 
+	return (attack_cooldown_timer.is_stopped() 
 			and dashing_timer.is_stopped())
 
 

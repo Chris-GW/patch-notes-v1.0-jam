@@ -2,8 +2,8 @@
 
 [sub_resource type="Animation" id="Animation_vi3qi"]
 resource_name = "attack_down"
-length = 0.333338
-step = 0.0416667
+length = 0.500006
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -11,10 +11,10 @@ tracks/0/path = NodePath("Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 12)]
+"values": [Vector2(21, -8), Vector2(13, 6), Vector2(4.76837e-07, 12), Vector2(-13, 6), Vector2(-21, -8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -23,16 +23,40 @@ tracks/1/path = NodePath("Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.74533, 4.53786]
+"values": [1.83259, 4.45058]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 9)]
 }
 
 [sub_resource type="Animation" id="Animation_i7e6y"]
 resource_name = "attack_left"
-length = 0.333338
-step = 0.0416667
+length = 0.500006
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -40,10 +64,10 @@ tracks/0/path = NodePath("Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-24, -10)]
+"values": [Vector2(-16, -47), Vector2(-20, -30), Vector2(-7, -9)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,16 +76,40 @@ tracks/1/path = NodePath("Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [3.92699, 5.93412]
+"values": [6.28318, 3.92699]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 8)]
 }
 
-[sub_resource type="Animation" id="Animation_s83mg"]
-resource_name = "attack_right"
-length = 0.333338
-step = 0.0416667
+[sub_resource type="Animation" id="Animation_m3qrq"]
+resource_name = "attack_right_2"
+length = 0.500006
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -69,10 +117,10 @@ tracks/0/path = NodePath("Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(24, -10)]
+"values": [Vector2(16, -47), Vector2(20, -30), Vector2(7, -9)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -81,16 +129,40 @@ tracks/1/path = NodePath("Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [2.61799, 0.261799]
+"values": [0.0, 2.35619]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 9)]
 }
 
 [sub_resource type="Animation" id="Animation_6qps3"]
 resource_name = "attack_up"
-length = 0.333338
-step = 0.0416667
+length = 0.500006
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,10 +170,10 @@ tracks/0/path = NodePath("Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -62)]
+"values": [Vector2(22, -16), Vector2(20, -38), Vector2(-5.68434e-14, -53), Vector2(-20, -38), Vector2(-22, -16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -110,16 +182,40 @@ tracks/1/path = NodePath("Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [1.0472, -0.872665]
+"values": [0.785397, 0.0, -0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 10)]
 }
 
 [resource]
 _data = {
 &"attack_down": SubResource("Animation_vi3qi"),
 &"attack_left": SubResource("Animation_i7e6y"),
-&"attack_right": SubResource("Animation_s83mg"),
+&"attack_right": SubResource("Animation_m3qrq"),
 &"attack_up": SubResource("Animation_6qps3")
 }
