@@ -16,9 +16,10 @@ var current_battle_point: BattlePoint
 @onready var enemies_left_label: Label = %EnemiesLeftLabel
 
 @onready var y_sort_root: Node2D = %YSortRoot
-@onready var ground_tile_map_layer: TileMapLayer = %GroundTileMapLayer
-@onready var floor_tile_map_layer: TileMapLayer = %FloorTileMapLayer
+@onready var ground_tile_map_dual: TileMapDual = %GroundTileMapDual
+@onready var path_tile_map_dual: TileMapDual = %PathTileMapDual
 @onready var decoration_tile_map_layer: TileMapLayer = %DecorationTileMapLayer
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,6 +40,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
+	if Input.is_action_just_released("switch_level_design"):
+		var use_new := !ground_tile_map_dual.visible
+		%GroundTileMapLayer.visible = !use_new
+		%FloorTileMapLayer.visible = !use_new
+		ground_tile_map_dual.visible = use_new
+		path_tile_map_dual.visible = use_new
+	
 	if is_instance_valid(current_battle_point):
 		var curren_wave_index := clampi(current_battle_point.battle_wave_index + 1, 
 				0, current_battle_point.battle_waves.size())
