@@ -18,15 +18,9 @@ random_volume_offset_db = 1.0
 streams_count = 1
 stream_0/stream = ExtResource("2_maq6b")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_406qh"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mwf5"]
 texture = ExtResource("7_5mwf5")
 texture_region_size = Vector2i(32, 32)
-8:5/0 = 0
-8:6/0 = 0
-9:4/size_in_atlas = Vector2i(3, 3)
-9:4/0 = 0
-12:4/size_in_atlas = Vector2i(4, 3)
-12:4/0 = 0
 8:1/0 = 0
 8:1/0/terrain_set = 0
 8:1/0/terrain = 1
@@ -126,6 +120,7 @@ texture_region_size = Vector2i(32, 32)
 13:1/0/terrains_peering_bit/top_left_corner = 0
 13:1/0/terrains_peering_bit/top_right_corner = 0
 14:0/0 = 0
+14:0/0/terrain_set = 0
 14:1/0 = 0
 14:1/0/terrain_set = 0
 14:2/0 = 0
@@ -136,6 +131,7 @@ texture_region_size = Vector2i(32, 32)
 14:2/0/terrains_peering_bit/top_left_corner = 0
 14:2/0/terrains_peering_bit/top_right_corner = 0
 15:0/0 = 0
+15:0/0/terrain_set = 0
 15:1/0 = 0
 15:1/0/terrain_set = 0
 15:2/0 = 0
@@ -253,7 +249,7 @@ terrain_set_0/terrain_0/name = "<any>"
 terrain_set_0/terrain_0/color = Color(0.933333, 0.509804, 0.933333, 1)
 terrain_set_0/terrain_1/name = "FG -tileset_level_01.png"
 terrain_set_0/terrain_1/color = Color(0.298397, 0.43093, 0.718077, 1)
-sources/0 = SubResource("TileSetAtlasSource_406qh")
+sources/0 = SubResource("TileSetAtlasSource_5mwf5")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dx6c5"]
 texture = ExtResource("7_5mwf5")

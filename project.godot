@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Patch notes v1.0"
 run/main_scene="uid://cwcicc6bnfw6l"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
 [autoload]
@@ -30,7 +30,6 @@ mouse_cursor/custom_image="uid://b2r5odgfrxd85"
 
 [editor]
 
-movie_writer/mjpeg_quality=0.8
 movie_writer/movie_file="C:/Projekte/patch_notes_v_1.0/export/move_maker/movie.png"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
