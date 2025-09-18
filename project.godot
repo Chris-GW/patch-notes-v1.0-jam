@@ -111,6 +111,7 @@ switch_level_design={
 2d_physics/layer_3="enemies"
 2d_physics/layer_6="player_hurt_box"
 2d_physics/layer_7="enemies_hurt_box"
+2d_physics/layer_8="nav_cutout_physic"
 
 [navigation]
 

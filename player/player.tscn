@@ -105,7 +105,6 @@ parameters/roll_attack/blend_position = -0.658631
 parameters/run/blend_position = Vector2(-0.429769, 0.13467)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 libraries = {
 &"": SubResource("AnimationLibrary_boad6"),
 &"player": ExtResource("2_qjkh3"),

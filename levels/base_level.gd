@@ -1,6 +1,9 @@
 class_name BaseLevel
 extends Node2D
 
+
+@export var level_tile_set_texture: Texture2D
+
 var current_battle_point: BattlePoint
 
 @onready var nutral_music_player: AudioStreamPlayer = $NutralMusicPlayer
@@ -32,20 +35,25 @@ func _ready() -> void:
 	enemies_left_label.visible = false
 	health_bar.max_value = player.max_health
 	health_bar.value = player.max_health
+	setup_level_tile_set_texture(ground_tile_map_dual)
+	setup_level_tile_set_texture(path_tile_map_dual)
 	
 	for battle_point: BattlePoint in get_tree().get_nodes_in_group("battle_points"):
 		battle_point.battle_started.connect(_on_battle_started)
 		battle_point.battle_ended.connect(_on_battle_ended)
 
 
+func setup_level_tile_set_texture(tile_map: TileMapLayer) -> void:
+	var first_source_id := tile_map.tile_set.get_source_id(0)
+	var source := tile_map.tile_set.get_source(first_source_id)
+	if source is TileSetAtlasSource:
+		source.texture = level_tile_set_texture
+	else:
+		push_warning("could not setup_level_tile_set_texture", tile_map, source)
+
+
 func _process(_delta: float) -> void:
 	dash_charges_label.text = "Dash charges: %d / %d" % [player.dash_charges, player.max_dash_charges]
-	if Input.is_action_just_released("switch_level_design"):
-		var use_new := !ground_tile_map_dual.visible
-		%GroundTileMapLayer.visible = !use_new
-		%FloorTileMapLayer.visible = !use_new
-		ground_tile_map_dual.visible = use_new
-		path_tile_map_dual.visible = use_new
 	
 	if is_instance_valid(current_battle_point):
 		var curren_wave_index := clampi(current_battle_point.battle_wave_index + 1, 
