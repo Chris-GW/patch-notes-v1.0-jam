@@ -29,7 +29,7 @@ parsed_geometry_type = 1
 source_geometry_mode = 2
 source_geometry_group_name = &"navigation"
 cell_size = 4.0
-agent_radius = 12.0
+agent_radius = 16.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
 draw_center = false
@@ -107,7 +107,6 @@ unique_name_in_owner = true
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAOAAYAAQACAAEAAAA=")
 tile_set = ExtResource("3_0rg8l")
-metadata/_edit_lock_ = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="YSortRoot"]
 visible = false
@@ -122,16 +121,18 @@ metadata/_edit_lock_ = true
 [node name="PlayerCamera2D" type="Camera2D" parent="YSortRoot/Player"]
 unique_name_in_owner = true
 position = Vector2(0, -4)
+metadata/_edit_lock_ = true
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer"]
+[node name="LeftCornerContainer" type="VBoxContainer" parent="HudLayer"]
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 144.0
 offset_bottom = 54.0
+metadata/_edit_lock_ = true
 
-[node name="HealthBar" type="ProgressBar" parent="HudLayer/VBoxContainer"]
+[node name="HealthBar" type="ProgressBar" parent="HudLayer/LeftCornerContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 16)
 layout_mode = 2
@@ -142,7 +143,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
 value = 22.0
 show_percentage = false
 
-[node name="HealthLabel" type="Label" parent="HudLayer/VBoxContainer/HealthBar"]
+[node name="HealthLabel" type="Label" parent="HudLayer/LeftCornerContainer/HealthBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,7 +157,7 @@ theme_override_font_sizes/font_size = 12
 text = "Health"
 horizontal_alignment = 1
 
-[node name="DashChargesLabel" type="Label" parent="HudLayer/VBoxContainer"]
+[node name="DashChargesLabel" type="Label" parent="HudLayer/LeftCornerContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 4
@@ -179,6 +180,7 @@ offset_right = -88.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="HudLayer/DiedPanelContainer"]
 layout_mode = 2
@@ -198,7 +200,7 @@ label_settings = SubResource("LabelSettings_lquwl")
 
 [node name="RestartButton" type="Button" parent="HudLayer/DiedPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Restart game"
+text = "Restart Level"
 
 [node name="LevelCompletedPanelContainer" type="PanelContainer" parent="HudLayer"]
 unique_name_in_owner = true
@@ -215,6 +217,7 @@ offset_right = -115.0
 offset_bottom = 60.5
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="HudLayer/LevelCompletedPanelContainer"]
 layout_mode = 2
@@ -236,7 +239,7 @@ label_settings = SubResource("LabelSettings_lquwl")
 layout_mode = 2
 text = "Next Level"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HudLayer"]
+[node name="RightCornerContainer" type="VBoxContainer" parent="HudLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -245,15 +248,16 @@ offset_top = 16.0
 offset_right = -16.0
 offset_bottom = 60.0
 grow_horizontal = 0
+metadata/_edit_lock_ = true
 
-[node name="WaveLabel" type="Label" parent="HudLayer/VBoxContainer2"]
+[node name="WaveLabel" type="Label" parent="HudLayer/RightCornerContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Wave 4 / 4"
 label_settings = SubResource("LabelSettings_0rg8l")
 horizontal_alignment = 2
 
-[node name="EnemiesLeftLabel" type="Label" parent="HudLayer/VBoxContainer2"]
+[node name="EnemiesLeftLabel" type="Label" parent="HudLayer/RightCornerContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Enemies 99"

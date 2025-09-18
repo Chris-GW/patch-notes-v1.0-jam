@@ -1,28 +1,56 @@
+@tool
 class_name SpawnPoint
-extends Node2D
+extends StaticBody2D
 
 const VILLAGER = preload("res://core/villager/villager.tscn")
 
 @export var spawn_cooldown_range: Vector2
-@export_enum("tpye_snail", "type_duck") var type := 0
+@export_enum("tpye_snail", "type_duck") var type := 0 : set = set_type
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var spawn_cooldown_timer: Timer = $SpawnCooldownTimer
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var spawn_marker_2d: Marker2D = $SpawnMarker2D
+@onready var enter_mask_rect: ColorRect = $EnterMaskRect
+@onready var spawn_path_2d: Path2D = %SpawnPath2D
+@onready var path_follow_2d: PathFollow2D = %PathFollow2D
 
 
 func _ready() -> void:
-	var region_size := Vector2(128.0, 96.0)
-	var region_position := Vector2(192.0, 0.0)
-	if type == 1:
+	setup_house_type()
+	path_follow_2d.get_child(0).queue_free()
+
+
+func set_type(_type: int) -> void:
+	type = _type
+	setup_house_type()
+
+
+func setup_house_type() -> void:
+	if not is_node_ready():
+		return
+	var region_position := sprite_2d.region_rect.position
+	var spawn_path_offset := Vector2.ZERO
+	if type == 0: # type_snail
+		region_position = Vector2(192.0, 0.0)
+		spawn_path_offset = Vector2(-16.0, -32.0)
+	elif type == 1: # type_duck
 		region_position = Vector2(864.0, 0.0)
-	sprite_2d.region_rect = Rect2(region_position, region_size)
+		spawn_path_offset = Vector2(-28.0, -38.0)
+	sprite_2d.region_rect.position = region_position
+	enter_mask_rect.position = spawn_path_offset
 
 
-
-func spawn(enemy: BaseEnemy) -> void:
+func spawn(enemy: Node2D) -> void:
 	start_spawn_cooldown()
-	enemy.global_position = spawn_marker_2d.global_position
+	enemy.process_mode = Node.PROCESS_MODE_DISABLED
+	path_follow_2d.progress = 0.0
+	path_follow_2d.add_child(enemy)
+	animation_player.play("exit_house_spawn")
+	await animation_player.animation_finished
+	var battle_point := get_parent()
+	enemy.reparent(battle_point.get_parent())
+	enemy.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func start_spawn_cooldown() -> void:
@@ -32,11 +60,9 @@ func start_spawn_cooldown() -> void:
 
 
 func can_spawn() -> bool:
-	return spawn_cooldown_timer.is_stopped()
+	return spawn_cooldown_timer.is_stopped() and path_follow_2d.get_child_count() <= 0
 
 
-func spawn_villager() -> Node2D:
+func spawn_villager() -> void:
 	var villager: Node2D = VILLAGER.instantiate()
-	villager.global_position = spawn_marker_2d.global_position
-	get_parent().get_parent().add_child.call_deferred(villager)
-	return villager
+	spawn(villager)

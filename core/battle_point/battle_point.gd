@@ -42,7 +42,6 @@ func work_enemy_queue() -> void:
 		new_enemy.move_speed = randfn(new_enemy.move_speed, new_enemy.move_speed / 6.0)
 		new_enemy.died.connect(_on_enemy_died)
 		spawn_point.spawn(new_enemy)
-		get_parent().add_child(new_enemy)
 		enemy_count += 1
 
 
