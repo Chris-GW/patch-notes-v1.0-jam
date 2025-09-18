@@ -10,7 +10,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -80, 912, -64, 848
 parsed_geometry_type = 1
 source_geometry_mode = 2
 source_geometry_group_name = &"navigation"
-cell_size = 4.0
+cell_size = 8.0
 agent_radius = 12.0
 
 [node name="Level05" instance=ExtResource("1_eyhsw")]

@@ -22,7 +22,7 @@ stream_0/stream = ExtResource("2_maq6b")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_46036"]
 resource_local_to_scene = true
-vertices = PackedVector2Array(489.64844, 248.34375, 532, 236, 596, 236, 596, 268, 438.20313, 243.50781, 236, 140, 236, 108, 300, 108, 404, 140, 436, 172, 300, 76, 404, 76, 436, 140, 468, 172, 468, 204, 453.21875, 233, 532, 204, 475.84375, 233, 628, 268, 628, 276, 596, 276, 596, 308, 564, 308, 479.46094, 266.6875, 564, 340, 532, 340, 268, 332, 268, 276, 444.27344, 265.7578, 532, 404, 268, 404, 268, 372, 204, 372, 204, 364, 236, 364, 236, 332, 236, 276, 236, 212, 172, 212, 172, 180, 108, 116, 108, 76, 116, 76, 116, 108, 140, 116, 148, 108, 148, 140, 140, 180)
+vertices = PackedVector2Array(492.09375, 248.0625, 530, 238, 594, 238, 594, 270, 435.89844, 242.67969, 238, 142, 238, 110, 302, 110, 402, 142, 434, 174, 302, 78, 402, 78, 434, 142, 466, 174, 466, 206, 452.59375, 231, 530, 206, 476.7422, 231, 626, 270, 626, 274, 594, 274, 594, 306, 562, 306, 480.6172, 268.71875, 562, 338, 530, 338, 270, 334, 270, 274, 442.72656, 267.71875, 530, 402, 270, 402, 270, 370, 206, 370, 206, 366, 238, 366, 238, 334, 238, 274, 238, 210, 174, 210, 174, 178, 110, 114, 110, 78, 114, 78, 114, 110, 142, 114, 146, 110, 146, 142, 142, 178)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(7, 10, 11, 8), PackedInt32Array(8, 12, 9), PackedInt32Array(4, 9, 13, 14, 15), PackedInt32Array(14, 16, 1, 0, 17), PackedInt32Array(14, 17, 15), PackedInt32Array(3, 18, 19, 20), PackedInt32Array(0, 20, 21, 22, 23), PackedInt32Array(23, 22, 24, 25, 26, 27, 28), PackedInt32Array(25, 29, 30, 31), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(31, 34, 35, 26, 25), PackedInt32Array(27, 36, 37, 4, 28), PackedInt32Array(37, 38, 39, 5), PackedInt32Array(40, 41, 42, 43), PackedInt32Array(44, 40, 43, 45), PackedInt32Array(44, 45, 46, 47), PackedInt32Array(39, 47, 46, 5), PackedInt32Array(0, 3, 20), PackedInt32Array(4, 37, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -64, 912, -80, 896, 656, -32, 640)])
 parsed_geometry_type = 1
@@ -110,6 +110,7 @@ tile_set = ExtResource("3_0rg8l")
 metadata/_edit_lock_ = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="YSortRoot"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_46036")
 metadata/_edit_lock_ = true
 

@@ -1,14 +1,17 @@
 extends BaseEnemy
 
-@export var marker_a: Marker2D
-@export var marker_b: Marker2D
 @export var gate: Gate
+
+var partrol_targets: Array[Node2D] = []
+var patrol_index := 0
 
 
 func _ready() -> void:
-	marker_a.reparent.call_deferred(get_parent())
-	marker_b.reparent.call_deferred(get_parent())
-	target = marker_b
+	for child in get_children():
+		if child is Marker2D:
+			partrol_targets.append(child)
+			child.reparent.call_deferred(get_parent())
+	
 	navigation_agent.debug_enabled = true
 	super._ready()
 	self.died.connect(_on_died)
@@ -16,12 +19,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if navigation_agent.is_navigation_finished() or not is_instance_valid(target):
-		if target == marker_a:
-			target = marker_b
-			navigation_agent.target_position = target.global_position
-		else:
-			target = marker_a
-			navigation_agent.target_position = target.global_position
+		if target == partrol_targets[patrol_index]:
+			patrol_index = (patrol_index + 1) % partrol_targets.size() 
+		target = partrol_targets[patrol_index]
+		set_nav_target_position(target.global_position)
 	super._physics_process(delta)
 
 

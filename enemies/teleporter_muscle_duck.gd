@@ -53,7 +53,7 @@ func find_teleport_position() -> Vector2:
 		angle += randf_range(PI / -3.0, PI / 3.0)
 		var teleport_position = Vector2.from_angle(angle) * new_distance
 		teleport_position = my_target.global_position + teleport_position
-		navigation_agent.target_position = teleport_position
+		set_nav_target_position(teleport_position)
 		if navigation_agent.is_target_reachable():
 			return teleport_position
 	return self.global_position

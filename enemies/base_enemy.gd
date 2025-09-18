@@ -56,10 +56,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_navigation_update_timer_timeout() -> void:
 	if is_instance_valid(target) and target.is_node_ready():
-		navigation_agent.target_position = target.global_position
+		set_nav_target_position(target.global_position)
 		return
 	var player: Player = get_tree().get_first_node_in_group("player")
-	navigation_agent.target_position = player.global_position
+	set_nav_target_position(player.global_position)
+
+
+func set_nav_target_position(target_position: Vector2) -> void:
+	target_position += Vector2.DOWN * 8.0 # adjust origin to collision center
+	navigation_agent.target_position = target_position
 
 
 func take_damage(damage: int) -> void:

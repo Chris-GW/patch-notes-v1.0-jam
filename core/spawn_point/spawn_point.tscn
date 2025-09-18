@@ -10,6 +10,10 @@ spawn_cooldown_range = Vector2(1, 10)
 [node name="SpawnCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." groups=["navigation"]]
+vertices = PackedVector2Array(-40, -80, 40, -80, 40, 0, -40, 0)
+affect_navigation_mesh = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -48)
 texture = ExtResource("1_krvah")
@@ -20,6 +24,5 @@ region_rect = Rect2(192, 0, 128, 96)
 position = Vector2(0, 32)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2(0, -48)
-polygon = PackedVector2Array(28, -18, 1, -25, -21, -18, -35, -3, -38, 18, -34, 40, -20, 48, 20, 48, 37, 39, 38, 22, 37, -2)
+polygon = PackedVector2Array(32, -30, 0, -35, -27, -31, -38, -8, -38, 19, -36, 45, 34, 45, 38, 19, 38, -7)

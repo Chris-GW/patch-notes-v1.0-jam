@@ -33,7 +33,7 @@ func _on_navigation_update_timer_timeout() -> void:
 	var my_target: Node2D = player
 	if is_instance_valid(target) and target.is_node_ready():
 		my_target = target
-	navigation_agent.target_position = my_target.global_position + relative_target_position
+	set_nav_target_position(my_target.global_position + relative_target_position)
 
 
 func _on_repostion_timer_timeout() -> void:

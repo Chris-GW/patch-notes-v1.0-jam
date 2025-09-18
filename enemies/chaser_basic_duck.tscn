@@ -12,3 +12,6 @@ libraries = {
 &"": ExtResource("3_oehvq")
 }
 autoplay = "walk"
+
+[node name="Sprite2D" parent="." index="4"]
+offset = Vector2(-6, 0)

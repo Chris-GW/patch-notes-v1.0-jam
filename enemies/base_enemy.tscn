@@ -103,6 +103,7 @@ states/knockback/position = Vector2(543, 68)
 states/walk/node = SubResource("AnimationNodeAnimation_xens1")
 states/walk/position = Vector2(361, 243)
 transitions = ["death", "End", SubResource("AnimationNodeStateMachineTransition_jtyv1"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_a33f8"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_j2d0b"), "walk", "knockback", SubResource("AnimationNodeStateMachineTransition_fngk5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ccr3n"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_epbio"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_7on22"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_katke"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_bfj6p"), "idle", "knockback", SubResource("AnimationNodeStateMachineTransition_b5ht1"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xens1"), "knockback", "idle", SubResource("AnimationNodeStateMachineTransition_35jd6")]
+graph_offset = Vector2(-90, 81)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bfj6p"]
 radius = 16.0
@@ -155,7 +156,8 @@ parameters/conditions/is_attacking = false
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 16.0
 target_desired_distance = 8.0
-path_max_distance = 160.0
+path_max_distance = 96.0
+debug_enabled = true
 
 [node name="NavigationUpdateTimer" type="Timer" parent="."]
 wait_time = 0.3
