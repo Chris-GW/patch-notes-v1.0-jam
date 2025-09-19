@@ -10,6 +10,7 @@ const PLAYER_GHOST: PackedScene = preload("res://player/player_ghost.tscn")
 
 @export var move_speed: float
 @export var move_smoothing: float
+@export var attack_smoothing: float
 
 @export var dash_speed: float
 @export var dash_steering: float
@@ -31,13 +32,13 @@ var dash_charges := max_dash_charges
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var sword: AnimatedSprite2D = $Sword
 @onready var hurt_area_2d: Area2D = $HurtArea2D
 
 
 func _ready() -> void:
 	health = max_health
 	dash_charges = max_dash_charges
+	animation_tree.active = true
 
 
 func _process(_delta: float) -> void:
@@ -68,7 +69,9 @@ func _physics_process(delta: float) -> void:
 
 func _update_movement_velocity(delta: float) -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var velocity_weight := 1.0 - exp(-move_smoothing * delta)
 	var target_velocity := input_direction * move_speed
+	
 	if can_input_dash():
 		dashing_timer.start()
 		play_random_dash_sfx()
@@ -84,8 +87,10 @@ func _update_movement_velocity(delta: float) -> void:
 		var steering_weight := 1.0 - exp(-dash_steering * delta)
 		input_direction = velocity.normalized().lerp(input_direction, steering_weight)
 		target_velocity = input_direction * dash_speed
+	if state_machine.get_current_node() == "attack":
+		target_velocity = Vector2.ZERO
+		velocity_weight =  1.0 - exp(-attack_smoothing * delta)
 	
-	var velocity_weight := 1.0 - exp(-move_smoothing * delta)
 	velocity = velocity.lerp(target_velocity, velocity_weight)
 
 
@@ -176,7 +181,6 @@ func take_damage(damage: int) -> void:
 	$HurtSfxPlayer.play()
 	if health <= 0:
 		$DeathAudioPlayer.play()
-		sword.visible = false
 		died.emit()
 		return
 	

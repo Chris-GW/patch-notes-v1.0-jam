@@ -98,6 +98,16 @@ max_distance = 288.0
 panning_strength = 4.0
 bus = &"SFX"
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -32)
+texture = ExtResource("3_y3yij")
+hframes = 8
+vframes = 12
+frame = 72
+region_rect = Rect2(485, 19, 421, 588)
+
 [node name="Sword" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0.151276, 0.151276, 0.151276, 0.588235)
 texture_filter = 1
@@ -119,16 +129,6 @@ metadata/_edit_group_ = true
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_ir3hj")
 debug_color = Color(0.994736, 0, 0.217211, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(0, -32)
-texture = ExtResource("3_y3yij")
-hframes = 8
-vframes = 11
-frame = 72
-region_rect = Rect2(485, 19, 421, 588)
 
 [connection signal="timeout" from="DelayTimer" to="." method="on_delay_timeout"]
 [connection signal="area_entered" from="Sword/HitArea2D" to="." method="_on_hit_area_2d_area_entered"]

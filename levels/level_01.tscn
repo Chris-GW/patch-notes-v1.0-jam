@@ -165,18 +165,23 @@ battle_point = NodePath("..")
 
 [node name="SpawnPoint" parent="YSortRoot/BattlePoint" index="3" instance=ExtResource("14_d3o6j")]
 position = Vector2(752, 640)
+type = 0
 
 [node name="SpawnPoint2" parent="YSortRoot/BattlePoint" index="4" instance=ExtResource("14_d3o6j")]
 position = Vector2(880, 416)
+type = 0
 
 [node name="SpawnPoint3" parent="YSortRoot/BattlePoint" index="5" instance=ExtResource("14_d3o6j")]
 position = Vector2(1456, 160)
+type = 0
 
 [node name="SpawnPoint4" parent="YSortRoot/BattlePoint" index="6" instance=ExtResource("14_d3o6j")]
 position = Vector2(1744, 256)
+type = 0
 
 [node name="SpawnPoint5" parent="YSortRoot/BattlePoint" index="7" instance=ExtResource("14_d3o6j")]
 position = Vector2(1904, 416)
+type = 0
 
 [node name="MedkitPickup" parent="YSortRoot/BattlePoint" index="8" instance=ExtResource("8_l0eo6")]
 position = Vector2(1296, 192)

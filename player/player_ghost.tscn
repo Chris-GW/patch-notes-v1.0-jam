@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcitdn88np37t"]
 
 [ext_resource type="Script" uid="uid://dnr8c765bhhan" path="res://player/player_ghost.gd" id="1_xbrus"]
-[ext_resource type="Texture2D" uid="uid://c8h3ljmahd3yo" path="res://player/assets/player_body_sprites.png" id="5_1x5yj"]
+[ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="2_lwphk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xbrus"]
 radius = 12.0
@@ -27,9 +27,9 @@ autostart = true
 self_modulate = Color(0.235732, 0.235732, 0.235732, 1)
 texture_filter = 1
 position = Vector2(0, -32)
-texture = ExtResource("5_1x5yj")
+texture = ExtResource("2_lwphk")
 hframes = 8
-vframes = 11
+vframes = 12
 region_rect = Rect2(485, 19, 421, 588)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

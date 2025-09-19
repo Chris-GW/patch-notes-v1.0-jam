@@ -1,14 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://tgcspwxfjt8l"]
+[gd_scene load_steps=20 format=3 uid="uid://tgcspwxfjt8l"]
 
 [ext_resource type="Script" uid="uid://osj4h2kfpcy5" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/assets/player_animations.tres" id="2_qjkh3"]
-[ext_resource type="AnimationLibrary" uid="uid://bj1th6ju1hoqv" path="res://player/assets/sword_animations.tres" id="3_g6k8r"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cg71bpfr25f7w" path="res://player/assets/player_animation_tree.tres" id="4_boad6"]
 [ext_resource type="AudioStream" uid="uid://cpwi7qu7pgxwg" path="res://assets/sfx/player_dies.mp3" id="4_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="5_g6k8r"]
 [ext_resource type="AudioStream" uid="uid://c42sra86yvnvj" path="res://assets/sfx/dash_variations.wav" id="6_hg6s5"]
 [ext_resource type="AudioStream" uid="uid://f3hpmsxg575w" path="res://assets/sfx/dash_fail.wav" id="6_rgyib"]
-[ext_resource type="SpriteFrames" uid="uid://vuja3ivahi8y" path="res://player/assets/sword_sprite_frames.tres" id="7_boad6"]
 [ext_resource type="AudioStream" uid="uid://bykjijaahm2mf" path="res://assets/sfx/Voice B Pain Grunt 001.wav" id="8_ebec5"]
 [ext_resource type="AudioStream" uid="uid://oo5i6fin8d0c" path="res://assets/sfx/Stimpack 003.wav" id="8_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://djjor2afdyunt" path="res://assets/sfx/Stimpack 004.wav" id="9_wodsf"]
@@ -40,30 +38,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sword:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.81643]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sword:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 12)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_boad6"]
@@ -106,6 +80,7 @@ motion_mode = 1
 script = ExtResource("1_oul6g")
 move_speed = 200.0
 move_smoothing = 20.0
+attack_smoothing = 5.0
 dash_speed = 500.0
 dash_steering = 20.0
 max_dash_charges = 2
@@ -114,6 +89,7 @@ ghost_spawn_chance = 0.17
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 process_mode = 3
+active = false
 tree_root = ExtResource("4_boad6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
@@ -128,8 +104,7 @@ parameters/run/blend_position = Vector2(-0.41881764, 0.5257958)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_boad6"),
-&"player": ExtResource("2_qjkh3"),
-&"sword_animations": ExtResource("3_g6k8r")
+&"player": ExtResource("2_qjkh3")
 }
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
@@ -184,22 +159,12 @@ bus = &"SFX"
 position = Vector2(0, -32)
 current = true
 
-[node name="Sword" type="AnimatedSprite2D" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(0, 12)
-rotation = 1.81643
-sprite_frames = ExtResource("7_boad6")
-animation = &"attacking"
-autoplay = "attacking"
-offset = Vector2(0, -24)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -32)
 texture = ExtResource("5_g6k8r")
 hframes = 8
-vframes = 11
+vframes = 12
 region_rect = Rect2(485, 19, 421, 588)
 metadata/_edit_lock_ = true
 
