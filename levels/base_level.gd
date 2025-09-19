@@ -24,7 +24,6 @@ var current_battle_point: BattlePoint
 @onready var decoration_tile_map_layer: TileMapLayer = %DecorationTileMapLayer
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.stop_menu_music()

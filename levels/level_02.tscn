@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://cl0toa531bsqm"]
 
 [ext_resource type="PackedScene" uid="uid://bagc6mf0in81g" path="res://levels/base_level.tscn" id="1_nnn84"]
-[ext_resource type="Texture2D" uid="uid://dhbf23gti5voy" path="res://assets/tileset/tileset_level_02.png" id="2_2owmk"]
+[ext_resource type="Texture2D" uid="uid://dhbf23gti5voy" path="res://levels/tile_sets/tileset_level_02.png" id="2_2owmk"]
 [ext_resource type="PackedScene" uid="uid://dtr8utxdn7ut7" path="res://core/battle_point/battle_point.tscn" id="3_8yqd8"]
 [ext_resource type="Script" uid="uid://dkti3fyigg5o5" path="res://core/battle_point/battle_point_wave.gd" id="4_h518d"]
 [ext_resource type="PackedScene" uid="uid://yp8vxoo1ip6s" path="res://core/gate/gate.tscn" id="5_didps"]
