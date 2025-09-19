@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwjk4jihy3r6a"]
+[gd_scene load_steps=7 format=3 uid="uid://cwjk4jihy3r6a"]
 
 [ext_resource type="Script" uid="uid://c7fc8a68gx6mb" path="res://core/spawn_point/spawn_point.gd" id="1_jrfwy"]
 [ext_resource type="Texture2D" uid="uid://8ps13ijx8s4q" path="res://assets/tileset/tileset_areas.png" id="1_krvah"]
-[ext_resource type="PackedScene" uid="uid://d4lwqkao3c5ai" path="res://enemies/chaser_basic_duck.tscn" id="3_o043a"]
 
 [sub_resource type="Animation" id="Animation_ausj7"]
 length = 0.001
@@ -171,9 +170,6 @@ position = Vector2(32, 0)
 scale = Vector2(0.5, 0.5)
 rotates = false
 
-[node name="ChaserBasicDuck" parent="EnterMaskRect/SpawnPath2D/PathFollow2D" instance=ExtResource("3_o043a")]
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2(0, -48)
 polygon = PackedVector2Array(32, -30, 0, -35, -27, -31, -38, -8, -38, 19, -36, 45, 34, 45, 38, 19, 38, -7)

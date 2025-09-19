@@ -18,7 +18,8 @@ const VILLAGER = preload("res://core/villager/villager.tscn")
 
 func _ready() -> void:
 	setup_house_type()
-	path_follow_2d.get_child(0).queue_free()
+	if path_follow_2d.get_child_count() > 0:
+		path_follow_2d.get_child(0).queue_free()
 
 
 func set_type(_type: int) -> void:
