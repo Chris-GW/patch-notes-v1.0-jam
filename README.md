@@ -8,6 +8,8 @@
 
 Check out the latest version and play online on [itch.io](https://chris-gw.itch.io/patch-notes-v10-jam-game) or download the latest release right [here on GitHub](https://github.com/Chris-GW/patch-notes-v1.0-jam/releases/latest).
 
+<img width="456" height="256" alt="boot_splash" src="https://github.com/user-attachments/assets/cc79fead-3fc7-4695-8803-3e8e88be4368" />
+
 
 ## About
 
