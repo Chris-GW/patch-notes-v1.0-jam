@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwcicc6bnfw6l"]
+[gd_scene load_steps=4 format=3 uid="uid://cwcicc6bnfw6l"]
 
 [ext_resource type="Script" uid="uid://c1184pplacsab" path="res://ui/main_menu.gd" id="1_0dkrt"]
 [ext_resource type="Texture2D" uid="uid://6t7iwnqmkl4s" path="res://assets/patch_notes/Patch Notes Logo.png" id="1_t7e0r"]
+[ext_resource type="Texture2D" uid="uid://c7nhyqrucy1tn" path="res://assets/boot_splash.png" id="2_wk0pr"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_0dkrt")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wk0pr")
+stretch_mode = 6
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 16.0
@@ -15,42 +26,48 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_t7e0r")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = -124.0
-offset_right = 88.0
-offset_bottom = 124.0
+offset_left = -167.0
+offset_top = -110.0
+offset_right = -1.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="ContinueGameButton" type="Button" parent="VBoxContainer"]
+[node name="ContinueGameButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Continue Game"
 
-[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

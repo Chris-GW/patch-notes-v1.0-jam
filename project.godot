@@ -13,6 +13,9 @@ config_version=5
 config/name="Patch notes v1.0"
 run/main_scene="uid://cwcicc6bnfw6l"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.84705883, 0.8117647, 0.9411765, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://c7nhyqrucy1tn"
 config/icon="res://assets/icon.svg"
 
 [autoload]
