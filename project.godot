@@ -34,7 +34,7 @@ mouse_cursor/custom_image="uid://b2r5odgfrxd85"
 
 [editor]
 
-movie_writer/movie_file="C:/Projekte/patch_notes_v_1.0/export/move_maker/movie.png"
+movie_writer/movie_file="export/movie_maker/movie_maker_.png"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
