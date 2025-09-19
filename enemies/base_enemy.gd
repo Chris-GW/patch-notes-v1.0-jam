@@ -26,6 +26,7 @@ var target: Node2D = null
 @onready var hurt_area_2d: Area2D = $HurtArea2D
 @onready var hit_area_2d: Area2D = %HitArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var death_sfx_player_2d: AudioStreamPlayer2D = $DeathSfxPlayer2D
 
 
 func _ready() -> void:
@@ -71,6 +72,7 @@ func take_damage(damage: int) -> void:
 	health = clampi(health - damage, 0, max_health)
 	health_bar.value = health
 	damage_taken.emit()
+	$HitSfxPlayer2D.play()
 	if health <= 0:
 		die()
 
@@ -86,6 +88,11 @@ func die() -> void:
 	hurt_area_2d.queue_free()
 	$CollisionShape2D.queue_free()
 	died.emit()
+	
+	death_sfx_player_2d.reparent(get_parent())
+	death_sfx_player_2d.play()
+	await get_tree().create_timer(3.8).timeout
+	death_sfx_player_2d.queue_free()
 
 
 func _on_hit_area_2d_area_entered(area: Area2D) -> void:

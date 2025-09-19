@@ -1,7 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://3i44qkdeaoow"]
+[gd_scene load_steps=37 format=3 uid="uid://3i44qkdeaoow"]
 
 [ext_resource type="Script" uid="uid://cnb7p64i2l5m" path="res://enemies/base_enemy.gd" id="1_bfj6p"]
+[ext_resource type="AudioStream" uid="uid://icrg5p2f64eo" path="res://assets/sfx/Flesh Hit A.wav" id="2_35jd6"]
 [ext_resource type="Texture2D" uid="uid://bo0w1c1a3lvv8" path="res://enemies/assets/spr_basic_duck-sheet-sheet.png" id="2_b5ht1"]
+[ext_resource type="AudioStream" uid="uid://bgp6x1jgylf2m" path="res://assets/sfx/Flesh Hit B.wav" id="3_jtyv1"]
+[ext_resource type="AudioStream" uid="uid://bt1x0xqdbmk62" path="res://assets/sfx/Flesh Hit C.wav" id="4_a33f8"]
+[ext_resource type="AudioStream" uid="uid://b2ajk7wleyikw" path="res://assets/sfx/Creatures, Humanoid, Zombie, Male, Death Groan SND22546.wav" id="5_jtyv1"]
 
 [sub_resource type="Animation" id="Animation_b5ht1"]
 resource_name = "attack"
@@ -105,6 +109,14 @@ states/walk/position = Vector2(361, 243)
 transitions = ["death", "End", SubResource("AnimationNodeStateMachineTransition_jtyv1"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_a33f8"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_j2d0b"), "walk", "knockback", SubResource("AnimationNodeStateMachineTransition_fngk5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ccr3n"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_epbio"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_7on22"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_katke"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_bfj6p"), "idle", "knockback", SubResource("AnimationNodeStateMachineTransition_b5ht1"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xens1"), "knockback", "idle", SubResource("AnimationNodeStateMachineTransition_35jd6")]
 graph_offset = Vector2(-90, 81)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_315q6"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("2_35jd6")
+stream_1/stream = ExtResource("3_jtyv1")
+stream_2/stream = ExtResource("4_a33f8")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_bfj6p"]
 radius = 16.0
 
@@ -162,6 +174,18 @@ debug_enabled = true
 [node name="NavigationUpdateTimer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
+
+[node name="HitSfxPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_315q6")
+max_distance = 288.0
+panning_strength = 2.0
+bus = &"SFX"
+
+[node name="DeathSfxPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jtyv1")
+max_distance = 288.0
+panning_strength = 2.0
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -32)

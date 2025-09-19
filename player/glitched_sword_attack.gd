@@ -28,10 +28,10 @@ func on_delay_timeout() -> void:
 	hit_area_2d.monitoring = true
 	hit_area_2d.monitorable = true
 	animation_player.play(attack_animation)
+	$SwordSfxPlayer.play()
 	await animation_player.animation_finished
 	get_parent().remove_child(self)
 	queue_free()
-
 
 
 func _on_hit_area_2d_area_entered(area: Area2D) -> void:

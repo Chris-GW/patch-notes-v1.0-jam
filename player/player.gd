@@ -71,8 +71,11 @@ func _update_movement_velocity(delta: float) -> void:
 	var target_velocity := input_direction * move_speed
 	if can_input_dash():
 		dashing_timer.start()
+		play_random_dash_sfx()
 		dash_charges -= 1
 		hurt_area_2d.monitorable = false
+	elif Input.is_action_just_pressed("dash") and dash_charges <= 0:
+		$DashFailSfxPlayer.play()
 	
 	if not dashing_timer.is_stopped():
 		if input_direction.is_zero_approx(): # stopping not allowed
@@ -86,6 +89,8 @@ func _update_movement_velocity(delta: float) -> void:
 	velocity = velocity.lerp(target_velocity, velocity_weight)
 
 
+var step_sound_timer: SceneTreeTimer
+
 func _update_animation_parameters() -> void:
 	var velocity_direction := velocity.normalized()
 	var side_blend := velocity_direction.dot(Vector2.RIGHT)
@@ -94,7 +99,11 @@ func _update_animation_parameters() -> void:
 		animation_tree.set("parameters/dash_run/blend_position", side_blend)
 	if velocity.length_squared() > 30.0:
 		animation_tree.set("parameters/run/blend_position", velocity_direction)
-	
+		if not is_instance_valid(step_sound_timer) or step_sound_timer.time_left <= 0.0:
+			$StepSfxPlayer.play()
+			step_sound_timer = get_tree().create_timer(0.5)
+	else:
+		$StepSfxPlayer.stop()
 	if can_input_attack() and Input.is_action_pressed("attack_2"):
 		animation_tree.set("parameters/roll_attack/blend_position", side_blend)
 		animation_tree.set("parameters/conditions/is_attacking", false)
@@ -121,6 +130,16 @@ func  can_input_dash() -> bool:
 	return (Input.is_action_pressed("dash") 
 			and dash_charges > 0 
 			and dashing_timer.is_stopped())
+
+
+func play_random_dash_sfx() -> void:
+	var length := 0.75
+	var start: float = [0.0, 1.4, 2.8, 4.3, 5.6, 7.2, 8.6, 10.0, 11.4, 12.8, 14.2, 15.6, 17.1].pick_random()
+	$DashSfxPlayer.play(start)
+	print("DashSfxPlayer from ", start)
+	await get_tree().create_timer(length).timeout
+	$DashSfxPlayer.stop()
+	
 
 
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
@@ -154,6 +173,7 @@ func take_damage(damage: int) -> void:
 	health = clampi(health - damage, 0, max_health)
 	hurt_area_2d.set_monitorable.call_deferred(false)
 	damage_taken.emit()
+	$HurtSfxPlayer.play()
 	if health <= 0:
 		$DeathAudioPlayer.play()
 		sword.visible = false
@@ -178,6 +198,7 @@ func take_damage(damage: int) -> void:
 func take_heal(heal_amount: int) -> void:
 	health = clampi(health + heal_amount, 0, max_health)
 	heal_taken.emit()
+	$HealSfxPlayer.play()
 
 
 func is_full_health() -> bool:

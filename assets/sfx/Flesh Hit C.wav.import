@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bt1x0xqdbmk62"
+path="res://.godot/imported/Flesh Hit C.wav-ee5e14de597b05a8daa8a9456fcad570.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Flesh Hit C.wav"
+dest_files=["res://.godot/imported/Flesh Hit C.wav-ee5e14de597b05a8daa8a9456fcad570.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
