@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyfxl70wctxjf"]
+[gd_scene load_steps=5 format=3 uid="uid://dyfxl70wctxjf"]
 
 [ext_resource type="Script" uid="uid://dls7ar1441d85" path="res://ui/settings_ui/settings_ui.gd" id="1_hmly7"]
 [ext_resource type="PackedScene" uid="uid://82456qiy1un1" path="res://ui/settings_ui/bus_volume_control.tscn" id="2_1ub5d"]
+[ext_resource type="Texture2D" uid="uid://c7nhyqrucy1tn" path="res://assets/boot_splash.png" id="2_cfnbj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frl8s"]
 region = Rect2(272, 16, 16, 16)
 
 [node name="SettingsUi" type="CanvasLayer"]
 script = ExtResource("1_hmly7")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+self_modulate = Color(0.64398086, 0.64398086, 0.6439808, 1)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cfnbj")
+stretch_mode = 6
 
 [node name="SettingsLabel" type="Label" parent="."]
 z_index = 1
