@@ -166,8 +166,8 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_attacking = false
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 16.0
-target_desired_distance = 8.0
+path_desired_distance = 8.0
+target_desired_distance = 6.0
 path_max_distance = 96.0
 
 [node name="NavigationUpdateTimer" type="Timer" parent="."]

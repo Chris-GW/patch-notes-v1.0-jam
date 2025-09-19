@@ -6,6 +6,7 @@
 
 [node name="ChaserBasicDuck" instance=ExtResource("1_fn1dj")]
 script = ExtResource("2_oehvq")
+medkit_spawn_chance = 0.17
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -13,5 +14,5 @@ libraries = {
 }
 autoplay = "walk"
 
-[node name="Sprite2D" parent="." index="4"]
+[node name="Sprite2D" parent="." index="6"]
 offset = Vector2(-6, 0)
