@@ -7,8 +7,8 @@ enum Bus {
 
 @export var bus: Bus = Bus.MASTER
 @export var test_audio: AudioStream
-@export var min_volume_db: int = -60.0
-@export var max_volume_db: int = 0.0
+@export var min_volume_db: float = -60.0
+@export var max_volume_db: float = 0.0
 
 @onready var volume_slider = $VolumeSlider as HSlider
 

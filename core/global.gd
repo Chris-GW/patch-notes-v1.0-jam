@@ -7,7 +7,7 @@ var levels := [
 	"res://levels/level_03.tscn",
 	"res://levels/level_04.tscn",
 	#"res://levels/level_05.tscn",
-	"res://ui/finish_screen.tscn",
+	"res://ui/finish_game_ui/finish_screen.tscn",
 ]
 var level_index := 0
 

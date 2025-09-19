@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://tgcspwxfjt8l"]
+[gd_scene load_steps=24 format=3 uid="uid://tgcspwxfjt8l"]
 
 [ext_resource type="Script" uid="uid://osj4h2kfpcy5" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="AnimationLibrary" uid="uid://bp2gyyijcxemp" path="res://player/assets/player_animations.tres" id="2_qjkh3"]
@@ -7,8 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cwu5pnjidnl2e" path="res://player/assets/player_sprites.png" id="5_g6k8r"]
 [ext_resource type="AudioStream" uid="uid://c42sra86yvnvj" path="res://assets/sfx/dash_variations.wav" id="6_hg6s5"]
 [ext_resource type="AudioStream" uid="uid://f3hpmsxg575w" path="res://assets/sfx/dash_fail.wav" id="6_rgyib"]
+[ext_resource type="AudioStream" uid="uid://ob83pnlnvbxq" path="res://assets/sfx/slash_1.wav" id="6_wodsf"]
+[ext_resource type="AudioStream" uid="uid://dmqskriw1q14b" path="res://assets/sfx/slash_2.wav" id="7_32hag"]
 [ext_resource type="AudioStream" uid="uid://bykjijaahm2mf" path="res://assets/sfx/Voice B Pain Grunt 001.wav" id="8_ebec5"]
 [ext_resource type="AudioStream" uid="uid://oo5i6fin8d0c" path="res://assets/sfx/Stimpack 003.wav" id="8_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://yp8i53hc500i" path="res://assets/sfx/slash_3.wav" id="8_tqiix"]
 [ext_resource type="AudioStream" uid="uid://djjor2afdyunt" path="res://assets/sfx/Stimpack 004.wav" id="9_wodsf"]
 [ext_resource type="AudioStream" uid="uid://cfpo7sa82n2j7" path="res://assets/sfx/Voice B Pain Grunt 002.wav" id="9_yllr7"]
 [ext_resource type="AudioStream" uid="uid://dkca7excs388p" path="res://assets/sfx/Shoe Step Gravel Hard A.wav" id="10_yllr7"]
@@ -44,6 +47,14 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_g6k8r")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e7oew"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("6_wodsf")
+stream_1/stream = ExtResource("7_32hag")
+stream_2/stream = ExtResource("8_tqiix")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_32hag"]
 random_pitch = 1.1
@@ -89,7 +100,6 @@ ghost_spawn_chance = 0.17
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 process_mode = 3
-active = false
 tree_root = ExtResource("4_boad6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
@@ -135,6 +145,11 @@ bus = &"SFX"
 [node name="DashFailSfxPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_rgyib")
 max_polyphony = 2
+bus = &"SFX"
+
+[node name="SwordSfxPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_e7oew")
+volume_db = -4.0
 bus = &"SFX"
 
 [node name="StepSfxPlayer" type="AudioStreamPlayer" parent="."]

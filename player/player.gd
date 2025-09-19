@@ -114,12 +114,14 @@ func _update_animation_parameters() -> void:
 		animation_tree.set("parameters/conditions/is_attacking", false)
 		animation_tree.set("parameters/conditions/is_attacking_2", true)
 		attack_cooldown_timer.start()
+		$SwordSfxPlayer.play()
 	elif can_input_attack() and Input.is_action_pressed("attack"):
 		var mouse_direction := global_position.direction_to(get_global_mouse_position())
 		animation_tree.set("parameters/attack/blend_position", mouse_direction)
 		animation_tree.set("parameters/conditions/is_attacking", true)
 		animation_tree.set("parameters/conditions/is_attacking_2", false)
 		attack_cooldown_timer.start()
+		$SwordSfxPlayer.play()
 	else:
 		animation_tree.set("parameters/conditions/is_attacking", false)
 		animation_tree.set("parameters/conditions/is_attacking_2", false)

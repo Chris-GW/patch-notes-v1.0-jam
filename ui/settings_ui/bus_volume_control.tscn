@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://82456qiy1un1"]
+[gd_scene load_steps=6 format=3 uid="uid://82456qiy1un1"]
 
 [ext_resource type="Script" uid="uid://d0ikbxjo8ulgi" path="res://ui/settings_ui/bus_volume_control.gd" id="1_dh457"]
 [ext_resource type="AudioStream" uid="uid://yp8i53hc500i" path="res://assets/sfx/slash_3.wav" id="2_0glo1"]
 [ext_resource type="Texture2D" uid="uid://b7w68ki3ymq43" path="res://ui/UI_sprite_sheet.png" id="2_drhxk"]
-[ext_resource type="AudioStream" uid="uid://dmqskriw1q14b" path="res://assets/sfx/slash_2.wav" id="3_e8xy0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2csd"]
 atlas = ExtResource("2_drhxk")
@@ -19,9 +18,11 @@ offset_bottom = 28.0
 theme_override_constants/separation = 8
 script = ExtResource("1_dh457")
 test_audio = ExtResource("2_0glo1")
+min_volume_db = -60
+max_volume_db = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_e8xy0")
+stream = ExtResource("2_0glo1")
 
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
