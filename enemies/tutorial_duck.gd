@@ -21,6 +21,7 @@ func _ready() -> void:
 func _lower_player_starting_health(amount: int) -> void:
 	var player: Player = get_tree().get_first_node_in_group("player")
 	player.health -= amount
+	player.damage_taken.emit()
 
 
 func _physics_process(delta: float) -> void:
