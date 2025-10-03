@@ -15,6 +15,12 @@ func _ready() -> void:
 	navigation_agent.debug_enabled = true
 	super._ready()
 	self.died.connect(_on_died)
+	_lower_player_starting_health.call_deferred(1)
+
+
+func _lower_player_starting_health(amount: int) -> void:
+	var player: Player = get_tree().get_first_node_in_group("player")
+	player.health -= amount
 
 
 func _physics_process(delta: float) -> void:
@@ -29,6 +35,3 @@ func _physics_process(delta: float) -> void:
 func _on_died() -> void:
 	if is_instance_valid(gate):
 		gate.open()
-	var player: Player = get_tree().get_first_node_in_group("player")
-	player.invincibility_timer.stop()
-	player.take_damage(1)

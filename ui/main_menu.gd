@@ -2,6 +2,10 @@ extends CanvasLayer
 
 
 func _ready() -> void:
+	if OS.has_feature("editor") or OS.has_feature("web"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	%QuitButton.visible = not OS.has_feature("web")
 	%ContinueGameButton.disabled = Global.level_index <= 0
 	Global.play_menu_music()
