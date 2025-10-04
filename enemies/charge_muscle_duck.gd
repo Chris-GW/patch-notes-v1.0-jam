@@ -20,7 +20,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	%AttackCooldownBar.value = charge_cooldown_timer.time_left / charge_cooldown_timer.wait_time
 	if state_machine.get_current_node() == "death":
 		return
 	if knockback.length_squared() > 20.0:
