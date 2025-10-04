@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cl0toa531bsqm"]
+[gd_scene load_steps=13 format=4 uid="uid://cl0toa531bsqm"]
 
 [ext_resource type="PackedScene" uid="uid://bagc6mf0in81g" path="res://levels/base_level.tscn" id="1_nnn84"]
 [ext_resource type="Texture2D" uid="uid://dhbf23gti5voy" path="res://levels/tile_sets/tileset_level_02.png" id="2_2owmk"]
@@ -22,30 +22,25 @@ agent_radius = 16.0
 [sub_resource type="Resource" id="Resource_2owmk"]
 script = ExtResource("4_h518d")
 chaser_count = 9
+ranged_count = 1
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
 [sub_resource type="Resource" id="Resource_cwmx8"]
 script = ExtResource("4_h518d")
-chaser_count = 8
-teleporter_count = 1
+chaser_count = 5
+ranged_count = 7
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
 [sub_resource type="Resource" id="Resource_mihb8"]
 resource_local_to_scene = true
 script = ExtResource("4_h518d")
-chaser_count = 8
+chaser_count = 9
 teleporter_count = 1
-metadata/_custom_type_script = "uid://dkti3fyigg5o5"
-
-[sub_resource type="Resource" id="Resource_05651"]
-script = ExtResource("4_h518d")
-chaser_count = 6
-teleporter_count = 4
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
 [sub_resource type="Resource" id="Resource_xxuo2"]
 script = ExtResource("4_h518d")
-chaser_count = 3
+chaser_count = 5
 teleporter_count = 8
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
@@ -126,7 +121,7 @@ position = Vector2(1056, -1120)
 
 [node name="RightBattlePoint" parent="YSortRoot" index="9" instance=ExtResource("3_8yqd8")]
 position = Vector2(1821, 254)
-battle_waves = Array[ExtResource("4_h518d")]([SubResource("Resource_mihb8"), SubResource("Resource_05651"), SubResource("Resource_xxuo2")])
+battle_waves = Array[ExtResource("4_h518d")]([SubResource("Resource_mihb8"), SubResource("Resource_xxuo2")])
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSortRoot/RightBattlePoint" index="0"]
 visible = false

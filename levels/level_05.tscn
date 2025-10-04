@@ -17,7 +17,7 @@ source_geometry_group_name = &"navigation"
 cell_size = 4.0
 agent_radius = 16.0
 
-[sub_resource type="Resource" id="Resource_7d3dm"]
+[sub_resource type="Resource" id="Resource_g3bu7"]
 resource_local_to_scene = true
 script = ExtResource("3_g3bu7")
 chaser_count = 30
@@ -37,9 +37,9 @@ metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 [sub_resource type="Resource" id="Resource_roa4n"]
 script = ExtResource("3_g3bu7")
 chaser_count = 5
-teleporter_count = 7
+teleporter_count = 9
 ranged_count = 15
-tank_count = 12
+tank_count = 10
 metadata/_custom_type_script = "uid://dkti3fyigg5o5"
 
 [node name="Level05" instance=ExtResource("1_eyhsw")]
@@ -62,7 +62,7 @@ navigation_polygon = SubResource("NavigationPolygon_fdgl0")
 position = Vector2(-80, 160)
 
 [node name="BattlePoint" parent="YSortRoot" index="5" instance=ExtResource("2_7d3dm")]
-battle_waves = Array[ExtResource("3_g3bu7")]([SubResource("Resource_7d3dm"), SubResource("Resource_rpmp5"), SubResource("Resource_roa4n")])
+battle_waves = Array[ExtResource("3_g3bu7")]([SubResource("Resource_g3bu7"), SubResource("Resource_rpmp5"), SubResource("Resource_roa4n")])
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSortRoot/BattlePoint" index="0"]
 position = Vector2(-416, 0)
