@@ -9,7 +9,7 @@ signal battle_ended(battle_point: BattlePoint)
 var enemy_scenes: Array[PackedScene] = [
 	preload("res://enemies/chaser_basic_duck.tscn"),
 	preload("res://enemies/teleporter_muscle_duck.tscn"),
-	preload("res://enemies/ranged_muscle_duck.tscn"),
+	preload("res://enemies/charge_muscle_duck.tscn"),
 	preload("res://enemies/tank_fat_duck.tscn"),
 	preload("res://enemies/boss.tscn"),
 ]

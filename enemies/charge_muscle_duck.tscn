@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqomdxpw25hce"]
+
+[ext_resource type="PackedScene" uid="uid://3i44qkdeaoow" path="res://enemies/base_enemy.tscn" id="1_v2ieu"]
+[ext_resource type="AnimationLibrary" uid="uid://doymkt87bd024" path="res://enemies/basic_enemy_animations.tres" id="2_w0gua"]
+[ext_resource type="Script" uid="uid://btle76jxvx8mn" path="res://enemies/charge_muscle_duck.gd" id="2_yb1jf"]
+[ext_resource type="Texture2D" uid="uid://b0pdwbk0qku58" path="res://enemies/assets/spr_muscle_duck_sheet.png" id="3_yb1jf"]
+[ext_resource type="Texture2D" uid="uid://bd6fpspc3o5qc" path="res://enemies/assets/charge_line.png" id="5_yb1jf"]
+[ext_resource type="Texture2D" uid="uid://dufeka2g8yvkg" path="res://enemies/assets/charge_line_sheet.png" id="6_wqmrx"]
+
+[node name="ChargeMuscleDuck" instance=ExtResource("1_v2ieu")]
+script = ExtResource("2_yb1jf")
+charge_length = 416.0
+charge_speed = 400.0
+charge_windup_sec = 1.0
+charge_cooldown_sec = 6.0
+attack_damage = 1
+move_speed = 100.0
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": ExtResource("2_w0gua")
+}
+
+[node name="NavigationAgent" parent="." index="2"]
+debug_enabled = true
+
+[node name="ChargeWindupTimer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[node name="ChargeCooldownTimer" type="Timer" parent="." index="5"]
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" parent="." index="8"]
+texture = ExtResource("3_yb1jf")
+
+[node name="ChargeLine2D" type="Line2D" parent="." index="9"]
+z_index = -1
+texture_repeat = 2
+position = Vector2(0, -16)
+points = PackedVector2Array(0, 0, 416, 0)
+width = 32.0
+texture = ExtResource("5_yb1jf")
+texture_mode = 1
+
+[node name="StartSprite2D" type="Sprite2D" parent="ChargeLine2D" index="0"]
+texture = ExtResource("6_wqmrx")
+hframes = 3
+region_rect = Rect2(0, 0, 8, 26)
+
+[node name="EndSprite2D" type="Sprite2D" parent="ChargeLine2D" index="1"]
+position = Vector2(416, 0)
+texture = ExtResource("6_wqmrx")
+hframes = 3
+frame = 2
+region_rect = Rect2(0, 0, 8, 26)
+
+[node name="ChargeLineRayCast2D" type="RayCast2D" parent="." index="10"]
+position = Vector2(0, -16)
+enabled = false
+target_position = Vector2(448, 0)

@@ -20,13 +20,15 @@ var target: Node2D = null
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine := animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+@onready var navigation_update_timer: Timer = $NavigationUpdateTimer
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent
+@onready var death_sfx_player_2d: AudioStreamPlayer2D = $DeathSfxPlayer2D
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var hurt_area_2d: Area2D = $HurtArea2D
 @onready var hit_area_2d: Area2D = %HitArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var death_sfx_player_2d: AudioStreamPlayer2D = $DeathSfxPlayer2D
 
 
 func _ready() -> void:
@@ -42,9 +44,9 @@ func _physics_process(delta: float) -> void:
 	if knockback.length_squared() > 20.0:
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 		velocity = knockback
-	elif navigation_agent.is_navigation_finished():
-		velocity = Vector2.ZERO
 	elif state_machine.get_current_node() == "attack":
+		velocity = Vector2.ZERO
+	elif navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
 	else:
 		var next_point := navigation_agent.get_next_path_position()

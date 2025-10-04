@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://tgcspwxfjt8l" path="res://player/player.tscn" id="5_fxv1w"]
 [ext_resource type="PackedScene" uid="uid://cwjk4jihy3r6a" path="res://core/spawn_point/spawn_point.tscn" id="5_k558u"]
 [ext_resource type="PackedScene" uid="uid://d4lwqkao3c5ai" path="res://enemies/chaser_basic_duck.tscn" id="6_os75o"]
-[ext_resource type="PackedScene" uid="uid://bqomdxpw25hce" path="res://enemies/ranged_muscle_duck.tscn" id="7_quo5p"]
+[ext_resource type="PackedScene" uid="uid://bqomdxpw25hce" path="res://enemies/ranged_duck.tscn" id="7_quo5p"]
 
 [node name="Node2D" type="Node2D"]
 
