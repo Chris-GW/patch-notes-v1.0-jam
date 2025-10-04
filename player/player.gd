@@ -143,7 +143,6 @@ func play_random_dash_sfx() -> void:
 	var length := 0.75
 	var start: float = [0.0, 1.4, 2.8, 4.3, 5.6, 7.2, 8.6, 10.0, 11.4, 12.8, 14.2, 15.6, 17.1].pick_random()
 	$DashSfxPlayer.play(start)
-	print("DashSfxPlayer from ", start)
 	await get_tree().create_timer(length).timeout
 	$DashSfxPlayer.stop()
 	

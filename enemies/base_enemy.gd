@@ -116,3 +116,14 @@ func apply_knockback(source_pos: Vector2, strength: float = 300.0):
 		return
 	var dir := source_pos.direction_to(global_position)
 	knockback = dir * strength
+	
+	var debug_line := Line2D.new()
+	debug_line.default_color = Color.AQUA
+	debug_line.width = 2.0
+	debug_line.z_index = 99
+	debug_line.global_position = self.global_position
+	get_parent().add_child(debug_line)
+	debug_line.add_point(Vector2.ZERO)
+	debug_line.add_point(dir * 64.0)
+	await get_tree().create_timer(5.0).timeout
+	debug_line.queue_free()

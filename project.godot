@@ -14,7 +14,7 @@ config/name="Murphy The Mad Swordsman"
 config/description="A tiny hack & slash — defend your village against waves of plundering ducks
 Patch Notes Jam v1.0 — Theme: \"The Error Is the Feature\" "
 config/version="1.1"
-run/main_scene="uid://cwcicc6bnfw6l"
+run/main_scene="uid://b7ohc5pxwwcus"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.84705883, 0.8117647, 0.9411765, 1)
 boot_splash/use_filter=false

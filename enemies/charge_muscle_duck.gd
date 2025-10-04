@@ -4,6 +4,7 @@ extends BaseEnemy
 @export var charge_speed: float
 @export var charge_windup_sec: float
 @export var charge_cooldown_sec: float
+@export var charge_knockback: float
 
 @onready var charge_windup_timer: Timer = $ChargeWindupTimer
 @onready var charge_cooldown_timer: Timer = $ChargeCooldownTimer
@@ -19,6 +20,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	%AttackCooldownBar.value = charge_cooldown_timer.time_left / charge_cooldown_timer.wait_time
 	if state_machine.get_current_node() == "death":
 		return
 	if knockback.length_squared() > 20.0:
@@ -32,58 +34,103 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	elif navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
-		if charge_line_2d.visible:
-			charge_line_2d.visible = false
-			_on_navigation_update_timer_timeout()
-			navigation_update_timer.start()
+		if in_charge_attack():
+			stop_charge_attack()
 	else:
 		var next_point := navigation_agent.get_next_path_position()
 		var direction := global_position.direction_to(next_point)
 		if in_charge_attack():
+			update_charge_line()
 			velocity = direction * charge_speed
 			if state_machine.get_current_node() != "attack":
 				state_machine.travel("attack")
 		else:
 			velocity = direction * move_speed
 	
-	if can_charge_attack():
-		velocity = Vector2.ZERO
-		windup_charge_attack()
+	try_charge_attack()
 	
 	if move_and_slide():
 		if knockback.length_squared() > 20.0:
 			var last_collision := get_last_slide_collision()
 			knockback = last_collision.get_normal() * knockback.length()
 		elif in_charge_attack():
-			for i in get_slide_collision_count():
-				var slide_collision := get_slide_collision(i)
-				var collider := slide_collision.get_collider()
-				if collider is BaseEnemy:
-					collider.apply_knockback(slide_collision.get_position(), 160.0)
+			knockback_colliding_enemies()
 
 
-func windup_charge_attack() -> void:
+func knockback_colliding_enemies() -> void:
+	var charge_direction := velocity.normalized()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider() is BaseEnemy:
+			var collider: BaseEnemy = collision.get_collider()
+			var enemy_direction := self.global_position.direction_to(collider.global_position)
+			var knockback_direction := charge_direction.rotated(PI / 2.0)
+			if enemy_direction.dot(knockback_direction) < 0.0:
+				knockback_direction *= -1.0
+			knockback_direction.rotated(randf_range(-PI / 8.0, PI / 8.0))
+			var source_pos := collider.global_position - knockback_direction
+			collider.apply_knockback(source_pos, charge_knockback)
+		else:
+			stop_charge_attack()
+
+
+func stop_charge_attack() -> void:
+	charge_line_2d.visible = false
+	_on_navigation_update_timer_timeout()
+	navigation_update_timer.start()
+
+
+func try_charge_attack() -> bool:
+	if not charge_cooldown_timer.is_stopped():
+		return false # in attack cooldown
+	if randf() < 0.95:
+		return false # chance missed
+	
 	var target_position := find_charge_target().global_position
-	var charge_direction := self.global_position.direction_to(target_position)
-	var end_position := self.global_position + charge_direction * charge_length
-	place_charge_line(self.global_position, end_position)
+	var target_distance := self.global_position.distance_to(target_position)
+	if target_distance > charge_length * 0.7:
+		return false # out of attack range
+	return ray_cast_charge_line(target_position)
+
+
+func ray_cast_charge_line(target_position: Vector2) -> bool:
+	var charge_direction := global_position.direction_to(target_position)
+	var end_position := global_position + charge_direction * charge_length
+	var ray_offset_direction := charge_direction.rotated(PI / 2.0)
+	
+	var collision_distance := INF
+	var nearest_collision_point := end_position
+	for ray_offset in [-16.0, 0.0, 16.0]:
+		var offset: Vector2 = ray_offset_direction * ray_offset
+		charge_ray_cast.position = offset
+		charge_ray_cast.target_position = charge_ray_cast.to_local(end_position)
+		charge_ray_cast.target_position += offset
+		charge_ray_cast.force_raycast_update()
+		
+		if charge_ray_cast.is_colliding():
+			var collision_point = charge_ray_cast.get_collision_point()
+			var distance := global_position.distance_to(collision_point)
+			if distance < collision_distance:
+				collision_distance = distance
+				nearest_collision_point = collision_point
+	
+	var target_distance := global_position.distance_to(target_position)
+	target_distance -= 16.0
+	if collision_distance < target_distance:
+		return false # charge path obstructed to target
+	do_prepare_charge_attack(nearest_collision_point)
+	velocity = Vector2.ZERO
+	return true
+
+
+func do_prepare_charge_attack(end_position: Vector2) -> void:
 	navigation_update_timer.stop()
-	set_nav_target_position(end_position)
+	navigation_agent.target_position = end_position
+	charge_line_2d.set_point_position(1, charge_line_2d.to_local(end_position))
+	update_charge_line()
+	charge_line_2d.visible = true
 	charge_windup_timer.start(charge_windup_sec)
 	charge_cooldown_timer.start(charge_windup_sec + charge_cooldown_sec)
-
-
-func place_charge_line(start_position: Vector2, end_position: Vector2) -> void:
-	charge_line_2d.global_position = start_position
-	charge_line_2d.set_point_position(1, charge_line_2d.to_local(end_position))
-	charge_line_2d.visible = true
-	
-	# rotate start / end cap sprites
-	var start_sprite: Node2D = charge_line_2d.get_child(0)
-	var end_sprite: Node2D = charge_line_2d.get_child(1)
-	start_sprite.rotation = start_position.angle_to_point(end_position)
-	end_sprite.rotation = start_sprite.rotation
-	end_sprite.global_position = end_position
 
 
 func find_charge_target() -> Node2D:
@@ -94,16 +141,23 @@ func find_charge_target() -> Node2D:
 	return charge_target
 
 
-func can_charge_attack() -> bool:
-	if not charge_cooldown_timer.is_stopped():
-		return false
-	var target_position := find_charge_target().global_position
-	var target_distance := self.global_position.distance_to(target_position)
-	if target_distance > charge_length * 0.666:
-		return false
-	charge_ray_cast.target_position = charge_ray_cast.to_local(target_position)
-	charge_ray_cast.force_raycast_update()
-	return not charge_ray_cast.is_colliding()
+func update_charge_line() -> void:
+	var end_position := charge_line_2d.to_global(charge_line_2d.get_point_position(1))
+	var charge_direction := global_position.direction_to(end_position)
+	var distance := global_position.distance_to(end_position)
+	distance = snappedf(distance, charge_line_2d.texture.get_size().x) 
+	var start_position := end_position - charge_direction * distance
+	
+	charge_line_2d.global_position = self.global_position
+	charge_line_2d.set_point_position(0, charge_line_2d.to_local(start_position))
+	charge_line_2d.set_point_position(1, charge_line_2d.to_local(end_position))
+	
+	# rotate start / end cap sprites
+	var start_sprite: Node2D = charge_line_2d.get_child(0)
+	var end_sprite: Node2D = charge_line_2d.get_child(1)
+	start_sprite.rotation = self.global_position.angle_to_point(end_position)
+	end_sprite.rotation = start_sprite.rotation
+	end_sprite.global_position = end_position
 
 
 func in_charge_windup() -> bool:
@@ -121,5 +175,6 @@ func apply_knockback(source_pos: Vector2, strength: float = 300.0):
 
 
 func die() -> void:
+	charge_line_2d.visible = false
+	charge_line_2d.reparent(self)
 	super.die()
-	charge_line_2d.queue_free()
