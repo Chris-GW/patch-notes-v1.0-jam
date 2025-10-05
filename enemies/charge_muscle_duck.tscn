@@ -23,9 +23,6 @@ libraries = {
 &"": ExtResource("2_w0gua")
 }
 
-[node name="NavigationAgent" parent="." index="2"]
-debug_enabled = true
-
 [node name="ChargeWindupTimer" type="Timer" parent="." index="4"]
 one_shot = true
 

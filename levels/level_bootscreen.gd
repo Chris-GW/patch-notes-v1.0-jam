@@ -25,9 +25,10 @@ func take_screen_shots() -> void:
 func take_screen_shot(reference_rect: ReferenceRect) -> void:
 	sub_viewport.size = reference_rect.size
 	camera_2d.position = reference_rect.position
-	%GameTitleContainer1.visible = reference_rect.name != "îtchio_website_background"
-	%GameTitleContainer2.visible = reference_rect.name == "îtchio_website_background"
-	%GameTitleContainer3.visible = reference_rect.name == "îtchio_website_background"
+	get_tree().call_group("screenshot_rect", "set_visible", false)
+	reference_rect.visible = true
+	for child in reference_rect.get_children():
+		child.call("set_visible", true)
 	await get_tree().process_frame
 	
 	var img_name := reference_rect.name
