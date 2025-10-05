@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dls7ar1441d85" path="res://ui/settings_ui/settings_ui.gd" id="1_hmly7"]
 [ext_resource type="PackedScene" uid="uid://82456qiy1un1" path="res://ui/settings_ui/bus_volume_control.tscn" id="2_1ub5d"]
-[ext_resource type="Texture2D" uid="uid://c7nhyqrucy1tn" path="res://assets/boot_splash.png" id="2_cfnbj"]
+[ext_resource type="Texture2D" uid="uid://coxy03jkg5l2n" path="res://assets/itch_io/game_menu_background.png" id="2_cfnbj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frl8s"]
 region = Rect2(272, 16, 16, 16)
@@ -160,16 +160,22 @@ layout_mode = 2
 [node name="MasterVolumeControl" parent="TabContainer/Audio/AudioContainer" instance=ExtResource("2_1ub5d")]
 layout_mode = 2
 size_flags_horizontal = 3
+min_volume_db = -60.0
+max_volume_db = 0.0
 
 [node name="MusicVolumeControl" parent="TabContainer/Audio/AudioContainer" instance=ExtResource("2_1ub5d")]
 layout_mode = 2
 size_flags_horizontal = 3
 bus = 1
+min_volume_db = -60.0
+max_volume_db = 0.0
 
 [node name="SfxVolumeControl" parent="TabContainer/Audio/AudioContainer" instance=ExtResource("2_1ub5d")]
 layout_mode = 2
 size_flags_horizontal = 3
 bus = 2
+min_volume_db = -60.0
+max_volume_db = 0.0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Audio/AudioContainer"]
 layout_mode = 2

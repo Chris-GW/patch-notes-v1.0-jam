@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwcicc6bnfw6l"]
+[gd_scene load_steps=3 format=3 uid="uid://cwcicc6bnfw6l"]
 
 [ext_resource type="Script" uid="uid://c1184pplacsab" path="res://ui/main_menu.gd" id="1_0dkrt"]
-[ext_resource type="Texture2D" uid="uid://6t7iwnqmkl4s" path="res://assets/patch_notes/Patch Notes Logo.png" id="1_t7e0r"]
-[ext_resource type="Texture2D" uid="uid://c7nhyqrucy1tn" path="res://assets/boot_splash.png" id="2_wk0pr"]
+[ext_resource type="Texture2D" uid="uid://coxy03jkg5l2n" path="res://assets/itch_io/game_menu_background.png" id="2_wk0pr"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_0dkrt")
@@ -16,15 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_wk0pr")
 stretch_mode = 6
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 16.0
-offset_top = 12.0
-offset_right = 144.0
-offset_bottom = 140.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_t7e0r")
-expand_mode = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8

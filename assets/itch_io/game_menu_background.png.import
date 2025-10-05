@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7nhyqrucy1tn"
-path="res://.godot/imported/boot_splash.png-58752582489c18025e901e53092cacd4.ctex"
+uid="uid://coxy03jkg5l2n"
+path="res://.godot/imported/game_menu_background.png-59b1700619cd5b5fe565c3079b5d9d02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/boot_splash.png"
-dest_files=["res://.godot/imported/boot_splash.png-58752582489c18025e901e53092cacd4.ctex"]
+source_file="res://assets/itch_io/game_menu_background.png"
+dest_files=["res://.godot/imported/game_menu_background.png-59b1700619cd5b5fe565c3079b5d9d02.ctex"]
 
 [params]
 
